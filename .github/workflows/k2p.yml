@@ -1,0 +1,112 @@
+name: Phicomm-K2P
+
+on:
+  repository_dispatch:
+    types: k2p-build
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Clone Repository
+      uses: actions/checkout@v1
+
+    - name: Init build dependencies
+      env:
+        DDEBIAN_FRONTEND: noninteractive
+      run: |
+        docker rmi $(docker images -q)
+        sudo -E apt-get remove -y --purge azure-cli ghc zulu* hhvm llvm* firefox google* dotnet* powershell openjdk* mysql* php*
+        sudo -E apt-get update -y
+        sudo -E apt-get install -y build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib g++-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python python3 python-pip python3-pip python-ply python3-ply haveged lrzsz device-tree-compiler scons xsltproc
+        sudo -E apt-get autoremove -y --purge
+        sudo -E apt-get clean -y
+        sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php
+        sudo swapoff -a
+        sudo rm -f /swapfile
+        sudo apt clean
+        sudo rm -rf "/usr/local/share/boost"
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+        df -h
+
+    - name: Clone OpenWrt
+      env:
+        REPO_URL: https://github.com/openwrt/openwrt
+        REPO_TAG: openwrt-19.07
+      run: |
+        git clone $REPO_URL openwrt
+        pushd openwrt
+        git checkout $REPO_TAG
+        popd
+
+    - name: Prepare OpenWrt
+      working-directory: ./openwrt
+      run: |
+        cp ../files/scripts/01_prepare.sh .
+        /bin/bash 01_prepare.sh
+
+    - name: Customize Packages
+      working-directory: ./openwrt
+      run: |
+        cp ../files/scripts/k2p_01_customize_packages.sh .
+        /bin/bash k2p_01_customize_packages.sh
+
+    - name: Convert Translation
+      working-directory: ./openwrt
+      run: |
+        cp ../files/scripts/02_convert_translation.sh .
+        /bin/bash 02_convert_translation.sh
+
+    - name: Remove Upx
+      working-directory: ./openwrt
+      run: |
+        cp ../files/scripts/03_remove_upx.sh .
+        /bin/bash 03_remove_upx.sh
+
+    - name: Add ACL
+      working-directory: ./openwrt
+      run: |
+        cp ../files/scripts/04_create_acl_for_luci.sh .
+        /bin/bash 04_create_acl_for_luci.sh -a
+
+    - name: Make Config
+      working-directory: ./openwrt
+      run: |
+        cp ../files/seed/k2p_config.seed .config
+        make defconfig
+
+    - name: Make Download
+      working-directory: ./openwrt
+      run: |
+        make download -j$((`nproc`+1))
+
+    - name: Compile OpenWrt
+      working-directory: ./openwrt
+      run: |
+        make -j$((`nproc`+1)) V=s || make -j1 V=s
+
+    - name: Assemble Artifact
+      id: assemble_artifact
+      run: |
+        rm -rf ./artifact
+        ls openwrt/bin/targets/ramips/mt7621/
+        mv openwrt/bin/targets/ramips/mt7621 ./artifact
+        rm -rf ./artifact/packages
+        name_tag="Phicomm-K2P-$(date +%Y-%m-%d)"
+        echo ::set-output name=release_tag::$name_tag
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ${{ steps.assemble_artifact.outputs.release_tag }}
+        path: artifact/*
+
+    - name: Upload Release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        draft: false
+        prerelease: true
+        tag_name: ${{ steps.assemble_artifact.outputs.release_tag }}
+        files: artifact/*

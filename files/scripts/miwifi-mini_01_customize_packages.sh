@@ -5,6 +5,14 @@
 
 # access control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
+# automount
+rm -rf ./feeds/packages/kernel/exfat-nofuse
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
+svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount package/utils/antfs-mount
+svn co https://github.com/openwrt/packages/trunk/kernel/antfs package/kernel/antfs
+svn co https://github.com/openwrt/openwrt/trunk/package/kernel/exfat package/kernel/exfat
+# autosamba
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autosamba package/new/autosamba
 # DDNS
 rm -rf ./feeds/packages/net/ddns-scripts
 rm -rf ./feeds/luci/applications/luci-app-ddns
@@ -42,11 +50,13 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libe
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/simple-obfs package/new/simple-obfs
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/new/v2ray
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/new/v2ray-plugin
+# SeverChan
+git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 # Scheduled Reboot
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
 # Traffic Usage Monitor
-git clone -b master --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
-git clone -b master --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
+git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
+git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 # UPNP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
@@ -55,11 +65,13 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-prin
 # vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/new/vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/new/luci-app-vlmcsd
+# xlnetacc
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/new/luci-app-xlnetacc
 # zram-swap
 rm -rf package/system/zram-swap
 svn co https://github.com/openwrt/openwrt/trunk/package/system/zram-swap package/system/zram-swap
 
 # default settings and translate
-svn co https://github.com/vgist/OpenWrt-Packages/trunk/default-settings package/new/lean-translate
+cp -rf ../default-settings package/new/lean-translate
 
 exit 0

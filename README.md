@@ -15,41 +15,43 @@
 #### 特色及功能
 
 - 支持 ECC 密钥
-- 后续只跟进稳定分支
-- IP: 192.168.2.1
-- 密码: 无
+- 已进入上游稳定分支的设备，后续只跟进稳定分支
+- 默认密码: 无
 - 部分官方源存在，依赖性不强的应用不考虑集成，有依赖问题再考虑集成进固件
 - 弱鸡的 cpu，不考虑集成 golang 应用
 
+#### 分支
+
+| 分支   |NanoPi R2S|x86_64 |Phicomm K3|Phicomm K2P|MiWiFi-Mini|
+|--------|:--------:|:-----:|:--------:|:---------:|:---------:|
+| master | &check;  |       |          |           |           |
+| 19.07  |          |&check;| &check;  |  &check;  |  &check;  |
+
 #### 第三方应用列表
 
-|    插件名称    | NanoPi R2S | x86_64  | Phicomm K3 | Phicomm K2P | MiWiFi-Mini |
-|----------------|:----------:|:-------:|:-----------:|:----------:|:-----------:|
-| 分支：master   |  &#9745;   | &#9744; |   &#9744;   |  &#9744;   |   &#9744;   |
-| 分支：19.07    |  &#9744;   | &#9745; |   &#9745;   |  &#9745;   |   &#9745;   |
-| AdGuard Home   |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| AutoCore       |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| cpufreq        |  &#9745;   | &#9744; |   &#9745;   |  &#9744;   |   &#9744;   |
-| DDNS           |  &#9745;   | &#9745; |   &#9745;   |  &#9745;   |   &#9745;   |
-| fullcone nat   |  &#9745;   | &#9745; |   &#9745;   |  &#9745;   |   &#9745;   |
-| frpc           |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| frps           |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| IPSEC          |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| MiniUPnP       |  &#9745;   | &#9745; |   &#9745;   |  &#9745;   |   &#9745;   |
-| OpenClash      |  &#9745;   | &#9745; |   &#9745;   |  &#9745;   |   &#9744;   |
-| PassWall       |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9745;   |
-| Server 酱      |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| usb 打印       |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9745;   |
-| vlmcsd 服务    |  &#9745;   | &#9745; |   &#9745;   |  &#9745;   |   &#9745;   |
-| Zerotier       |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| 定时重启       |  &#9745;   | &#9745; |   &#9745;   |  &#9745;   |   &#9745;   |
-| 解锁灰色歌曲   |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| 流量监视       |  &#9745;   | &#9745; |   &#9745;   |  &#9745;   |   &#9745;   |
-| 上网时间控制   |  &#9745;   | &#9745; |   &#9745;   |  &#9745;   |   &#9745;   |
-| 实时监控       |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-| 文件传输       |  &#9745;   | &#9745; |   &#9745;   |  &#9744;   |   &#9744;   |
-
-#### 针对开发者
-
-- 提供 imagebuilder
-- 提供 toolchain
+| 应用       |NanoPi R2S|x86_64 |Phicomm K3|Phicomm K2P|MiWiFi-Mini|
+|------------|:--------:|:-----:|:--------:|:---------:|:---------:|
+|AdGuard Home| &check;  |&check;| &check;  |           |           |
+| AutoCore   | &check;  |&check;| &check;  |           |           |
+| cpufreq    | &check;  |       | &check;  |           |           |
+| DDNS       | &check;  |&check;| &check;  |  &check;  |  &check;  |
+|FullCone NAT| &check;  |&check;| &check;  |  &check;  |  &check;  |
+| frpc       | &check;  |&check;| &check;  |           |           |
+| frps       | &check;  |&check;| &check;  |           |           |
+| IPSEC      |          |&check;| &check;  |           |           |
+| MiniUPnP   | &check;  |&check;| &check;  |  &check;  |  &check;  |
+| OpenClash  | &check;  |&check;| &check;  |  &check;  |           |
+| PassWall   | &check;  |&check;| &check;  |           |  &check;  |
+| Server 酱  | &check;  |&check;| &check;  |  &check;  |  &check;  |
+| usb 打印   | &check;  |&check;| &check;  |           |  &check;  |
+|vlmcsd 服务 | &check;  |&check;| &check;  |  &check;  |  &check;  |
+| Zerotier   | &check;  |&check;| &check;  |           |           |
+| 定时重启   | &check;  |&check;| &check;  |  &check;  |  &check;  |
+|解锁灰色歌曲| &check;  |&check;| &check;  |           |           |
+|上网时间控制| &check;  |&check;| &check;  |  &check;  |  &check;  |
+| 实时监控   | &check;  |&check;| &check;  |           |           |
+| 网络共享   | &check;  |&check;| &check;  |           |  &check;  |
+| 文件传输   | &check;  |&check;| &check;  |           |           |
+| 迅雷快鸟   | &check;  |&check;| &check;  |  &check;  |  &check;  |
+| 应用过滤   | &check;  |&check;| &check;  |           |           |
+| 自动挂载   | &check;  |&check;| &check;  |           |  &check;  |

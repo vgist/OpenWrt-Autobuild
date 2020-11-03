@@ -1,0 +1,57 @@
+#!/bin/sh
+
+# default lan IP, is it necessary?
+#uci set network.lan.ipaddr='192.168.2.1'
+#uci commit network && service network restart
+
+# timezone
+uci set system.@system[0].timezone=CST-8
+uci set system.@system[0].zonename=Asia/Shanghai
+# zram-swap
+uci set system.@system[0].zram_priority=100
+# rng-tools
+uci set system.@rngd[0].enabled=1
+# ntp server
+uci -q delete system.ntp.server
+uci add_list system.ntp.server="ntp1.aliyun.com"
+uci add_list system.ntp.server="ntp2.aliyun.com"
+uci add_list system.ntp.server="time1.cloud.tencent.com"
+uci add_list system.ntp.server="time2.cloud.tencent.com"
+uci add_list system.ntp.server="cn.pool.ntp.org"
+uci commit system && service sysntpd reload
+
+# uhttpd
+uci set uhttpd.main.rfc1918_filter=0
+uci set uhttpd.main.redirect_https=0
+uci commit uhttpd && service uhttpd reload
+
+# dnsmasq
+uci set dhcp.lan.ra_management='1'
+uci del dhcp.@dnsmasq[0].rebind_protection='1'
+sed -i '/log-facility/d' /etc/dnsmasq.conf
+echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
+uci commit dhcp
+
+# feed
+sed -i '/openwrt_luci/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
+sed -i '/openwrt_packages/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
+sed -i '/openwrt_routing/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
+sed -i '/openwrt_telephony/ { s/snapshots\/packages/releases\/packages-19.07/g; }' /etc/opkg/distfeeds.conf
+#sed -i '/natelol/d' /etc/opkg/distfeeds.conf
+sed -i 's,downloads.openwrt.org,mirrors.cloud.tencent.com/openwrt,g' /etc/opkg/distfeeds.conf
+
+ln -sf /sbin/ip /usr/bin/ip
+
+opkg flag hold luci-app-ddns
+opkg flag hold luci-i18n-ddns-zh-cn
+opkg flag hold ddns-scripts
+opkg flag hold ddns-scripts_cloudflare.com-v4
+opkg flag hold luci-app-firewall
+opkg flag hold firewall
+opkg flag hold dnsmasq-full
+
+# luci cache
+rm -rf /tmp/luci-modulecache/
+rm -f /tmp/luci-indexcache
+
+exit 0

@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# 19.07 feed
+rm -f ./feeds.conf.default
+wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default
+wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
+
+# feed update
+./scripts/feeds update -a && ./scripts/feeds install -a
+
 # Necessary patches from coolsnowwolf
 #rm -rf target/linux/rockchip/patches-5.4
 #svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/rockchip/patches-5.4 target/linux/rockchip/patches-5.4
@@ -13,15 +21,6 @@ wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/roc
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/106-arm64-dts-rockchip-add-hardware-random-number-genera.patch
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/107-rockchip-enable-hardware-rng-for-NanoPi-R2S.patch
 popd
-
-
-# 19.07 feed
-rm -f ./feeds.conf.default
-wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default
-wget -P include/ https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/include/scons.mk
-
-# feed update
-./scripts/feeds update -a && ./scripts/feeds install -a
 
 # firewall
 rm -rf ./package/network/config/firewall
@@ -48,7 +47,6 @@ svn co https://github.com/openwrt/packages/trunk/libs/libcap-ng package/libs/lib
 rm -rf ./feeds/packages/utils/collectd
 svn co https://github.com/openwrt/packages/trunk/utils/collectd feeds/packages/utils/collectd
 
-
 # Access Control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
 # AdGuard
@@ -57,7 +55,14 @@ svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome 
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/new/luci-app-arpbind
 # AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/new/autocore
-# change curl
+# automount
+rm -rf ./feeds/packages/kernel/exfat-nofuse
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
+svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount package/utils/antfs-mount
+svn co https://github.com/openwrt/packages/trunk/kernel/antfs package/kernel/antfs
+# autosamba
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autosamba package/new/autosamba
+# curl
 rm -rf ./package/network/utils/curl
 svn co https://github.com/openwrt/packages/trunk/net/curl package/network/utils/curl
 # cpufreq
@@ -77,8 +82,8 @@ rm -f ./feeds/luci/applications/luci-app-frps
 rm -f ./feeds/luci/applications/luci-app-frpc
 rm -rf ./feeds/packages/net/frp
 rm -f ./package/feeds/packages/frp
-git clone -b master --single-branch https://github.com/kuoruan/luci-app-frpc.git package/new/luci-app-frpc
-git clone -b master --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
+git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-app-frpc.git package/new/luci-app-frpc
+git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
 # FullCone
 svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
@@ -91,16 +96,16 @@ pushd target/linux/generic/hack-5.4
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 popd
 # IPSEC
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
 # NetData
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata package/new/luci-app-netdata
 # OLED
-git clone -b master --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
+git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
 # OpenAppFilter
-#git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
+git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
 # OpenClash
 #svn co https://github.com/vernesong/OpenClash/branches/master/luci-app-openclash package/new/luci-app-openclash
-git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
+git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 rm -rf feeds/packages/libs/libcap
 svn co https://github.com/openwrt/packages/trunk/libs/libcap feeds/packages/libs/libcap
 # PassWall
@@ -124,15 +129,15 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/simple-obfs packa
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/new/v2ray
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/new/v2ray-plugin
 # SeverChan
-git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
+git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network/utils/iputils package/network/utils/iputils
 # Scheduled Reboot
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
 # Traffic Usage Monitor
-git clone -b master --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
-git clone -b master --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
+git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
+git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 # Unblock Netease Music
-git clone -b master --single-branch https://github.com/cnsilvan/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic-go
+git clone -b master --depth 1 --single-branch https://github.com/cnsilvan/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic-go
 # UPNP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
@@ -141,11 +146,14 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-prin
 # vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/new/vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/new/luci-app-vlmcsd
+# xlnetacc
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/new/luci-app-xlnetacc
 # Zerotier
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-zerotier package/new/luci-app-zerotier
+rm -rf ./feeds/packages/net/zerotier/files/etc/init.d/zerotier
 
 # default settings and translation
-svn co https://github.com/vgist/OpenWrt-Packages/trunk/default-settings package/new/lean-translate
+cp -rf ../default-settings package/new/lean-translate
 
 # crypto
 echo '
@@ -158,19 +166,21 @@ CONFIG_CRYPTO_AES_ARM64_CE_CCM=y
 CONFIG_CRYPTO_AES_ARM64_NEON_BLK=y
 CONFIG_CRYPTO_CHACHA20=y
 CONFIG_CRYPTO_CHACHA20_NEON=y
+CONFIG_CRYPTO_CRCT10DIF_ARM64_CE=y
 CONFIG_CRYPTO_CRYPTD=y
+CONFIG_CRYPTO_DEV_ROCKCHIP=y
 CONFIG_CRYPTO_GF128MUL=y
 CONFIG_CRYPTO_GHASH_ARM64_CE=y
 CONFIG_CRYPTO_SHA1=y
 CONFIG_CRYPTO_SHA1_ARM64_CE=y
 CONFIG_CRYPTO_SHA256_ARM64=y
 CONFIG_CRYPTO_SHA2_ARM64_CE=y
-# CONFIG_CRYPTO_SHA3_ARM64 is not set
+CONFIG_CRYPTO_SHA3_ARM64=y
 CONFIG_CRYPTO_SHA512_ARM64=y
 # CONFIG_CRYPTO_SHA512_ARM64_CE is not set
 CONFIG_CRYPTO_SIMD=y
-# CONFIG_CRYPTO_SM3_ARM64_CE is not set
-# CONFIG_CRYPTO_SM4_ARM64_CE is not set
+CONFIG_CRYPTO_SM3_ARM64_CE=y
+CONFIG_CRYPTO_SM4_ARM64_CE=y
 CONFIG_HW_RANDOM=y
 CONFIG_HW_RANDOM_ROCKCHIP=y
 ' >> ./target/linux/rockchip/armv8/config-5.4

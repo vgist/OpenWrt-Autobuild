@@ -9,18 +9,26 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accessco
 svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
 # AutoCore
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/new/autocore
+# automount
+rm -rf ./feeds/packages/kernel/exfat-nofuse
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
+svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount package/utils/antfs-mount
+svn co https://github.com/openwrt/packages/trunk/kernel/antfs package/kernel/antfs
+svn co https://github.com/openwrt/openwrt/trunk/package/kernel/exfat package/kernel/exfat
+# autosamba
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autosamba package/new/autosamba
 # arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/new/luci-app-arpbind
 # Filetransfer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-filetransfer package/new/luci-app-filetransfer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-lib-fs package/new/luci-lib-fs
-# frp, don't build golang binary files
+# frp
 rm -f ./feeds/luci/applications/luci-app-frps
 rm -f ./feeds/luci/applications/luci-app-frpc
 rm -rf ./feeds/packages/net/frp
 rm -f ./package/feeds/packages/frp
-git clone -b master --single-branch https://github.com/kuoruan/luci-app-frpc.git package/new/luci-app-frpc
-git clone -b master --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
+git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-app-frpc.git package/new/luci-app-frpc
+git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
 # fullcone
 svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
@@ -44,11 +52,11 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vp
 # NetData
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata package/new/luci-app-netdata
 # OpenClash
-git clone -b master --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
+git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 rm -rf feeds/packages/libs/libcap
 svn co https://github.com/openwrt/packages/trunk/libs/libcap feeds/packages/libs/libcap
 # OpenAppFilter
-# git clone -b master --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
+git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
 # PassWall
 svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
 rm -rf ./feeds/packages/net/kcptun
@@ -70,14 +78,14 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/simple-obfs packa
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/new/v2ray
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/new/v2ray-plugin
 # SeverChan
-git clone -b master --single-branch https://github.com/tty228/luci-app-serverchan.git package/new/luci-app-serverchan
+git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan.git package/new/luci-app-serverchan
 # Scheduled Reboot
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
 # Traffic Usage Monitor
-git clone -b master --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
-git clone -b master --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
+git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
+git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 # Unblock Netease Music
-git clone -b master --single-branch https://github.com/cnsilvan/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic-go
+git clone -b master --depth 1 --single-branch https://github.com/cnsilvan/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic-go
 # UPNP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
@@ -86,6 +94,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-prin
 # vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/new/vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/new/luci-app-vlmcsd
+# xlnetacc
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/new/luci-app-xlnetacc
 # Zerotier
 svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-zerotier package/new/luci-app-zerotier
 popd
@@ -94,6 +104,11 @@ rm -rf package/system/zram-swap
 svn co https://github.com/openwrt/openwrt/trunk/package/system/zram-swap package/system/zram-swap
 
 # default settings and translate
-svn co https://github.com/vgist/OpenWrt-Packages/trunk/default-settings package/new/lean-translate
+cp -rf ../default-settings package/new/lean-translate
+
+echo '
+CONFIG_CRYPTO_CHACHA20_X86_64=y
+CONFIG_CRYPTO_POLY1305_X86_64=y
+' >> ./target/linux/x86/64/config-4.14
 
 exit 0

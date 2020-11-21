@@ -39,35 +39,23 @@ jobs:
         git checkout $REPO_TAG
         popd
 
-    - name: Prepare OpenWrt
-      working-directory: ./openwrt
-      run: |
-        cp ../files/scripts/01_prepare.sh .
-        /bin/bash 01_prepare.sh
-
     - name: Customize Packages
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/k2p_01_customize_packages.sh .
-        /bin/bash k2p_01_customize_packages.sh
+        cp ../files/scripts/k2p_customize_packages.sh .
+        /bin/bash k2p_customize_packages.sh
 
     - name: Convert Translation
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/02_convert_translation.sh .
-        /bin/bash 02_convert_translation.sh
-
-    - name: Remove Upx
-      working-directory: ./openwrt
-      run: |
-        cp ../files/scripts/03_remove_upx.sh .
-        /bin/bash 03_remove_upx.sh
+        cp ../files/scripts/01_convert_translation.sh .
+        /bin/bash 01_convert_translation.sh
 
     - name: Add ACL
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/04_create_acl_for_luci.sh .
-        /bin/bash 04_create_acl_for_luci.sh -a
+        cp ../files/scripts/02_create_acl_for_luci.sh .
+        /bin/bash 02_create_acl_for_luci.sh -a
 
     - name: Make Config
       working-directory: ./openwrt

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# max conntrack
+sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
 # feed update
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
@@ -10,13 +13,6 @@ echo "/etc/wireless/" >> package/base-files/files/lib/upgrade/keep.d/mtwifi
 
 # access control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
-# DDNS
-rm -rf ./feeds/packages/net/ddns-scripts
-rm -rf ./feeds/luci/applications/luci-app-ddns
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_aliyun package/new/ddns-scripts_aliyun
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ddns-scripts_dnspod package/new/ddns-scripts_dnspod
-svn co https://github.com/openwrt/packages/branches/openwrt-18.06/net/ddns-scripts feeds/packages/net/ddns-scripts
-svn co https://github.com/openwrt/luci/branches/openwrt-18.06/applications/luci-app-ddns feeds/luci/applications/luci-app-ddns
 # FullCone
 svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
 pushd target/linux/generic/hack-4.14
@@ -42,11 +38,11 @@ git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci
 # UPNP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
+# upx & ucl
+wget -O- https://github.com/Lienol/openwrt/commit/098e38db6cccd3c9a95ee82a5396d49fe55a4107.patch | patch -p1
 # vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/new/vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/new/luci-app-vlmcsd
-# xlnetacc
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/new/luci-app-xlnetacc
 # zram-swap
 rm -rf package/system/zram-swap
 svn co https://github.com/openwrt/openwrt/trunk/package/system/zram-swap package/system/zram-swap

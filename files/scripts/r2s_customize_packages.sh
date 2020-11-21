@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Ofast
+sed -i 's/Os/Ofast/g' include/target.mk
+sed -i 's/O2/Ofast/g' ./rules.mk
+
+# max conntrack
+sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
 # 19.07 feed
 rm -f ./feeds.conf.default
 wget https://raw.githubusercontent.com/openwrt/openwrt/openwrt-19.07/feeds.conf.default
@@ -15,7 +22,6 @@ pushd target/linux/rockchip/patches-5.4
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/002-rockchip-add-hwmon-support-for-SoCs-and-GPUs.patch
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/003-arm64-dts-rockchip-add-more-cpu-operating-points-for.patch
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/005-arm64-dts-rockchip-Add-RK3328-idle-state.patch
-wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/007-rockchip-rk3328-fix-NanoPi-R2S-GMAC-clock-name.patch
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/104-rockchip-rk3328-add-i2c0-controller-for-nanopi-r2s.patch
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/105-char-add-support-for-rockchip-hardware-random-number.patch
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/106-arm64-dts-rockchip-add-hardware-random-number-genera.patch
@@ -29,14 +35,6 @@ svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/network
 sed -i 's/-f/-f -i/g' feeds/packages/utils/rng-tools/files/rngd.init
 sed -i 's/enabled=0/enabled=1/g' feeds/packages/utils/rng-tools/files/rngd.uci_defaults
 sed -i 's/urandom/hwrng/g' feeds/packages/utils/rng-tools/files/rngd.uci_defaults
-# luci network
-patch -p1 < ../files/patches/r2s/luci_network-add-packet-steering.patch
-# patch dnsmasq
-patch -p1 < ../files/patches/r2s/dnsmasq-add-filter-aaaa-option.patch
-patch -p1 < ../files/patches/r2s/luci-add-filter-aaaa-option.patch
-cp -f ../files/patches/r2s/900-add-filter-aaaa-option.patch ./package/network/services/dnsmasq/patches/900-add-filter-aaaa-option.patch
-# patch jsonc
-patch -p1 < ../files/patches/r2s/use_json_object_new_int64.patch
 
 # fix make defconfig warnings
 svn co https://github.com/openwrt/openwrt/branches/openwrt-19.07/package/utils/fuse package/utils/fuse
@@ -141,6 +139,11 @@ git clone -b master --depth 1 --single-branch https://github.com/cnsilvan/luci-a
 # UPNP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
+# upx & ucl
+svn co https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
+svn co https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
+sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
+sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 # USB Printer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer package/new/luci-app-usb-printer
 # vlmcsd

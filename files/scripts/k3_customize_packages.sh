@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Ofast
+sed -i 's/Os/Ofast/g' include/target.mk
+sed -i 's/O2/Ofast/g' ./rules.mk
+
+# max conntrack
+sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
+
 # feed update
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
@@ -102,6 +109,8 @@ git clone -b master --depth 1 --single-branch https://github.com/cnsilvan/luci-a
 # UPNP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
+# upx & ucl
+wget -O- https://github.com/Lienol/openwrt/commit/098e38db6cccd3c9a95ee82a5396d49fe55a4107.patch | patch -p1
 # USB Printer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer package/new/luci-app-usb-printer
 # vlmcsd

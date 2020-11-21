@@ -34,7 +34,7 @@
 |AdGuard Home| &check;  |&check;| &check;  |           |           |
 | AutoCore   | &check;  |&check;| &check;  |           |           |
 | cpufreq    | &check;  |       | &check;  |           |           |
-| DDNS       | &check;  |&check;| &check;  |  &check;  |  &check;  |
+| DDNS       | &check;  |&check;| &check;  |           |  &check;  |
 |FullCone NAT| &check;  |&check;| &check;  |  &check;  |  &check;  |
 | frpc       | &check;  |&check;| &check;  |           |           |
 | frps       | &check;  |&check;| &check;  |           |           |
@@ -52,6 +52,6 @@
 | 实时监控   | &check;  |&check;| &check;  |           |           |
 | 网络共享   | &check;  |&check;| &check;  |           |  &check;  |
 | 文件传输   | &check;  |&check;| &check;  |           |           |
-| 迅雷快鸟   | &check;  |&check;| &check;  |  &check;  |  &check;  |
+| 迅雷快鸟   | &check;  |&check;| &check;  |           |  &check;  |
 | 应用过滤   | &check;  |&check;| &check;  |           |           |
 | 自动挂载   | &check;  |&check;| &check;  |           |  &check;  |

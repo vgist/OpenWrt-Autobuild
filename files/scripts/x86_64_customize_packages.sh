@@ -58,32 +58,33 @@ svn co https://github.com/openwrt/luci/branches/openwrt-18.06/applications/luci-
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
 # NetData
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata package/new/luci-app-netdata
-# OpenClash
-git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
-rm -rf feeds/packages/libs/libcap
-svn co https://github.com/openwrt/packages/trunk/libs/libcap feeds/packages/libs/libcap
 # OpenAppFilter
 git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
+# required by OpenClash
+#git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
+rm -rf feeds/packages/libs/libcap
+svn co https://github.com/openwrt/packages/trunk/libs/libcap feeds/packages/libs/libcap
 # PassWall
-svn co https://github.com/xiaorouji/openwrt-package/trunk/lienol/luci-app-passwall package/new/luci-app-passwall
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
 rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
-#svn co https://github.com/xiaorouji/openwrt-package/trunk/package/brook package/new/brook
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/chinadns-ng package/new/chinadns-ng
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/ssocks package/new/ssocks
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/tcping package/new/tcping
-#svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-go package/new/trojan-go
-svn co https://github.com/xiaorouji/openwrt-package/trunk/package/trojan-plus package/new/trojan-plus
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dns2socks package/new/dns2socks
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipt2socks package/new/ipt2socks
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/kcptun package/new/kcptun
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/microsocks package/new/microsocks
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package/new/pdnsd
-svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shadowsocksr-libev package/new/shadowsocksr-libev
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/simple-obfs package/new/simple-obfs
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray package/new/v2ray
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/v2ray-plugin package/new/v2ray-plugin
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/kcptun package/new/kcptun
+svn co https://github.com/Lienol/openwrt-packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/new/simple-obfs
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray package/new/v2ray
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray package/new/xray
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-plugin package/new/v2ray-plugin
 # SeverChan
 git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan.git package/new/luci-app-serverchan
 # Scheduled Reboot

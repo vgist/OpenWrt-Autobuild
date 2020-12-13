@@ -71,7 +71,6 @@ while getopts "achml:n:p:" input_arg
 do
 	case $input_arg in
 	a)
-		clean_outdated_files
 		auto_create_acl
 		exit
 		;;
@@ -98,9 +97,7 @@ do
 	esac
 done
 
-[ "$?" -ne "0" ] && exit
-
-if [ "*${manual_mode}*" == "*1*" ]; then
+if [ "*${manual_mode}*" == "*1*" ] && [ -n "${luci_name}" ] && [ -n "${conf_name}" ]; then
 	acl_path="${acl_path:-root/usr/share/rpcd/acl.d}"
 	if create_acl_file "${acl_path}" "${luci_name}" "${conf_name}"; then
 		echo -e "${success_font}Output file: $(ls "${acl_path}/${luci_name}.json")"

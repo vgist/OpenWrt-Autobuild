@@ -32,7 +32,7 @@ jobs:
     - name: Clone OpenWrt
       env:
         REPO_URL: https://github.com/openwrt/openwrt
-        REPO_TAG: openwrt-19.07
+        REPO_TAG: v19.07.5
       run: |
         git clone $REPO_URL openwrt
         pushd openwrt

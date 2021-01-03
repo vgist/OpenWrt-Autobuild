@@ -22,9 +22,7 @@ wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/roc
 wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/106-arm64-dts-rockchip-add-hardware-random-number-genera.patch
 popd
 mkdir -p target/linux/rockchip/files/drivers/char/hw_random
-pushd target/linux/rockchip/files/drivers/char/hw_random
-wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/files/drivers/char/hw_random/rockchip-rng.c
-popd
+wget -P target/linux/rockchip/files/drivers/char/hw_random/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/files/drivers/char/hw_random/rockchip-rng.c
 
 
 # Access Control
@@ -34,7 +32,7 @@ svn co https://github.com/Lienol/openwrt/branches/main/package/diy/luci-app-adgu
 # arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/new/luci-app-arpbind
 # AutoCore
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/new/autocore
+cp -rf ../autocore package/new/autocore
 # automount
 rm -rf ./feeds/packages/kernel/exfat-nofuse
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
@@ -59,7 +57,7 @@ rm -rf ./feeds/packages/net/frp
 rm -rf ./package/feeds/packages/frp
 git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-app-frpc.git package/new/luci-app-frpc
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
 # FullCone
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat package/network/openwrt-fullconenat
 mkdir -p package/network/config/firewall/patches
@@ -67,13 +65,9 @@ wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.c
 pushd feeds/luci
 cat ../../../files/patches/fullconenat-luci.patch | git apply
 popd
-pushd target/linux/generic/hack-5.4
-wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
-popd
+wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 # IPSEC
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
-# NetData
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata package/new/luci-app-netdata
 # OLED
 git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
 # OpenAppFilter
@@ -105,6 +99,15 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/n
 git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 # Scheduled Reboot
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
+# Shortcut Forwarding Engine
+wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/fast-classifier package/new/fast-classifier
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/shortcut-fe package/new/shortcut-fe
+#svn co https://github.com/Lienol/openwrt/trunk/package/lean/luci-app-sfe package/new/luci-app-sfe
+pushd feeds/luci
+cat ../../../files/patches/sfe-luci.patch | git apply
+popd
+cp -f ../files/patches/shortcut-fe package/base-files/files/etc/init.d/
 # Traffic Usage Monitor
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
@@ -126,7 +129,6 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd p
 # xlnetacc
 #svn co https://github.com/Lienol/openwrt/branches/main/package/lean/luci-app-xlnetacc package/new/luci-app-xlnetacc
 git clone -b main --depth 1 --single-branch https://github.com/Beginner-Go/luci-app-xlnetacc package/new/luci-app-xlnetacc
-
 # Zerotier
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier package/new/luci-app-zerotier
 

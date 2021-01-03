@@ -26,7 +26,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accessco
 # AdGuard Home
 svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
 # AutoCore
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/autocore package/new/autocore
+cp -rf ../autocore package/new/autocore
 # automount
 rm -rf ./feeds/packages/kernel/exfat-nofuse
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
@@ -37,8 +37,6 @@ svn co https://github.com/openwrt/openwrt/trunk/package/kernel/exfat package/ker
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autosamba package/new/autosamba
 # arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/new/luci-app-arpbind
-# cpufreq
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-cpufreq package/new/luci-app-cpufreq
 # DDNS
 rm -rf ./feeds/packages/net/ddns-scripts
 rm -rf ./feeds/luci/applications/luci-app-ddns
@@ -56,12 +54,10 @@ rm -rf ./feeds/packages/net/frp
 rm -f ./package/feeds/packages/frp
 git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-app-frpc.git package/new/luci-app-frpc
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
+#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
 # FullCone
 svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
-pushd target/linux/generic/hack-4.14
-wget https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
-popd
+wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
 wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
 popd
@@ -69,8 +65,6 @@ mkdir -p package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/package/network/config/firewall/patches/fullconenat.patch
 # IPSEC
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
-# NetData
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-netdata package/new/luci-app-netdata
 # OpenAppFilter
 git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
 # required by OpenClash
@@ -102,6 +96,14 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/n
 git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 # Scheduled Reboot
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
+# Shortcut Forwarding Engine
+wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+svn co https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe package/kernel/shortcut-fe
+#svn co https://github.com/Lienol/openwrt/trunk/package/lean/luci-app-sfe package/new/luci-app-sfe
+pushd feeds/luci
+cat ../../../files/patches/sfe-luci.patch | git apply
+popd
+cp -f ../files/patches/shortcut-fe package/base-files/files/etc/init.d/
 # Traffic Usage Monitor
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon

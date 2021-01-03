@@ -1,7 +1,8 @@
 #### 支持机型
 
-[![NanoPi-R2S](https://github.com/vgist/OpenWrt-Autobuild/workflows/NanoPi-R2S/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3ANanoPi-R2S)
 [![x86-64](https://github.com/vgist/OpenWrt-Autobuild/workflows/x86-64/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3Ax86-64)
+[![NanoPi-R2S](https://github.com/vgist/OpenWrt-Autobuild/workflows/NanoPi-R2S/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3ANanoPi-R2S)
+[![ZeroPi](https://github.com/vgist/OpenWrt-Autobuild/workflows/ZeroPi/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3AZeroPi)
 [![Phicomm-K3](https://github.com/vgist/OpenWrt-Autobuild/workflows/Phicomm-K3/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3APhicomm-K3)
 [![Phicomm-K2P](https://github.com/vgist/OpenWrt-Autobuild/workflows/Phicomm-K2P/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3APhicomm-K2P)
 [![Xiaomi-MiWifi-Mini](https://github.com/vgist/OpenWrt-Autobuild/workflows/Xiaomi-MiWifi-Mini/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3AXiaomi-MiWifi-Mini)
@@ -22,39 +23,40 @@
 
 #### 分支
 
-| 版本   |NanoPi R2S|x86_64 |Phicomm K3|Phicomm K2P|MiWiFi-Mini|
-|--------|:--------:|:-----:|:--------:|:---------:|:---------:|
-| master | &check;  |       |          |           |           |
-| 19.07.5|          |&check;| &check;  |  &check;  |  &check;  |
+| 版本   |x86_64 |NanoPi R2S|ZeroPi |Phicomm K3|Phicomm K2P|MiWiFi-Mini|
+|--------|:-----:|:--------:|:-----:|:--------:|:---------:|:---------:|
+| master |       | &check;  |&check;|          |           |           |
+| 19.07.5|&check;|          |       | &check;  |  &check;  |  &check;  |
 
 #### 第三方应用列表
 
-| 应用       |NanoPi R2S|x86_64 |Phicomm K3|Phicomm K2P|MiWiFi-Mini|
-|------------|:--------:|:-----:|:--------:|:---------:|:---------:|
-|AdGuard Home| &check;  |&check;| &check;  |           |           |
-| AutoCore   | &check;  |&check;| &check;  |           |           |
-| cpufreq    | &check;  |       | &check;  |           |           |
-| DDNS       | &check;  |&check;| &check;  |           |           |
-|FullCone NAT| &check;  |&check;| &check;  |  &check;  |  &check;  |
-| frpc       | &check;  |&check;| &check;  |           |           |
-| frps       | &check;  |&check;| &check;  |           |           |
-| IPSEC      | &check;  |&check;| &check;  |           |           |
-| MiniUPnP   | &check;  |&check;| &check;  |           |           |
-|*OpenClash* | &check;  |&check;| &check;  |  &check;  |           |
-| PassWall   | &check;  |&check;| &check;  |           |  &check;  |
-| Server 酱  | &check;  |&check;| &check;  |           |           |
-| usb 打印   | &check;  |&check;| &check;  |           |  &check;  |
-|vlmcsd 服务 | &check;  |&check;| &check;  |  &check;  |  &check;  |
-| Zerotier   | &check;  |&check;| &check;  |           |           |
-| 定时重启   | &check;  |&check;| &check;  |  &check;  |  &check;  |
-|解锁灰色歌曲| &check;  |&check;| &check;  |           |           |
-| 流量监控   | &check;  |&check;| &check;  |  &check;  |  &check;  |
-|上网时间控制| &check;  |&check;| &check;  |  &check;  |  &check;  |
-| 实时监控   | &check;  |&check;| &check;  |           |           |
-| 网络共享   | &check;  |&check;| &check;  |           |  &check;  |
-| 文件传输   | &check;  |&check;| &check;  |           |           |
-| 迅雷快鸟   | &check;  |&check;| &check;  |           |           |
-| 应用过滤   | &check;  |&check;| &check;  |           |           |
-| 自动挂载   | &check;  |&check;| &check;  |           |  &check;  |
+| 应用        |x86_64 |NanoPi R2S|ZeroPi |Phicomm K3|Phicomm K2P|MiWiFi-Mini|
+|-------------|:-----:|:--------:|:-----:|:--------:|:---------:|:---------:|
+|AdGuard Home |&check;| &check;  |&check;| &check;  |           |           |
+| AutoCore    |&check;| &check;  |       | &check;  |           |           |
+| cpufreq     |       | &check;  |&check;|          |           |           |
+| DDNS        |&check;| &check;  |&check;| &check;  |           |           |
+|FullCone NAT |&check;| &check;  |&check;| &check;  |  &check;  |  &check;  |
+| frpc        |&check;| &check;  |&check;| &check;  |           |           |
+| frps        |&check;| &check;  |&check;| &check;  |           |           |
+| HWNAT       |       |          |       |          |  &check;  |           |
+| IPSEC       |&check;| &check;  |&check;| &check;  |           |           |
+| MiniUPnP    |&check;| &check;  |&check;| &check;  |           |           |
+|~~OpenClash~~|&check;| &check;  |&check;| &check;  |  &check;  |           |
+| PassWall    |&check;| &check;  |&check;| &check;  |           |  &check;  |
+| Server 酱   |&check;| &check;  |&check;| &check;  |           |           |
+| SFE         |&check;| &check;  |&check;| &check;  |           |  &check;  |
+| usb 打印    |&check;| &check;  |&check;| &check;  |           |  &check;  |
+| vlmcsd 服务 |&check;| &check;  |&check;| &check;  |  &check;  |  &check;  |
+| Zerotier    |&check;| &check;  |&check;| &check;  |  &check;  |           |
+| 定时重启    |&check;| &check;  |&check;| &check;  |  &check;  |  &check;  |
+|解锁灰色歌曲 |&check;| &check;  |&check;| &check;  |           |           |
+| 流量监控    |&check;| &check;  |&check;| &check;  |  &check;  |  &check;  |
+|上网时间控制 |&check;| &check;  |&check;| &check;  |  &check;  |  &check;  |
+| 网络共享    |&check;| &check;  |&check;| &check;  |           |  &check;  |
+| 文件传输    |&check;| &check;  |&check;| &check;  |           |           |
+| 迅雷快鸟    |&check;| &check;  |&check;| &check;  |           |           |
+| 应用过滤    |&check;| &check;  |&check;| &check;  |           |           |
+| 自动挂载    |&check;| &check;  |&check;| &check;  |           |  &check;  |
 
 **OpenClash**：由于更新频繁，故只编译进依赖，可以自行通过 opkg 安装。

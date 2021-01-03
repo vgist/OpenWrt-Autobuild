@@ -22,9 +22,7 @@ svn co https://github.com/openwrt/openwrt/trunk/package/kernel/exfat package/ker
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autosamba package/new/autosamba
 # FullCone
 svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
-pushd target/linux/generic/hack-4.14
-wget https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
-popd
+wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
 wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
 popd
@@ -53,6 +51,14 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/n
 #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-plugin package/new/v2ray-plugin
 # Scheduled Reboot
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
+# Shortcut Forwarding Engine
+wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
+svn co https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe package/kernel/shortcut-fe
+#svn co https://github.com/Lienol/openwrt/trunk/package/lean/luci-app-sfe package/new/luci-app-sfe
+pushd feeds/luci
+cat ../../../files/patches/sfe-luci.patch | git apply
+popd
+cp -f ../files/patches/shortcut-fe package/base-files/files/etc/init.d/
 # Traffic Usage Monitor
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon

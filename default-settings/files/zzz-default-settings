@@ -1,16 +1,10 @@
 #!/bin/sh
 
-# default lan IP, is it necessary?
-#uci set network.lan.ipaddr='192.168.2.1'
-#uci commit network && service network restart
-
 # timezone
 uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
 # zram-swap
 uci set system.@system[0].zram_priority=100
-# rng-tools
-uci set system.@rngd[0].enabled=1
 # ntp server
 uci -q delete system.ntp.server
 uci add_list system.ntp.server="ntp1.aliyun.com"

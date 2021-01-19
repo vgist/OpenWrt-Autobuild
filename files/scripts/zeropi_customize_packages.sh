@@ -10,6 +10,10 @@ sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 # feed update
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
+# Kernel patches from armbian
+cp ../files/patches/064-sun8i-h3-add-more-cpu-operating-points-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
+#cp ../files/patches/162-sunxi-h3-add-thermal-sensor-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
+
 
 # Access Control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
@@ -17,6 +21,8 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accessco
 svn co https://github.com/Lienol/openwrt/branches/main/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
 # arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/new/luci-app-arpbind
+# AutoCore
+cp -rf ../autocore package/new/autocore
 # automount
 rm -rf ./feeds/packages/kernel/exfat-nofuse
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
@@ -47,7 +53,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconen
 mkdir -p package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/package/network/config/firewall/patches/fullconenat.patch
 pushd feeds/luci
-cat ../../../files/patches/fullconenat-luci.patch | git apply
+cat ../../../files/patches/fullconenat-luci-master.patch | git apply
 popd
 wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 # IPSEC
@@ -55,7 +61,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vp
 # OpenAppFilter
 git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
 # OpenClash
-#git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
+git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 # PassWall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
 rm -rf ./feeds/packages/net/kcptun
@@ -118,6 +124,7 @@ cp -rf ../default-settings package/new/learn-translate
 
 # crypto
 echo '
+CONFIG_ARM_ALLWINNER_SUN50I_CPUFREQ_NVMEM=y
 CONFIG_ARM_CRYPTO=y
 CONFIG_CRYPTO_CHACHA20_NEON=y
 CONFIG_CRYPTO_POLY1305_ARM=y
@@ -138,7 +145,7 @@ CONFIG_CPU_FREQ_GOV_USERSPACE=y
 CONFIG_CPU_FREQ_GOV_ONDEMAND=y
 CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
 CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
-CONFIG_ARM_ALLWINNER_SUN50I_CPUFREQ_NVMEM=y
+CONFIG_CPU_FREQ_THERMAL=y
 ' >> ./target/linux/sunxi/cortexa7/config-5.4
 
 exit 0

@@ -67,8 +67,8 @@ wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.c
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
 # OpenAppFilter
 git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
-# required by OpenClash
-#git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
+# OpenClash
+git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 rm -rf feeds/packages/libs/libcap
 svn co https://github.com/openwrt/packages/trunk/libs/libcap feeds/packages/libs/libcap
 # PassWall

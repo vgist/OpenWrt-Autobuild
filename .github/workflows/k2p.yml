@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Clone Repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
 
     - name: Init build dependencies
       env:
@@ -79,8 +79,12 @@ jobs:
         rm -rf ./artifact
         ls openwrt/bin/targets/ramips/mt7621/
         mv openwrt/bin/targets/ramips/mt7621 ./artifact
-        rm -rf ./artifact/packages
-        name_tag="Phicomm-K2P-$(date +%Y-%m-%d)"
+        pushd artifact
+        mv config.buildinfo k2p.seed
+        rm -rf packages *.buildinfo *.manifest *kernel.bin sha256sums
+        sha256sum * > k2p.sha256sums
+        popd
+        name_tag="v19.07.5-r$(date +%g.%j)"
         echo ::set-output name=release_tag::$name_tag
 
     - name: Upload Artifact
@@ -95,6 +99,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         draft: false
-        prerelease: true
+        prerelease: false
         tag_name: ${{ steps.assemble_artifact.outputs.release_tag }}
         files: artifact/*

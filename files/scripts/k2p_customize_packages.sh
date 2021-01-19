@@ -21,9 +21,9 @@ wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch 
 popd
 mkdir -p package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/package/network/config/firewall/patches/fullconenat.patch
-# required by OpenClash
-#git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
-#rm -rf package/new/luci-app-openclash/luci-app-openclash/root/etc/openclash/Country.mmdb
+# OpenClash
+git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
+rm -rf package/new/luci-app-openclash/luci-app-openclash/root/etc/openclash/Country.mmdb
 rm -rf feeds/packages/libs/libcap
 svn co https://github.com/openwrt/packages/trunk/libs/libcap feeds/packages/libs/libcap
 # Scheduled Reboot

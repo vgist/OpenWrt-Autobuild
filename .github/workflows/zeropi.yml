@@ -1,6 +1,8 @@
 name: ZeroPi
 
 on:
+  schedule:
+    - cron: 1 9 * * 5
   repository_dispatch:
     types: zeropi-build
 
@@ -9,7 +11,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Clone Repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
 
     - name: Init build dependencies
       env:
@@ -78,8 +80,12 @@ jobs:
         rm -rf ./artifact/
         ls openwrt/bin/targets/sunxi/cortexa7/
         mv openwrt/bin/targets/sunxi/cortexa7 ./artifact
-        rm -rf ./artifact/packages
-        name_tag="ZeroPi-$(date +%Y-%m-%d)"
+        pushd artifact
+        mv config.buildinfo zeropi.seed
+        rm -rf packages *.buildinfo *.manifest sha256sums
+        sha256sum * > zeropi.sha256sums
+        popd
+        name_tag="snapshot-r$(date +%g.%j)"
         echo ::set-output name=release_tag::$name_tag
 
     - name: Upload Artifact

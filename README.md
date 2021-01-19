@@ -33,7 +33,7 @@
 | 应用        |x86_64 |NanoPi R2S|ZeroPi |Phicomm K3|Phicomm K2P|MiWiFi-Mini|
 |-------------|:-----:|:--------:|:-----:|:--------:|:---------:|:---------:|
 |AdGuard Home |&check;| &check;  |&check;| &check;  |           |           |
-| AutoCore    |&check;| &check;  |       | &check;  |           |           |
+| AutoCore    |&check;| &check;  |&check;| &check;  |           |           |
 | cpufreq     |       | &check;  |&check;|          |           |           |
 | DDNS        |&check;| &check;  |&check;| &check;  |           |           |
 |FullCone NAT |&check;| &check;  |&check;| &check;  |  &check;  |  &check;  |
@@ -42,7 +42,7 @@
 | HWNAT       |       |          |       |          |  &check;  |           |
 | IPSEC       |&check;| &check;  |&check;| &check;  |           |           |
 | MiniUPnP    |&check;| &check;  |&check;| &check;  |           |           |
-|~~OpenClash~~|&check;| &check;  |&check;| &check;  |  &check;  |           |
+| OpenClash   |&check;| &check;  |&check;| &check;  |  &check;  |           |
 | PassWall    |&check;| &check;  |&check;| &check;  |           |  &check;  |
 | Server 酱   |&check;| &check;  |&check;| &check;  |           |           |
 | SFE         |&check;| &check;  |&check;| &check;  |           |  &check;  |
@@ -58,5 +58,3 @@
 | 迅雷快鸟    |&check;| &check;  |&check;| &check;  |           |           |
 | 应用过滤    |&check;| &check;  |&check;| &check;  |           |           |
 | 自动挂载    |&check;| &check;  |&check;| &check;  |           |  &check;  |
-
-**OpenClash**：由于更新频繁，故只编译进依赖，可以自行通过 opkg 安装。

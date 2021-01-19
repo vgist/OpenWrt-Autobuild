@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Clone Repository
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
 
     - name: Init build dependencies
       env:
@@ -79,8 +79,12 @@ jobs:
         rm -rf ./artifact
         ls openwrt/bin/targets/bcm53xx/generic/
         mv openwrt/bin/targets/bcm53xx/generic ./artifact
-        rm -rf ./artifact/packages
-        name_tag="Phicomm-K3-$(date +%Y-%m-%d)"
+        pushd artifact
+        mv config.buildinfo k3.seed
+        rm -rf packages *.buildinfo *.manifest sha256sums
+        sha256sum * > k3.sha256sums
+        popd
+        name_tag="v19.07.5-r$(date +%g.%j)"
         echo ::set-output name=release_tag::$name_tag
 
     - name: Upload Artifact
@@ -95,6 +99,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         draft: false
-        prerelease: true
+        prerelease: false
         tag_name: ${{ steps.assemble_artifact.outputs.release_tag }}
         files: artifact/*

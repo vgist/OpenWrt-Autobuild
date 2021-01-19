@@ -63,7 +63,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconen
 mkdir -p package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/package/network/config/firewall/patches/fullconenat.patch
 pushd feeds/luci
-cat ../../../files/patches/fullconenat-luci.patch | git apply
+cat ../../../files/patches/fullconenat-luci-master.patch | git apply
 popd
 wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 # IPSEC
@@ -73,7 +73,7 @@ git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-ap
 # OpenAppFilter
 git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
 # OpenClash
-#git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
+git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 # PassWall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
 rm -rf ./feeds/packages/net/kcptun

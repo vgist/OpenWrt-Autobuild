@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# Ofast
-sed -i 's/Os/Ofast/g' include/target.mk
-sed -i 's/O2/Ofast/g' ./rules.mk
-
 # max conntrack
 sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 

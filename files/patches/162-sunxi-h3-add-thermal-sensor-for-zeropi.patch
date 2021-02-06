@@ -1,129 +1,52 @@
-From 72dcd0eaa106dfb5eecff91abcef27da98dfab85 Mon Sep 17 00:00:00 2001
+From 1c2ccda6619c16e1af033c8b576cd755d9407b40 Mon Sep 17 00:00:00 2001
 From: Register <458892+aieu@users.noreply.github.com>
-Date: Tue, 5 Jan 2021 10:11:16 +0800
+Date: Fri, 5 Feb 2021 23:02:58 +0800
 Subject: [PATCH] sunxi h3: add thermal sensor for zeropi
 
 This patch adds support for the zeropi ths sensor.
 
-https://github.com/armbian/build/blob/master/patch/kernel/sunxi-current/0017-iio-adc-sun4i-gpadc-iio-add-support-for-H3-thermal-s.patch
+https://github.com/armbian/build/blob/v20.05/patch/kernel/sunxi-current/0017-iio-adc-sun4i-gpadc-iio-add-support-for-H3-thermal-s.patch
+https://github.com/armbian/build/blob/v20.05/patch/kernel/sunxi-current/0020-arm-dts-sun8i-h3-add-support-for-the-thermal-sensor-.patch
+https://github.com/armbian/build/blob/v20.05/patch/kernel/sunxi-current/0021-arm-dts-sun8i-h3-add-thermal-zone-to-H3.patch
 
 Signed-off-by: Register <458892+aieu@users.noreply.github.com>
 ---
- arch/arm/boot/dts/sun8i-h3-zeropi.dts |  5 ++
- arch/arm/boot/dts/sun8i-h3.dtsi       | 86 +++++++++++++++++++++++++++
- drivers/iio/adc/sun4i-gpadc-iio.c     | 29 +++++++++
- 3 files changed, 120 insertions(+)
+ arch/arm/boot/dts/sun8i-h3.dtsi   | 14 ++++++++++++++
+ drivers/iio/adc/sun4i-gpadc-iio.c | 29 +++++++++++++++++++++++++++++
+ 2 files changed, 43 insertions(+)
 
-diff --git a/arch/arm/boot/dts/sun8i-h3-zeropi.dts b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
-index c557b0279..f6dd8baae 100644
---- a/arch/arm/boot/dts/sun8i-h3-zeropi.dts
-+++ b/arch/arm/boot/dts/sun8i-h3-zeropi.dts
-@@ -64,3 +64,8 @@
- &usbphy {
- 	usb0_id_det-gpios = <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
- };
+diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
+index 6056f206c..a5f4fa4a8 100644
+--- a/arch/arm/boot/dts/sun8i-h3.dtsi
++++ b/arch/arm/boot/dts/sun8i-h3.dtsi
+@@ -120,6 +120,15 @@
+ 		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
+ 	};
+ 
++	thermal-zones {
++		cpu-thermal {
++			/* milliseconds */
++			polling-delay-passive = <250>;
++			polling-delay = <1000>;
++			thermal-sensors = <&ths 0>;
++		};
++	};
 +
+ 	timer {
+ 		compatible = "arm,armv7-timer";
+ 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+@@ -237,6 +246,11 @@
+ 	compatible = "allwinner,sun8i-h3-pinctrl";
+ };
+ 
 +&ths {
 +	compatible = "allwinner,sun8i-h3-ths";
 +	#thermal-sensor-cells = <0>;
 +};
-diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
-index 6056f206c..396d7824c 100644
---- a/arch/arm/boot/dts/sun8i-h3.dtsi
-+++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -186,6 +186,92 @@
- 			assigned-clocks = <&ccu CLK_GPU>;
- 			assigned-clock-rates = <384000000>;
- 		};
 +
-+		ths: thermal-sensor@1c25000 {
-+			compatible = "allwinner,sun8i-h3-ths";
-+			reg = <0x01c25000 0x400>;
-+			interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-+			resets = <&ccu RST_BUS_THS>;
-+			clocks = <&ccu CLK_BUS_THS>, <&ccu CLK_THS>;
-+			clock-names = "bus", "mod";
-+			nvmem-cells = <&ths_calibration>;
-+			nvmem-cell-names = "calibration";
-+			#thermal-sensor-cells = <0>;
-+		};
-+	};
-+
-+	thermal-zones {
-+		cpu_thermal {
-+			/* milliseconds */
-+			polling-delay-passive = <250>;
-+			polling-delay = <1000>;
-+			thermal-sensors = <&ths>;
-+
-+			trips {
-+				cpu_warm: cpu_warm {
-+					temperature = <75000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu_hot_pre: cpu_hot_pre {
-+					temperature = <80000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu_hot: cpu_hot {
-+					temperature = <85000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu_very_hot_pre: cpu_very_hot_pre {
-+					temperature = <90000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu_very_hot: cpu_very_hot {
-+					temperature = <95000>;
-+					hysteresis = <2000>;
-+					type = "passive";
-+				};
-+
-+				cpu_crit: cpu_crit {
-+					temperature = <105000>;
-+					hysteresis = <2000>;
-+					type = "critical";
-+				};
-+			};
-+
-+			cooling-maps {
-+				cpu_warm_limit_cpu {
-+					trip = <&cpu_warm>;
-+					cooling-device = <&cpu0 THERMAL_NO_LIMIT 2>;
-+				};
-+
-+				cpu_hot_pre_limit_cpu {
-+					trip = <&cpu_hot_pre>;
-+					cooling-device = <&cpu0 2 3>;
-+				};
-+
-+				cpu_hot_limit_cpu {
-+					trip = <&cpu_hot>;
-+					cooling-device = <&cpu0 3 4>;
-+				};
-+
-+				cpu_very_hot_pre_limit_cpu {
-+					trip = <&cpu_very_hot_pre>;
-+					cooling-device = <&cpu0 5 6>;
-+				};
-+
-+				cpu_very_hot_limit_cpu {
-+					trip = <&cpu_very_hot>;
-+					cooling-device = <&cpu0 7 THERMAL_NO_LIMIT>;
-+				};
-+			};
-+		};
- 	};
+ &rtc {
+ 	compatible = "allwinner,sun8i-h3-rtc";
  };
- 
 diff --git a/drivers/iio/adc/sun4i-gpadc-iio.c b/drivers/iio/adc/sun4i-gpadc-iio.c
 index 176e1cb4a..3d1f34027 100644
 --- a/drivers/iio/adc/sun4i-gpadc-iio.c

@@ -24,7 +24,7 @@ git clone -b master --depth 1 --single-branch https://github.com/lwz322/k3screen
 # access control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
 # AdGuard Home
-svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
+svn co https://github.com/Lienol/openwrt/branches/19.07/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
 # AutoCore
 cp -rf ../autocore package/new/autocore
 # automount
@@ -56,7 +56,7 @@ git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-ap
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
 # FullCone
-svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
+svn co https://github.com/Lienol/openwrt/branches/19.07/package/network/fullconenat package/network/fullconenat
 wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
 wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
@@ -98,8 +98,8 @@ git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
 # Shortcut Forwarding Engine
 wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
-svn co https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe package/kernel/shortcut-fe
-#svn co https://github.com/Lienol/openwrt/trunk/package/lean/luci-app-sfe package/new/luci-app-sfe
+svn co https://github.com/Lienol/openwrt/branches/19.07/package/kernel/shortcut-fe package/kernel/shortcut-fe
+#svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-sfe package/new/luci-app-sfe
 pushd feeds/luci
 cat ../../../files/patches/sfe-luci.patch | git apply
 popd
@@ -113,7 +113,10 @@ git clone -b master --depth 1 --single-branch https://github.com/cnsilvan/luci-a
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 # upx & ucl
-wget -O- https://github.com/Lienol/openwrt/commit/098e38db6cccd3c9a95ee82a5396d49fe55a4107.patch | patch -p1
+svn co https://github.com/Lienol/openwrt/branches/19.07/tools/ucl tools/ucl
+svn co https://github.com/Lienol/openwrt/branches/19.07/tools/upx tools/upx
+sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
+sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 # USB Printer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer package/new/luci-app-usb-printer
 # vlmcsd
@@ -122,7 +125,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd p
 # xlnetacc
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/new/luci-app-xlnetacc
 # Zerotier
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-zerotier package/new/luci-app-zerotier
+svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/lean/luci-app-zerotier package/new/luci-app-zerotier
 # zram-swap
 rm -rf package/system/zram-swap
 svn co https://github.com/openwrt/openwrt/trunk/package/system/zram-swap package/system/zram-swap

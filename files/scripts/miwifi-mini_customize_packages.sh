@@ -17,7 +17,7 @@ svn co https://github.com/openwrt/openwrt/trunk/package/kernel/exfat package/ker
 # autosamba
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/autosamba package/new/autosamba
 # FullCone
-svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
+svn co https://github.com/Lienol/openwrt/branches/19.07/package/network/fullconenat package/network/fullconenat
 wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
 wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
@@ -49,8 +49,8 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/n
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
 # Shortcut Forwarding Engine
 wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
-svn co https://github.com/Lienol/openwrt/trunk/package/kernel/shortcut-fe package/kernel/shortcut-fe
-#svn co https://github.com/Lienol/openwrt/trunk/package/lean/luci-app-sfe package/new/luci-app-sfe
+svn co https://github.com/Lienol/openwrt/branches/19.07/package/kernel/shortcut-fe package/kernel/shortcut-fe
+#svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-sfe package/new/luci-app-sfe
 pushd feeds/luci
 cat ../../../files/patches/sfe-luci.patch | git apply
 popd
@@ -59,7 +59,10 @@ cp -f ../files/patches/shortcut-fe package/base-files/files/etc/init.d/
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 # upx & ucl
-wget -O- https://github.com/Lienol/openwrt/commit/098e38db6cccd3c9a95ee82a5396d49fe55a4107.patch | patch -p1
+svn co https://github.com/Lienol/openwrt/branches/19.07/tools/ucl tools/ucl
+svn co https://github.com/Lienol/openwrt/branches/19.07/tools/upx tools/upx
+sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
+sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 # USB Printer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer package/new/luci-app-usb-printer
 # vlmcsd

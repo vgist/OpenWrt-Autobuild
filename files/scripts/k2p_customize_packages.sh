@@ -8,13 +8,13 @@ sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # drivers for mt7615
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/mt package/new/mt
-svn co https://github.com/Lienol/openwrt/trunk/package/lean/mt package/new/mt
+svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/mt package/new/mt
 echo "/etc/wireless/" >> package/base-files/files/lib/upgrade/keep.d/mtwifi
 
 # access control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
 # FullCone
-svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
+svn co https://github.com/Lienol/openwrt/branches/19.07/package/network/fullconenat package/network/fullconenat
 wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
 wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
@@ -32,12 +32,15 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autorebo
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 # upx & ucl
-wget -O- https://github.com/Lienol/openwrt/commit/098e38db6cccd3c9a95ee82a5396d49fe55a4107.patch | patch -p1
+svn co https://github.com/Lienol/openwrt/branches/19.07/tools/ucl tools/ucl
+svn co https://github.com/Lienol/openwrt/branches/19.07/tools/upx tools/upx
+sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
+sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 # vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/new/vlmcsd
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/new/luci-app-vlmcsd
 # Zerotier
-svn co https://github.com/project-openwrt/openwrt/branches/master/package/lean/luci-app-zerotier package/new/luci-app-zerotier
+svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/lean/luci-app-zerotier package/new/luci-app-zerotier
 # zram-swap
 rm -rf package/system/zram-swap
 svn co https://github.com/openwrt/openwrt/trunk/package/system/zram-swap package/system/zram-swap

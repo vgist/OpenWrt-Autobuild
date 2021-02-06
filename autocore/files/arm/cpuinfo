@@ -1,7 +1,7 @@
 #!/bin/sh
 
 cpu_arch="$(cat "/proc/cpuinfo" | grep "model name" | sed -n "1p" | awk -F ': ' '{print $2}')"
-[ -z "${cpu_arch}" ] && cpu_arch="ARMv8 Processor"
+[ -z "${cpu_arch}" ] && cpu_arch="?"
 cpu_cores="$(cat "/proc/cpuinfo" | grep "processor" | wc -l)"
 
 if grep -q "bcm27xx" "/etc/openwrt_release"; then
@@ -20,6 +20,8 @@ if grep -q "bcm27xx" "/etc/openwrt_release"; then
         cpu_temp="$(vcgencmd measure_temp | awk -F '=' '{print $2}' | awk -F "'" '{print $1}')°C"
 elif grep -q "ipq40xx" "/etc/openwrt_release"; then
 	cpu_temp="$(sensors | grep -Eo '\+[0-9]+.+C' | sed ':a;N;$!ba;s/\n/ /g;s/+//g')"
+elif grep -q "sunxi" "/etc/openwrt_release"; then
+    cpu_temp=""
 else
 	cpu_temp="$(awk "BEGIN{printf (\"%.1f\n\",$(cat /sys/class/thermal/thermal_zone0/temp)/1000) }")°C"
 fi

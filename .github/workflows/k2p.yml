@@ -32,7 +32,7 @@ jobs:
     - name: Clone OpenWrt
       env:
         REPO_URL: https://github.com/openwrt/openwrt
-        REPO_TAG: v19.07.5
+        REPO_TAG: v19.07.6
       run: |
         git clone $REPO_URL openwrt
         pushd openwrt
@@ -84,7 +84,7 @@ jobs:
         rm -rf packages *.buildinfo *.manifest *kernel.bin sha256sums
         sha256sum * > k2p.sha256sums
         popd
-        name_tag="v19.07.5-r$(date +%g.%j)"
+        name_tag="v19.07.6-r$(date +%g.%j)"
         echo ::set-output name=release_tag::$name_tag
 
     - name: Upload Artifact

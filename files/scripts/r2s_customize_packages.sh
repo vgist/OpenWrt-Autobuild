@@ -4,9 +4,6 @@
 sed -i 's/Os/Ofast/g' include/target.mk
 sed -i 's/O2/Ofast/g' ./rules.mk
 
-# max conntrack
-sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
-
 # feed update
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
@@ -60,13 +57,13 @@ git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-ap
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
 # FullCone
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/openwrt-fullconenat package/network/openwrt-fullconenat
-mkdir -p package/network/config/firewall/patches
-wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/package/network/config/firewall/patches/fullconenat.patch
+svn co https://github.com/Lienol/openwrt/trunk/package/network/fullconenat package/network/fullconenat
+wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/Lienol/openwrt/main/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
 cat ../../../files/patches/fullconenat-luci-master.patch | git apply
 popd
-wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
+mkdir -p package/network/config/firewall/patches
+wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/Lienol/openwrt/main/package/network/config/firewall/patches/fullconenat.patch
 # IPSEC
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
 # OLED

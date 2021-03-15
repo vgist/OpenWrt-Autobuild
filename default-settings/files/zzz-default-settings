@@ -27,7 +27,6 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 uci commit dhcp
 
 # feed
-sed -i '/freifunk/d' /etc/opkg/distfeeds.conf
 sed -i 's,downloads.openwrt.org,mirrors.cloud.tencent.com/openwrt,g' /etc/opkg/distfeeds.conf
 
 ln -sf /sbin/ip /usr/bin/ip

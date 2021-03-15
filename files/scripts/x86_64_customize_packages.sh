@@ -1,18 +1,15 @@
 #!/bin/bash
 
-# Ofast
-sed -i 's/Os/Ofast/g' include/target.mk
-sed -i 's/O2/Ofast/g' ./rules.mk
-
-# feed update
-./scripts/feeds update -a && ./scripts/feeds install -a
+# fix source_url
+curl https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-19.07/include/download.mk | cat > ./include/download.mk
+curl https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-19.07/scripts/download.pl | cat > ./scripts/download.pl
 
 # Access Control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
 # AdGuard Home
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
+svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
 # AutoCore
-cp -rf ../autocore package/new/autocore
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/lean/autocore package/new/autocore
 # automount
 rm -rf ./feeds/packages/kernel/exfat-nofuse
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
@@ -34,14 +31,14 @@ rm -f ./package/feeds/packages/frp
 git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-app-frpc.git package/new/luci-app-frpc
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
-# fullcone
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/network/fullconenat package/network/fullconenat
-wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
+# FullCone
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-19.07/package/lean/openwrt-fullconenat package/new/openwrt-fullconenat
+wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-19.07/target/linux/generic/hack-4.14/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
 wget -O- https://github.com/LGA1150/fullconenat-fw3-patch/raw/master/luci.patch | git apply
 popd
 mkdir -p package/network/config/firewall/patches
-wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/package/network/config/firewall/patches/fullconenat.patch
+wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-19.07/package/network/config/firewall/patches/fullconenat.patch
 # DDNS
 rm -rf ./feeds/packages/net/ddns-scripts
 rm -rf ./feeds/luci/applications/luci-app-ddns
@@ -69,50 +66,46 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new
 #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
 #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
 #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
 #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/kcptun package/new/kcptun
-svn co https://github.com/Lienol/openwrt-packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
+svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/new/simple-obfs
+svn co https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocks-rust package/new/shadowsocks-rust
+#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/new/simple-obfs
 #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray package/new/v2ray
 #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray package/new/xray
 #svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-plugin package/new/v2ray-plugin
+# Realtek RTL8811CU/RTL8821CU
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-19.07/package/ctcgfw/rtl8821cu package/new/rtl8821cu
+# Realtek RTL8812AU/21AU
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-19.07/package/ctcgfw/rtl8812au-ac package/new/rtl8812au-ac
+# Realtek 8812BU/8822BU
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-19.07/package/ctcgfw/rtl88x2bu package/new/rtl88x2bu
 # SeverChan
 git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan.git package/new/luci-app-serverchan
 # Scheduled Reboot
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
-# Shortcut Forwarding Engine
-wget -P target/linux/generic/hack-4.14/ https://raw.githubusercontent.com/Lienol/openwrt/19.07/target/linux/generic/hack-4.14/953-net-patch-linux-kernel-to-support-shortcut-fe.patch
-svn co https://github.com/Lienol/openwrt/branches/19.07/package/kernel/shortcut-fe package/kernel/shortcut-fe
-#svn co https://github.com/Lienol/openwrt/branches/19.07/package/lean/luci-app-sfe package/new/luci-app-sfe
-pushd feeds/luci
-cat ../../../files/patches/sfe-luci.patch | git apply
-popd
-cp -f ../files/patches/shortcut-fe package/base-files/files/etc/init.d/
 # Traffic Usage Monitor
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
-# Unblock Netease Music
-git clone -b master --depth 1 --single-branch https://github.com/cnsilvan/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic-go
 # UPNP
 rm -rf ./feeds/packages/net/miniupnpd
 svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 # upx & ucl
-svn co https://github.com/Lienol/openwrt/branches/19.07/tools/ucl tools/ucl
-svn co https://github.com/Lienol/openwrt/branches/19.07/tools/upx tools/upx
+svn co https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
+svn co https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
 sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
 sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 # USB Printer
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-printer package/new/luci-app-usb-printer
 # vlmcsd
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/new/vlmcsd
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-vlmcsd package/new/luci-app-vlmcsd
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-19.07/package/lean/luci-app-vlmcsd package/new/luci-app-vlmcsd
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/lean/vlmcsd
 # xlnetacc
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/new/luci-app-xlnetacc
 # Zerotier
-svn co https://github.com/project-openwrt/openwrt/branches/openwrt-19.07/package/lean/luci-app-zerotier package/new/luci-app-zerotier
-popd
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-19.07/package/lean/luci-app-zerotier package/new/luci-app-zerotier
 # zram-swap
 rm -rf package/system/zram-swap
 svn co https://github.com/openwrt/openwrt/trunk/package/system/zram-swap package/system/zram-swap

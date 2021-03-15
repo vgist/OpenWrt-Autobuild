@@ -1,6 +1,6 @@
-From 1c2ccda6619c16e1af033c8b576cd755d9407b40 Mon Sep 17 00:00:00 2001
+From 274dde348c783dcfd4f3b3111303a32f01a0e43e Mon Sep 17 00:00:00 2001
 From: Register <458892+aieu@users.noreply.github.com>
-Date: Fri, 5 Feb 2021 23:02:58 +0800
+Date: Sat, 27 Feb 2021 16:39:11 +0800
 Subject: [PATCH] sunxi h3: add thermal sensor for zeropi
 
 This patch adds support for the zeropi ths sensor.
@@ -16,10 +16,10 @@ Signed-off-by: Register <458892+aieu@users.noreply.github.com>
  2 files changed, 43 insertions(+)
 
 diff --git a/arch/arm/boot/dts/sun8i-h3.dtsi b/arch/arm/boot/dts/sun8i-h3.dtsi
-index 6056f206c..a5f4fa4a8 100644
+index 96cf1330a..f5afcae4d 100644
 --- a/arch/arm/boot/dts/sun8i-h3.dtsi
 +++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -120,6 +120,15 @@
+@@ -168,6 +168,15 @@
  		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
  	};
  
@@ -35,7 +35,7 @@ index 6056f206c..a5f4fa4a8 100644
  	timer {
  		compatible = "arm,armv7-timer";
  		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-@@ -237,6 +246,11 @@
+@@ -285,6 +294,11 @@
  	compatible = "allwinner,sun8i-h3-pinctrl";
  };
  

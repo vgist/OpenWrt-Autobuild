@@ -1,6 +1,6 @@
-From e3231034f778e62c3c2233d337850d18c308401f Mon Sep 17 00:00:00 2001
+From 2b1e20ffe0617af3a13288b509532cf8429d10ff Mon Sep 17 00:00:00 2001
 From: Register <458892+aieu@users.noreply.github.com>
-Date: Tue, 5 Jan 2021 00:46:47 +0800
+Date: Sat, 27 Feb 2021 16:33:08 +0800
 Subject: [PATCH] sun8i h3: add more cpu operating points for zeropi
 
 add 1.368GHz/1.3v overlay for zeropi

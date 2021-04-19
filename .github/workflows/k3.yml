@@ -49,31 +49,31 @@ jobs:
     - name: Customize Packages
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/k3_customize_packages.sh .
+        cp ../scripts/k3_customize_packages.sh .
         /bin/bash k3_customize_packages.sh
 
     - name: Convert Translation
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/01_convert_translation.sh .
+        cp ../scripts/01_convert_translation.sh .
         /bin/bash 01_convert_translation.sh
 
     - name: Add ACL
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/02_create_acl_for_luci.sh .
+        cp ../scripts/02_create_acl_for_luci.sh .
         /bin/bash 02_create_acl_for_luci.sh -a
 
     - name: Make Config
       working-directory: ./openwrt
       run: |
-        cp ../files/seed/k3_config.seed .config
+        cp ../k3_defconfig .config
         make defconfig
 
     - name: Make Download
       working-directory: ./openwrt
       run: |
-        make download -j$((`nproc`+1)) || make download -j1 V=s
+        make download -j$((`nproc`+1))
 
     - name: Compile OpenWrt
       working-directory: ./openwrt
@@ -87,7 +87,7 @@ jobs:
         ls openwrt/bin/targets/bcm53xx/generic/
         mv openwrt/bin/targets/bcm53xx/generic ./artifact
         pushd artifact
-        mv config.buildinfo k3.seed
+        mv config.buildinfo k3_defconfig
         rm -rf packages *.buildinfo *.manifest sha256sums
         sha256sum * > k3.sha256sums
         popd

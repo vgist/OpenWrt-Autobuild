@@ -1,8 +1,8 @@
-name: Phicomm-K2P
+name: Xiaomi-MiWifi-Mini
 
 on:
   repository_dispatch:
-    types: k2p-build
+    types: miwifi-mini-build
 
 jobs:
   build:
@@ -49,8 +49,8 @@ jobs:
     - name: Customize Packages
       working-directory: ./openwrt
       run: |
-        cp ../scripts/k2p_customize_packages.sh .
-        /bin/bash k2p_customize_packages.sh
+        cp ../scripts/miwifi-mini_customize_packages.sh .
+        /bin/bash miwifi-mini_customize_packages.sh
 
     - name: Convert Translation
       working-directory: ./openwrt
@@ -67,7 +67,7 @@ jobs:
     - name: Make Config
       working-directory: ./openwrt
       run: |
-        cp ../k2p_defconfig .config
+        cp ../miwifi-mini_defconfig .config
         make defconfig
 
     - name: Make Download
@@ -84,12 +84,12 @@ jobs:
       id: assemble_artifact
       run: |
         rm -rf ./artifact
-        ls openwrt/bin/targets/ramips/mt7621/
-        mv openwrt/bin/targets/ramips/mt7621 ./artifact
+        ls openwrt/bin/targets/ramips/mt7620/
+        mv openwrt/bin/targets/ramips/mt7620 ./artifact
         pushd artifact
-        mv config.buildinfo k2p_defconfig
+        mv config.buildinfo miwifi-mini_defconfig
         rm -rf packages *.buildinfo *.manifest *kernel.bin sha256sums
-        sha256sum * > k2p.sha256sums
+        sha256sum * > miwifi-mini.sha256sums
         popd
         name_tag="v19.07.7-r$(date +%g.%j)"
         echo ::set-output name=release_tag::$name_tag

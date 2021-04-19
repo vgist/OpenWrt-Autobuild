@@ -47,31 +47,31 @@ jobs:
     - name: Customize Packages
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/zeropi_customize_packages.sh .
+        cp ../scripts/zeropi_customize_packages.sh .
         /bin/bash zeropi_customize_packages.sh
 
     - name: Convert Translation
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/01_convert_translation.sh .
+        cp ../scripts/01_convert_translation.sh .
         /bin/bash 01_convert_translation.sh
 
     - name: Add ACL
       working-directory: ./openwrt
       run: |
-        cp ../files/scripts/02_create_acl_for_luci.sh .
+        cp ../scripts/02_create_acl_for_luci.sh .
         /bin/bash 02_create_acl_for_luci.sh -a
 
     - name: Make Config
       working-directory: ./openwrt
       run: |
-        cp ../files/seed/zeropi_config.seed .config
+        cp ../zeropi_defconfig .config
         make defconfig
 
     - name: Make Download
       working-directory: ./openwrt
       run: |
-        make download -j$((`nproc`+1)) || make download -j1 V=s
+        make download -j$((`nproc`+1))
 
     - name: Compile OpenWrt
       working-directory: ./openwrt
@@ -85,7 +85,7 @@ jobs:
         ls openwrt/bin/targets/sunxi/cortexa7/
         mv openwrt/bin/targets/sunxi/cortexa7 ./artifact
         pushd artifact
-        mv config.buildinfo zeropi.seed
+        mv config.buildinfo zeropi_defconfig
         rm -rf packages *.buildinfo *.manifest sha256sums
         sha256sum * > zeropi.sha256sums
         popd

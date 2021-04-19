@@ -141,6 +141,9 @@ msgstr "每行需要满足以下格式："
 msgid "Enabled"
 msgstr "启用"
 
+msgid "Enable FullCone-NAT"
+msgstr "启用 FullCone-NAT"
+
 msgid "Error! Bandwidth reset!!!"
 msgstr "错误！重置带宽！！！"
 

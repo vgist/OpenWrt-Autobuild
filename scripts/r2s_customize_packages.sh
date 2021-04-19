@@ -1,12 +1,24 @@
 #!/bin/bash
 
-# Kernel patches from armbian
-cp ../files/patches/320-sun8i-h3-add-more-cpu-operating-points-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
-#cp ../files/patches/321-sunxi-h3-add-thermal-sensor-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
+# crypto optimization
+sed -i 's,-mcpu=generic,-march=armv8-a+crypto+crc -mabi=lp64,g' include/target.mk
 
-# fix source_url
-curl https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-21.02/include/download.mk | cat > ./include/download.mk
-curl https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-21.02/scripts/download.pl | cat > ./scripts/download.pl
+# Necessary patches from coolsnowwolf/lede
+#rm -rf target/linux/rockchip/patches-5.4
+#svn co https://github.com/coolsnowwolf/lede/trunk/target/linux/rockchip/patches-5.4 target/linux/rockchip/patches-5.4
+pushd target/linux/rockchip/patches-5.4
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/007-arm64-dts-rockchip-Add-RK3328-idle-state.patch
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/008-rockchip-add-hwmon-support-for-SoCs-and-GPUs.patch
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/105-mmc-core-set-initial-signal-voltage-on-power-off.patch
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/201-rockchip-rk3328-add-i2c0-controller-for-nanopi-r2s.patch
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/801-char-add-support-for-rockchip-hardware-random-number.patch
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/802-arm64-dts-rockchip-add-hardware-random-number-genera.patch
+wget https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/patches-5.4/991-arm64-dts-rockchip-add-more-cpu-operating-points-for.patch
+popd
+mkdir -p target/linux/rockchip/files/drivers/char/hw_random
+wget -P target/linux/rockchip/files/drivers/char/hw_random/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/rockchip/files/drivers/char/hw_random/rockchip-rng.c
+# model name patch for aarch64
+wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/coolsnowwolf/lede/master/target/linux/generic/hack-5.4/999-display-model-name-in-proc-cpuinfo.patch
 
 # Access Control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
@@ -15,14 +27,14 @@ svn co https://github.com/Lienol/openwrt/branches/main/package/diy/luci-app-adgu
 # arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/new/luci-app-arpbind
 # AutoCore
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/lean/autocore package/new/autocore
+cp -rf ../autocore package/new/autocore
 # automount
 rm -rf ./feeds/packages/kernel/exfat-nofuse
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
 svn co https://github.com/openwrt/packages/trunk/utils/antfs-mount package/utils/antfs-mount
 svn co https://github.com/openwrt/packages/trunk/kernel/antfs package/kernel/antfs
 # cpufreq
-svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/lean/luci-app-cpufreq package/new/luci-app-cpufreq
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/lean/luci-app-cpufreq package/new/luci-app-cpufreq
 # DDNS
 rm -rf ./feeds/packages/net/ddns-scripts
 rm -rf ./feeds/luci/applications/luci-app-ddns
@@ -45,44 +57,39 @@ git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app
 svn co https://github.com/Lienol/openwrt/branches/main/package/network/fullconenat package/network/fullconenat
 wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/Lienol/openwrt/main/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
-cat ../../../files/patches/fullconenat-luci-master.patch | git apply
+cat ../../../patches/fullconenat-luci.patch | git apply
 popd
 mkdir -p package/network/config/firewall/patches
 wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/Lienol/openwrt/main/package/network/config/firewall/patches/fullconenat.patch
+# IPv6 helper
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper package/new/ipv6-helper
 # IPSEC
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
+# mbedtls
+rm -rf ./package/libs/mbedtls
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/libs/mbedtls package/libs/mbedtls
+# OLED
+git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
 # OpenAppFilter
 git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
 # OpenClash
 git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
-# PassWall
+# Passwall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
 rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/new/ipt2socks
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/new/ssocks
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/new/microsocks
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/new/pdnsd
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/new/tcping
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/new/trojan-go
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/new/trojan-plus
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/new/dns2socks
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/kcptun package/new/kcptun
-svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocks-rust package/new/shadowsocks-rust
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/simple-obfs package/new/simple-obfs
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray package/new/v2ray
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray package/new/xray
-#svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-plugin package/new/v2ray-plugin
+svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
 # Realtek RTL8811CU/RTL8821CU
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/ctcgfw/rtl8821cu package/new/rtl8821cu
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8821cu package/new/rtl8821cu
 # Realtek RTL8812AU/21AU
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/ctcgfw/rtl8812au-ac package/new/rtl8812au-ac
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8812au-ac package/new/rtl8812au-ac
 # Realtek 8812BU/8822BU
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/ctcgfw/rtl88x2bu package/new/rtl88x2bu
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl88x2bu package/new/rtl88x2bu
 # SeverChan
 git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 # Scheduled Reboot
@@ -92,7 +99,7 @@ git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtb
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 # UPNP
 rm -rf ./feeds/packages/net/miniupnpd
-svn co https://github.com/coolsnowwolf/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
+svn co https://github.com/openwrt/packages/trunk/net/miniupnpd feeds/packages/net/miniupnpd
 # upx & ucl
 svn co https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
 svn co https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
@@ -107,70 +114,29 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/le
 git clone -b main --depth 1 --single-branch https://github.com/Beginner-Go/luci-app-xlnetacc package/new/luci-app-xlnetacc
 # Zerotier
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-zerotier package/new/luci-app-zerotier
+
 # default settings and translation
 cp -rf ../default-settings package/new/learn-translate
 
 # crypto
 echo '
-CONFIG_ARM_ALLWINNER_SUN50I_CPUFREQ_NVMEM=y
-CONFIG_ARM_CRYPTO=y
+CONFIG_ARM64_CRYPTO=y
+CONFIG_CRYPTO_AES_ARM64=y
+CONFIG_CRYPTO_AES_ARM64_BS=y
+CONFIG_CRYPTO_AES_ARM64_CE=y
+CONFIG_CRYPTO_AES_ARM64_CE_BLK=y
+CONFIG_CRYPTO_AES_ARM64_CE_CCM=y
+CONFIG_CRYPTO_AES_ARM64_NEON_BLK=y
 CONFIG_CRYPTO_CHACHA20_NEON=y
-CONFIG_CRYPTO_POLY1305_ARM=y
-CONFIG_CRYPTO_SHA1_ARM=y
-CONFIG_CRYPTO_SHA1_ARM_NEON=y
-CONFIG_CRYPTO_SHA1_ARM_CE=y
-CONFIG_CRYPTO_SHA2_ARM_CE=y
-CONFIG_CRYPTO_SHA256_ARM=y
-CONFIG_CRYPTO_SHA512_ARM=y
-CONFIG_CPU_FREQ=y
-CONFIG_CPU_FREQ_GOV_ATTR_SET=y
-CONFIG_CPU_FREQ_GOV_COMMON=y
-CONFIG_CPU_FREQ_STAT=y
-CONFIG_CPU_FREQ_DEFAULT_GOV_SCHEDUTIL=y
-CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
-CONFIG_CPU_FREQ_GOV_ONDEMAND=y
-CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
-CONFIG_CPU_FREQ_THERMAL=y
-' >> ./target/linux/sunxi/cortexa7/config-5.4
-
-# Allow web access
-echo '
-#!/bin/sh
-
-uci delete network.lan.type
-
-uci show network.wan > /dev/null 2>&1
-if [ $? -eq 1 ]; then
-    uci add network interface
-    uci rename network.@interface[-1]="wan"
-    uci set network.@interface[-1].proto="dhcp"
-    uci set network.@interface[-1].ifname="eth0"
-    uci commit network
-fi
-
-uci show network.wan6 > /dev/null 2>&1
-if [ $? -eq 1 ]; then
-    uci add network interface
-    uci rename network.@interface[-1]="wan6"
-    uci set network.@interface[-1].proto="dhcpv6"
-    uci set network.@interface[-1].ifname="eth0"
-    uci set network.@interface[-1].reqaddress="try"
-    uci set network.@interface[-1].reqprefix="auto"
-    uci set network.@interface[-1].auto="0"
-    uci commit network
-fi
-
-uci show firewall.web > /dev/null 2>&1
-if [ $? -eq 1 ]; then
-    uci add firewall rule
-    uci rename firewall.@rule[-1]="web"
-    uci set firewall.@rule[-1].name="web"
-    uci set firewall.@rule[-1].target="ACCEPT"
-    uci set firewall.@rule[-1].src="wan"
-    uci set firewall.@rule[-1].proto="tcp"
-    uci set firewall.@rule[-1].dest_port="80"
-    uci commit firewall
-fi
-' >> ./package/base-files/files/etc/uci-defaults/web-access
+CONFIG_CRYPTO_GHASH_ARM64_CE=y
+CONFIG_CRYPTO_SHA1_ARM64_CE=y
+CONFIG_CRYPTO_SHA2_ARM64_CE=y
+CONFIG_CRYPTO_SHA256_ARM64=y
+CONFIG_CRYPTO_SHA3_ARM64=y
+CONFIG_CRYPTO_SHA512_ARM64=y
+# CONFIG_CRYPTO_SHA512_ARM64_CE is not set
+CONFIG_CRYPTO_SM3_ARM64_CE=y
+CONFIG_CRYPTO_SM4_ARM64_CE=y
+' >> ./target/linux/rockchip/armv8/config-5.4
 
 exit 0

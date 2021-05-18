@@ -1,8 +1,9 @@
-name: Xiaomi-MiWifi-Mini
+name: MiWiFi-Mini
 
 on:
   repository_dispatch:
-    types: miwifi-mini-build
+    types: MIWiFi-Mini
+  workflow_dispatch:
 
 jobs:
   build:
@@ -31,14 +32,13 @@ jobs:
         df -h
 
     - name: Clone OpenWrt
-      env:
-        REPO_URL: https://github.com/openwrt/openwrt
-        REPO_TAG: v19.07.7
+      id: co
       run: |
-        git clone $REPO_URL openwrt
-        pushd openwrt
-        git checkout $REPO_TAG
-        popd
+        REPO_URL=https://github.com/openwrt/openwrt
+        REPO_TAG=v21.02.0-rc2
+        git clone -b $REPO_TAG $REPO_URL openwrt
+        name_tag=${REPO_TAG}-r$(date +%g.%j)
+        echo ::set-output name=release_tag::$name_tag
 
     - name: Feeds update
       working-directory: ./openwrt
@@ -81,7 +81,6 @@ jobs:
         make -j$((`nproc`+1)) V=s || make -j1 V=s
 
     - name: Assemble Artifact
-      id: assemble_artifact
       run: |
         rm -rf ./artifact
         ls openwrt/bin/targets/ramips/mt7620/
@@ -91,13 +90,11 @@ jobs:
         rm -rf packages *.buildinfo *.manifest *kernel.bin sha256sums
         sha256sum * > miwifi-mini.sha256sums
         popd
-        name_tag="v19.07.7-r$(date +%g.%j)"
-        echo ::set-output name=release_tag::$name_tag
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ steps.assemble_artifact.outputs.release_tag }}
+        name: ${{ steps.co.outputs.release_tag }}
         path: artifact/*
 
     - name: Upload Release
@@ -106,6 +103,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         draft: false
-        prerelease: false
-        tag_name: ${{ steps.assemble_artifact.outputs.release_tag }}
+        prerelease: true
+        tag_name: ${{ steps.co.outputs.release_tag }}
         files: artifact/*

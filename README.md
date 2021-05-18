@@ -1,11 +1,11 @@
 #### 支持机型
 
-[![x86-64](https://github.com/vgist/OpenWrt-Autobuild/workflows/x86-64/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3Ax86-64)
-[![NanoPi-R2S](https://github.com/vgist/OpenWrt-Autobuild/workflows/NanoPi-R2S/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3ANanoPi-R2S)
-[![ZeroPi](https://github.com/vgist/OpenWrt-Autobuild/workflows/ZeroPi/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3AZeroPi)
-[![Phicomm-K3](https://github.com/vgist/OpenWrt-Autobuild/workflows/Phicomm-K3/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3APhicomm-K3)
-[![Phicomm-K2P](https://github.com/vgist/OpenWrt-Autobuild/workflows/Phicomm-K2P/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3APhicomm-K2P)
-[![Xiaomi-MiWifi-Mini](https://github.com/vgist/OpenWrt-Autobuild/workflows/Xiaomi-MiWifi-Mini/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions?query=workflow%3AXiaomi-MiWifi-Mini)
+[![X86-64](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86_64.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86_64.yml)
+[![NanoPi-R2S](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2s.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2s.yml)
+[![ZeroPi](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml)
+[![Phicomm-K3](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml)
+[![Phicomm-K2P](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml)
+[![MiWiFi-Mini](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/miwifi-mini.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/miwifi-mini.yml)
 
 #### 部分应用来源
 
@@ -23,10 +23,9 @@
 
 #### 分支
 
-| 版本           |x86-64 |NanoPi R2S|ZeroPi |Phicomm K3|Phicomm K2P|MiWiFi-mini|
-|:--------------:|:-----:|:--------:|:-----:|:--------:|:---------:|:---------:|
-| 21.02-snapshot |       | &check;  |&check;|          |           |           |
-| 19.07.7        |&check;|          |       | &check;  |  &check;  | &check;   |
+| 版本        |x86-64 |NanoPi R2S|ZeroPi |Phicomm K3|Phicomm K2P|MiWiFi-mini|
+|:-----------:|:-----:|:--------:|:-----:|:--------:|:---------:|:---------:|
+| 21.02.0-rc2 |&check;| &check;  |&check;| &check;  | &check;   | &check;   |
 
 #### 第三方应用列表
 

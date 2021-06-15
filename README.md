@@ -25,7 +25,7 @@
 
 | 版本        |x86-64 |NanoPi R2S|ZeroPi |Phicomm K3|Phicomm K2P|MiWiFi-mini|
 |:-----------:|:-----:|:--------:|:-----:|:--------:|:---------:|:---------:|
-| 21.02.0-rc2 |&check;| &check;  |&check;| &check;  | &check;   | &check;   |
+| 21.02.0-rc3 |&check;| &check;  |&check;| &check;  | &check;   | &check;   |
 
 #### 第三方应用列表
 
@@ -40,7 +40,7 @@
 | frps        |&check;| &check;  |&check;| &check;  |           |           |
 |IPv6 兼容助手|&check;| &check;  |&check;| &check;  | &check;   | &check;   |
 | IPSEC       |&check;| &check;  |&check;| &check;  |           |           |
-| MiniUPnP    |&check;| &check;  |&check;| &check;  |           |           |
+| MiniUPnP    |&check;| &check;  |&check;| &check;  | &check;   | &check;   |
 | OpenClash   |&check;| &check;  |&check;| &check;  |           |           |
 | PassWall    |&check;| &check;  |&check;| &check;  |  &check;  | &check;   |
 | Server 酱   |&check;| &check;  |&check;| &check;  |  &check;  | &check;   |

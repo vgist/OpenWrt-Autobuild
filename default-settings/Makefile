@@ -23,7 +23,6 @@ define Package/addition-default-settings
 	PKGARCH:=all
 	DEPENDS:=+dnsmasq-full \
 		+iptables-mod-fullconenat \
-		+ip6tables-mod-fullconenat \
 		+kmod-tun \
 		+libustream-wolfssl \
 		+luci-compat \

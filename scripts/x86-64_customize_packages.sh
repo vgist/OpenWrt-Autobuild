@@ -3,7 +3,7 @@
 # Access Control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
 # AdGuard Home
-svn co https://github.com/Lienol/openwrt/branches/21.02/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
+svn co https://github.com/Lienol/openwrt/trunk/package/diy/luci-app-adguardhome package/new/luci-app-adguardhome
 # arpbind
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-arpbind package/new/luci-app-arpbind
 # AutoCore
@@ -21,29 +21,28 @@ rm -rf ./feeds/luci/applications/luci-app-frps
 rm -rf ./feeds/luci/applications/luci-app-frpc
 rm -rf ./feeds/packages/net/frp
 rm -rf ./package/feeds/packages/frp
-git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-app-frpc.git package/new/luci-app-frpc
-git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps.git package/new/luci-app-frps
+git clone -b master --depth 1 --single-branch https://github.com/kuoruan/luci-app-frpc package/new/luci-app-frpc
+git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-frps package/new/luci-app-frps
 #svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/frp package/new/frp
 # FullCone
-svn co https://github.com/Lienol/openwrt/branches/21.02/package/network/fullconenat package/network/fullconenat
-wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/Lienol/openwrt/21.02/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
+svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/fullconenat package/network/fullconenat
+wget -P target/linux/generic/hack-5.4/ https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-21.02/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
 pushd feeds/luci
 cat ../../../patches/fullconenat-luci.patch | git apply
 popd
 mkdir -p package/network/config/firewall/patches
-wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/Lienol/openwrt/21.02/package/network/config/firewall/patches/fullconenat.patch
+wget -P package/network/config/firewall/patches/ https://raw.githubusercontent.com/immortalwrt/immortalwrt/openwrt-21.02/package/network/config/firewall/patches/fullconenat.patch
 # IPv6 helper
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipv6-helper package/new/ipv6-helper
 # IPSEC
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-ipsec-vpnd package/new/luci-app-ipsec-vpnd
 # OpenAppFilter
-git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter.git package/new/OpenAppFilter
+git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
 # OpenClash
 git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 # Passwall
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
 rm -rf ./feeds/packages/net/kcptun
-rm -rf ./feeds/packages/net/shadowsocks-libev
 rm -rf ./feeds/packages/net/xray-core
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/new/brook
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/new/chinadns-ng
@@ -61,7 +60,6 @@ svn co https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocks-rust pack
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-plugin package/new/v2ray-plugin
 svn co https://github.com/xiaorouji/openwrt-passwall/trunk/xray-core package/new/xray-core
-svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
 # Realtek RTL8811CU/RTL8821CU
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8821cu package/new/rtl8821cu
 # Realtek RTL8812AU/21AU
@@ -69,7 +67,7 @@ svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package
 # Realtek 8812BU/8822BU
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl88x2bu package/new/rtl88x2bu
 # SeverChan
-git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan.git package/new/luci-app-serverchan
+git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
 # Scheduled Reboot
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-autoreboot package/new/luci-app-autoreboot
 # Traffic Usage Monitor

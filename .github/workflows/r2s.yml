@@ -49,8 +49,10 @@ jobs:
     - name: Customize Packages
       working-directory: ./openwrt
       run: |
-        cp ../scripts/r2s_customize_packages.sh .
-        /bin/bash r2s_customize_packages.sh
+        cp ../scripts/r2s_customization.sh .
+        /bin/bash r2s_customization.sh
+        cp ../scripts/00_customize_packages.sh .
+        /bin/bash 00_customize_packages.sh
 
     - name: Convert Translation
       working-directory: ./openwrt
@@ -73,12 +75,12 @@ jobs:
     - name: Make Download
       working-directory: ./openwrt
       run: |
-        make download -j$((`nproc`+1))
+        make download -j`nproc`
 
     - name: Compile OpenWrt
       working-directory: ./openwrt
       run: |
-        make -j$((`nproc`+1)) V=s || make -j1 V=s
+        make -j`nproc` V=s || make -j1 V=s
 
     - name: Assemble Artifact
       run: |
@@ -86,7 +88,7 @@ jobs:
         ls openwrt/bin/targets/rockchip/armv8/
         mv openwrt/bin/targets/rockchip/armv8 ./artifact
         pushd artifact
-        mv config.buildinfo r2s_defconfig
+        cat config.buildinfo
         rm -rf packages *.buildinfo *.manifest sha256sums
         sha256sum * > r2s.sha256sums
         popd

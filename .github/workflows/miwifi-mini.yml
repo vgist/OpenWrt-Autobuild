@@ -49,8 +49,10 @@ jobs:
     - name: Customize Packages
       working-directory: ./openwrt
       run: |
-        cp ../scripts/miwifi-mini_customize_packages.sh .
-        /bin/bash miwifi-mini_customize_packages.sh
+        cp ../scripts/miwifi-mini_customization.sh .
+        /bin/bash miwifi-mini_customization.sh
+        cp ../scripts/00_customize_packages.sh .
+        /bin/bash 00_customize_packages.sh
 
     - name: Convert Translation
       working-directory: ./openwrt
@@ -73,12 +75,12 @@ jobs:
     - name: Make Download
       working-directory: ./openwrt
       run: |
-        make download -j$((`nproc`+1))
+        make download -j`nproc`
 
     - name: Compile OpenWrt
       working-directory: ./openwrt
       run: |
-        make -j$((`nproc`+1)) V=s || make -j1 V=s
+        make -j`nproc` V=s || make -j1 V=s
 
     - name: Assemble Artifact
       run: |
@@ -86,7 +88,7 @@ jobs:
         ls openwrt/bin/targets/ramips/mt7620/
         mv openwrt/bin/targets/ramips/mt7620 ./artifact
         pushd artifact
-        mv config.buildinfo miwifi-mini_defconfig
+        cat config.buildinfo
         rm -rf packages *.buildinfo *.manifest *kernel.bin sha256sums
         sha256sum * > miwifi-mini.sha256sums
         popd

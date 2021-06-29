@@ -24,7 +24,6 @@ define Package/addition-default-settings
 	DEPENDS:=+dnsmasq-full \
 		+iptables-mod-fullconenat \
 		+kmod-tun \
-		+libustream-wolfssl \
 		+luci-compat \
 		+luci-lib-ipkg \
 		+@LUCI_LANG_zh_Hans

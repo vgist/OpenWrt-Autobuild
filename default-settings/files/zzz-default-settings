@@ -7,10 +7,9 @@ uci set system.@system[0].zonename=Asia/Shanghai
 uci set system.@system[0].zram_priority=100
 # ntp server
 uci -q delete system.ntp.server
-uci add_list system.ntp.server="ntp1.aliyun.com"
-uci add_list system.ntp.server="ntp2.aliyun.com"
+uci add_list system.ntp.server="ntp.aliyun.com"
 uci add_list system.ntp.server="time1.cloud.tencent.com"
-uci add_list system.ntp.server="time2.cloud.tencent.com"
+uci add_list system.ntp.server="time.ustc.edu.cn"
 uci add_list system.ntp.server="cn.pool.ntp.org"
 uci commit system && service sysntpd reload
 

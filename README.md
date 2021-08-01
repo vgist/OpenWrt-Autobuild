@@ -19,7 +19,7 @@
 
 | 版本        |x86-64 |NanoPi R2S|ZeroPi |Phicomm K3|Phicomm K2P|MiWiFi-mini|
 |:-----------:|:-----:|:--------:|:-----:|:--------:|:---------:|:---------:|
-| 21.02.0-rc3 |&check;| &check;  |&check;| &check;  | &check;   | &check;   |
+| 21.02.0-rc4 |&check;| &check;  |&check;| &check;  | &check;   | &check;   |
 
 #### 第三方应用列表
 

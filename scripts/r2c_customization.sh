@@ -10,8 +10,11 @@ rm -rf ./target/linux/rockchip/patches-5.4
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/target/linux/rockchip/patches-5.4 target/linux/rockchip/patches-5.4
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/target/linux/rockchip/files target/linux/rockchip/files
 rm -rf ./package/boot/uboot-rockchip
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/boot/uboot-rockchip package/boot/uboot-rockchip
+svn co https://github.com/immortalwrt/immortalwrt/branches/master/package/boot/uboot-rockchip package/boot/uboot-rockchip
 svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/boot/arm-trusted-firmware-rockchip-vendor package/boot/arm-trusted-firmware-rockchip-vendor
+
+# 40-net-smp-affinity
+sed -i 's|friendlyarm,nanopi-r2s|friendlyarm,nanopi-r2c|g' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
 
 # mbedtls
 rm -rf ./package/libs/mbedtls
@@ -36,6 +39,7 @@ CONFIG_CRYPTO_SHA512_ARM64=y
 # CONFIG_CRYPTO_SHA512_ARM64_CE is not set
 CONFIG_CRYPTO_SM3_ARM64_CE=y
 CONFIG_CRYPTO_SM4_ARM64_CE=y
+CONFIG_MOTORCOMM_PHY=y
 ' >> ./target/linux/rockchip/armv8/config-5.4
 
 exit 0

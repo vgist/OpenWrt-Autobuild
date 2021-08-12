@@ -1,4 +1,4 @@
-name: NanoPi-R2S
+name: NanoPi R2S
 
 on:
   repository_dispatch:
@@ -37,7 +37,7 @@ jobs:
         REPO_URL=https://github.com/openwrt/openwrt
         REPO_TAG=v21.02.0-rc4
         git clone -b $REPO_TAG $REPO_URL openwrt
-        name_tag=${REPO_TAG}-r$(date +%g.%j)
+        name_tag=${REPO_TAG}
         echo ::set-output name=release_tag::$name_tag
 
     - name: Feeds update
@@ -90,7 +90,6 @@ jobs:
         pushd artifact
         cat config.buildinfo
         rm -rf packages *.buildinfo *.manifest sha256sums
-        sha256sum * > r2s.sha256sums
         popd
 
     - name: Upload Artifact

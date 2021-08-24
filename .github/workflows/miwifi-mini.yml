@@ -1,4 +1,4 @@
-name: MiWiFi-Mini
+name: MiWiFi Mini
 
 on:
   repository_dispatch:

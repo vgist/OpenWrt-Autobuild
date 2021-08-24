@@ -1,4 +1,4 @@
-name: NanoPi-R2S
+name: NanoPi R2S
 
 on:
   repository_dispatch:

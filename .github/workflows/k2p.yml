@@ -1,4 +1,4 @@
-name: Phicomm-K2P
+name: Phicomm K2P
 
 on:
   repository_dispatch:

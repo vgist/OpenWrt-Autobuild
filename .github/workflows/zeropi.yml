@@ -1,4 +1,4 @@
-name: ZeroPi
+name: NanoPi ZeroPi
 
 on:
   repository_dispatch:

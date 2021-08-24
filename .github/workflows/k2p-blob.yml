@@ -1,4 +1,4 @@
-name: Phicomm-K2P blob
+name: Phicomm K2P blob
 
 on:
   repository_dispatch:

@@ -11,6 +11,8 @@ jobs:
     steps:
     - name: Clone Repository
       uses: actions/checkout@v2
+      with:
+        ref: 21.02
 
     - name: Init build dependencies
       env:
@@ -35,7 +37,7 @@ jobs:
       id: co
       run: |
         REPO_URL=https://github.com/openwrt/openwrt
-        REPO_TAG=v21.02.0-rc4
+        REPO_TAG=v21.02.0
         git clone -b $REPO_TAG $REPO_URL openwrt
         name_tag=${REPO_TAG}
         echo ::set-output name=release_tag::$name_tag
@@ -104,6 +106,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         draft: false
-        prerelease: true
+        prerelease: false
         tag_name: ${{ steps.co.outputs.release_tag }}
         files: artifact/*

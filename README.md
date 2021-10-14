@@ -30,15 +30,14 @@
 |AdGuard Home |&check;|        &check;         | &check;  |           |           |
 | AutoCore    |&check;|        &check;         | &check;  |           |           |
 | cpufreq     |       |        &check;         |          |           |           |
-| DDNS        |&check;|        &check;         | &check;  |  &check;  |  &check;  |
+| DDNS        |&check;|        &check;         | &check;  |           |           |
 |FullCone NAT |&check;|        &check;         | &check;  |  &check;  |  &check;  |
 | frpc & frps |&check;|        &check;         | &check;  |           |           |
-|IPv6 兼容助手|&check;|        &check;         | &check;  |  &check;  |  &check;  |
 | IPSEC       |&check;|        &check;         | &check;  |           |           |
 | MiniUPnP    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
 | OpenClash   |&check;|        &check;         | &check;  |           |           |
-| PassWall    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| Server 酱   |&check;|        &check;         | &check;  |  &check;  |  &check;  |
+| Server 酱   |&check;|        &check;         | &check;  |           |           |
+| SQM QoS     |&check;|        &check;         | &check;  |           |           |
 | SSRP+       |&check;|        &check;         | &check;  |  &check;  |  &check;  |
 | usb 打印    |&check;|        &check;         | &check;  |           |  &check;  |
 | vlmcsd 服务 |&check;|        &check;         | &check;  |  &check;  |  &check;  |
@@ -49,7 +48,7 @@
 | 释放内存    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
 | 网络共享    |&check;|        &check;         | &check;  |           |  &check;  |
 | 文件传输    |&check;|        &check;         | &check;  |           |           |
-| 迅雷快鸟    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
+| 迅雷快鸟    |&check;|        &check;         | &check;  |           |           |
 | 应用过滤    |&check;|        &check;         | &check;  |           |           |
 | 自动挂载    |&check;|        &check;         | &check;  |           |  &check;  |
 

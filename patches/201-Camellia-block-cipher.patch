@@ -1,0 +1,26 @@
+From 112de0ba0f681a2e9a25f3cb2086dffb4c48da78 Mon Sep 17 00:00:00 2001
+From: NoName <458892+aieu@users.noreply.github.com>
+Date: Mon, 6 Sep 2021 14:53:45 +0800
+Subject: [PATCH] Camellia block cipher
+
+Signed-off-by: NoName <458892+aieu@users.noreply.github.com>
+---
+ include/mbedtls/config.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/include/mbedtls/config.h b/include/mbedtls/config.h
+index 26065b5..b3490f0 100644
+--- a/include/mbedtls/config.h
++++ b/include/mbedtls/config.h
+@@ -2142,7 +2142,7 @@
+  *      MBEDTLS_TLS_PSK_WITH_CAMELLIA_128_GCM_SHA256
+  *      MBEDTLS_TLS_PSK_WITH_CAMELLIA_128_CBC_SHA256
+  */
+-//#define MBEDTLS_CAMELLIA_C
++#define MBEDTLS_CAMELLIA_C
+ 
+ /**
+  * \def MBEDTLS_ARIA_C
+-- 
+2.30.1 (Apple Git-130)
+

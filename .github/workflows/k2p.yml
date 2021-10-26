@@ -37,8 +37,9 @@ jobs:
       id: co
       run: |
         REPO_URL=https://github.com/openwrt/openwrt
-        REPO_TAG=v21.02.0
+        REPO_TAG=v21.02.1
         git clone -b $REPO_TAG $REPO_URL openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
         name_tag=${REPO_TAG}
         echo ::set-output name=release_tag::$name_tag
 
@@ -52,7 +53,6 @@ jobs:
       working-directory: ./openwrt
       run: |
         cp ../scripts/k2p_customization.sh .
-        sed -i '3,8d' k2p_customization.sh
         /bin/bash k2p_customization.sh
         cp ../scripts/00_customize_packages.sh .
         /bin/bash 00_customize_packages.sh
@@ -69,11 +69,16 @@ jobs:
         cp ../scripts/02_create_acl_for_luci.sh .
         /bin/bash 02_create_acl_for_luci.sh -a
 
+    - name: Cache toolchain
+      uses: klever1988/cachewrtbuild@main
+      with:
+        ccache: 'true'
+        prefix: ${{ github.workspace }}/openwrt
+
     - name: Make Config
       working-directory: ./openwrt
       run: |
-        cp ../k2p_defconfig .config
-        sed -i '/luci-app-mtwifi/d' .config
+        cp ../config/k2p_defconfig .config
         make defconfig
 
     - name: Make Download
@@ -84,7 +89,7 @@ jobs:
     - name: Compile OpenWrt
       working-directory: ./openwrt
       run: |
-        make -j`nproc` V=s || make -j1 V=s
+        make -j`nproc` || make -j1 V=s
 
     - name: Assemble Artifact
       run: |

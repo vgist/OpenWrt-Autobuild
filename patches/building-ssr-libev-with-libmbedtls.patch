@@ -1,0 +1,21 @@
+diff --git a/shadowsocksr-libev/Makefile b/shadowsocksr-libev/Makefile
+index 53612b2..2fd6dd9 100644
+--- a/shadowsocksr-libev/Makefile
++++ b/shadowsocksr-libev/Makefile
+@@ -33,7 +33,7 @@ define Package/shadowsocksr-libev/Default
+     SUBMENU:=Web Servers/Proxies
+     TITLE:=shadowsocksr-libev ssr-$(1)
+     URL:=https://github.com/shadowsocksrr/shadowsocksr-libev
+-    DEPENDS:=+libev +libsodium +libopenssl +libpthread +libpcre +libudns +zlib
++    DEPENDS:=+libev +libmbedtls +libpcre +libpthread +libsodium +libudns +zlib
+   endef
+ 
+   define Package/shadowsocksr-libev-ssr-$(1)/install
+@@ -51,6 +51,7 @@ endef
+ $(eval $(call shadowsocksr-libev/templates))
+ 
+ CONFIGURE_ARGS += \
++	--with-crypto-library=mbedtls \
+ 	--disable-documentation \
+ 	--disable-ssp \
+ 	--disable-assert \

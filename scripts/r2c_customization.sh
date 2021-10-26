@@ -20,8 +20,8 @@ sed -i 's|friendlyarm,nanopi-r2s|friendlyarm,nanopi-r2c|g' target/linux/rockchip
 wget -P target/linux/generic/hack-5.4/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/target/linux/generic/hack-5.4/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch
 
 # mbedtls
-rm -rf ./package/libs/mbedtls
-svn co https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/libs/mbedtls package/libs/mbedtls
+wget -P package/libs/mbedtls/patches/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/package/libs/mbedtls/patches/100-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch
+cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
 
 # crypto
 echo '

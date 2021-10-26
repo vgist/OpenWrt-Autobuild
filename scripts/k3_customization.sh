@@ -11,4 +11,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/k3-brcmfmac4366c-
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app-k3screenctrl package/k3/luci-app-k3screenctrl
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/k3screenctrl_build package/k3/k3screenctrl_build
 
+# mbedtls
+cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
+
 exit 0

@@ -1,13 +1,3 @@
-From af09b3a9bd32073bf986582b63dc10c0c76f86aa Mon Sep 17 00:00:00 2001
-From: Register <458892+aieu@users.noreply.github.com>
-Date: Tue, 4 May 2021 17:48:59 +0800
-Subject: [PATCH] fullcone nat for luci
-
-Signed-off-by: Register <458892+aieu@users.noreply.github.com>
----
- .../htdocs/luci-static/resources/view/firewall/zones.js         | 2 ++
- 1 file changed, 2 insertions(+)
-
 diff --git a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js b/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
 index f9d84bf..466714c 100644
 --- a/applications/luci-app-firewall/htdocs/luci-static/resources/view/firewall/zones.js
@@ -21,6 +11,3 @@ index f9d84bf..466714c 100644
  		var p = [
  			s.option(form.ListValue, 'input', _('Input')),
  			s.option(form.ListValue, 'output', _('Output')),
--- 
-2.30.1 (Apple Git-130)
-

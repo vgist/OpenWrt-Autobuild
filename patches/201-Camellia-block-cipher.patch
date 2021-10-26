@@ -1,0 +1,13 @@
+diff --git a/include/mbedtls/config.h b/include/mbedtls/config.h
+index 26065b5..b3490f0 100644
+--- a/include/mbedtls/config.h
++++ b/include/mbedtls/config.h
+@@ -2142,7 +2142,7 @@
+  *      MBEDTLS_TLS_PSK_WITH_CAMELLIA_128_GCM_SHA256
+  *      MBEDTLS_TLS_PSK_WITH_CAMELLIA_128_CBC_SHA256
+  */
+-//#define MBEDTLS_CAMELLIA_C
++#define MBEDTLS_CAMELLIA_C
+ 
+ /**
+  * \def MBEDTLS_ARIA_C

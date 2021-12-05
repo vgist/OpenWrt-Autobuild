@@ -1,8 +1,11 @@
 #!/bin/bash
 
 # blob drivers for mt7615
-#svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/mt package/new/mt
-svn co https://github.com/Lienol/openwrt/trunk/package/lean/MTK7615-DBDC-LINUX5.4 package/new/mt
+# Lean
+svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/mt package/new/mt
+sed -i 's|kmod-mt7615e kmod-mt7615-firmware|-luci-newapi -wpad-openssl kmod-mt7615d_dbdc wireless-tools|g' target/linux/ramips/image/mt7621.mk
+# Lienol
+#svn co https://github.com/Lienol/openwrt/trunk/package/lean/MTK7615-DBDC-LINUX5.4 package/new/mt
 wget -P feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/ https://github.com/coolsnowwolf/luci/raw/master/modules/luci-base/htdocs/luci-static/resources/icons/wifi_big.png
 wget -P feeds/luci/modules/luci-base/htdocs/luci-static/resources/icons/ https://github.com/coolsnowwolf/luci/raw/master/modules/luci-base/htdocs/luci-static/resources/icons/wifi_big_disabled.png
 

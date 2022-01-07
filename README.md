@@ -26,7 +26,6 @@
 
 | 应用        |x86-64 |NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicomm K2P|MiWiFi-mini|
 |-------------|:-----:|:----------------------:|:--------:|:---------:|:---------:|
-|Adbyby plus+ |       |                        |          |  &check;  |  &check;  |
 |AdGuard Home |&check;|        &check;         | &check;  |           |           |
 | AutoCore    |&check;|        &check;         | &check;  |           |           |
 | cpufreq     |       |        &check;         |          |           |           |

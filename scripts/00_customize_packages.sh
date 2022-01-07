@@ -3,10 +3,6 @@
 # Access Control
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-accesscontrol package/new/luci-app-accesscontrol
 
-# Adbyby
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/adbyby package/new/adbyby
-
 # AdGuard Home
 cp -rf ../luci-app-adguardhome package/new/luci-app-adguardhome
 

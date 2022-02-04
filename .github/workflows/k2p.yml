@@ -53,7 +53,6 @@ jobs:
       working-directory: ./openwrt
       run: |
         cp ../scripts/k2p_customization.sh .
-        sed -i '3,11d' k2p_customization.sh
         /bin/bash k2p_customization.sh
         cp ../scripts/00_customize_packages.sh .
         /bin/bash 00_customize_packages.sh

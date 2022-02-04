@@ -79,13 +79,13 @@ rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/shadowsocks-libev
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/new/luci-app-ssr-plus
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/redsocks2 package/new/redsocks2
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/dns2socks package/new/dns2socks
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/ipt2socks package/new/ipt2socks
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/microsocks package/new/microsocks
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/pdnsd-alt package/new/pdnsd-alt
-svn co https://github.com/coolsnowwolf/packages/trunk/net/kcptun package/new/kcptun
-svn co https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/new/shadowsocks-libev
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/dns2socks package/new/dns2socks
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/ipt2socks package/new/ipt2socks
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/kcptun package/new/kcptun
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/microsocks package/new/microsocks
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/pdnsd-alt package/new/pdnsd-alt
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/redsocks2 package/new/redsocks2
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/shadowsocks-libev package/new/shadowsocks-libev
 svn co https://github.com/fw876/helloworld/trunk/naiveproxy package/new/naiveproxy
 svn co https://github.com/fw876/helloworld/trunk/shadowsocks-rust package/new/shadowsocks-rust
 svn co https://github.com/fw876/helloworld/trunk/shadowsocksr-libev package/new/shadowsocksr-libev
@@ -117,7 +117,7 @@ svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-usb-prin
 # vlmcsd
 svn co https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-vlmcsd feeds/luci/applications/luci-app-vlmcsd
 ln -sf ../../../feeds/luci/applications/luci-app-vlmcsd ./package/feeds/luci/luci-app-vlmcsd
-svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/vlmcsd package/new/vlmcsd
+svn co https://github.com/immortalwrt/packages/branches/openwrt-21.02/net/vlmcsd package/new/vlmcsd
 
 # xlnetacc
 svn co https://github.com/coolsnowwolf/lede/trunk/package/lean/luci-app-xlnetacc package/new/luci-app-xlnetacc

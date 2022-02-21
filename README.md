@@ -6,7 +6,6 @@
 [![ZeroPi](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml)
 [![Phicomm-K3](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml)
 [![Phicomm-K2P](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml)
-[![MiWiFi-Mini](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/miwifi-mini.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/miwifi-mini.yml)
 
 #### 特色及功能
 
@@ -17,38 +16,38 @@
 
 #### 分支
 
-| 版本    |x86-64 |NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicom K2P|MiWiFi mini|
-|:-------:|:-----:|:----------------------:|:--------:|:--------:|:---------:|
-| 21.02.1 |&check;|        &check;         | &check;  | &check;  |  &check;  |
+| 版本    |x86-64 |NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicom K2P|
+|:-------:|:-----:|:----------------------:|:--------:|:--------:|
+| 21.02.2 |&check;|        &check;         | &check;  | &check;  |
 
 #### 第三方应用列表
 
-| 应用        |x86-64 |NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicomm K2P|MiWiFi-mini|
-|-------------|:-----:|:----------------------:|:--------:|:---------:|:---------:|
-|AdGuard Home |&check;|        &check;         | &check;  |           |           |
-| AutoCore    |&check;|        &check;         | &check;  |           |           |
-| cpufreq     |       |        &check;         |          |           |           |
-| DDNS        |&check;|        &check;         | &check;  |           |           |
-|FullCone NAT |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| frpc & frps |&check;|        &check;         | &check;  |           |           |
-| IPSEC       |&check;|        &check;         | &check;  |           |           |
-| MiniUPnP    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| OpenClash   |&check;|        &check;         | &check;  |           |           |
-| Server 酱   |&check;|        &check;         | &check;  |           |           |
-| SQM QoS     |&check;|        &check;         | &check;  |           |           |
-| SSRP+       |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| usb 打印    |&check;|        &check;         | &check;  |           |  &check;  |
-| vlmcsd 服务 |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| Zerotier    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| 定时重启    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| 流量监控    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-|上网时间控制 |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| 释放内存    |&check;|        &check;         | &check;  |  &check;  |  &check;  |
-| 网络共享    |&check;|        &check;         | &check;  |           |  &check;  |
-| 文件传输    |&check;|        &check;         | &check;  |           |           |
-| 迅雷快鸟    |&check;|        &check;         | &check;  |           |           |
-| 应用过滤    |&check;|        &check;         | &check;  |           |           |
-| 自动挂载    |&check;|        &check;         | &check;  |           |  &check;  |
+| 应用        |x86-64 |NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicomm K2P|
+|-------------|:-----:|:----------------------:|:--------:|:---------:|
+|AdGuard Home |&check;|        &check;         | &check;  |           |
+| AutoCore    |&check;|        &check;         | &check;  |           |
+| cpufreq     |       |        &check;         |          |           |
+| DDNS        |&check;|        &check;         | &check;  |           |
+|FullCone NAT |&check;|        &check;         | &check;  |  &check;  |
+| frpc & frps |&check;|        &check;         | &check;  |           |
+| IPSEC       |&check;|        &check;         | &check;  |           |
+| MiniUPnP    |&check;|        &check;         | &check;  |  &check;  |
+| OpenClash   |&check;|        &check;         | &check;  |           |
+| Server 酱   |&check;|        &check;         | &check;  |           |
+| SQM QoS     |&check;|        &check;         | &check;  |           |
+| SSRP+       |&check;|        &check;         | &check;  |  &check;  |
+| usb 打印    |&check;|        &check;         | &check;  |           |
+| vlmcsd 服务 |&check;|        &check;         | &check;  |  &check;  |
+| Zerotier    |&check;|        &check;         | &check;  |  &check;  |
+| 定时重启    |&check;|        &check;         | &check;  |  &check;  |
+| 流量监控    |&check;|        &check;         | &check;  |  &check;  |
+|上网时间控制 |&check;|        &check;         | &check;  |  &check;  |
+| 释放内存    |&check;|        &check;         | &check;  |  &check;  |
+| 网络共享    |&check;|        &check;         | &check;  |           |
+| 文件传输    |&check;|        &check;         | &check;  |           |
+| 迅雷快鸟    |&check;|        &check;         | &check;  |           |
+| 应用过滤    |&check;|        &check;         | &check;  |           |
+| 自动挂载    |&check;|        &check;         | &check;  |           |
 
 #### TODO
 

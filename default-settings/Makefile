@@ -30,6 +30,7 @@ define Package/addition-default-settings
 	DEPENDS:=+ip6tables \
 		+iptables-mod-fullconenat \
 		+libustream-wolfssl \
+		+luci \
 		+luci-compat \
 		+luci-proto-ipv6 \
 		+odhcp6c \

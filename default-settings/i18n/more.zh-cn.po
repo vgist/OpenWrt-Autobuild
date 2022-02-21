@@ -1,8 +1,3 @@
-msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Last-Translator: dingpengyu <dingpengyu06@gmail.com>\n"
-
 msgid "%d hour"
 msgstr "%d 小时"
 
@@ -318,7 +313,7 @@ msgid "Policy assigned"
 msgstr "分配的策略"
 
 msgid "Protocol"
-msgstr "通信协议"
+msgstr "协议"
 
 msgid "Recovery interval"
 msgstr "故障恢复间隔"
@@ -689,7 +684,7 @@ msgid "Compress database"
 msgstr "压缩数据库"
 
 msgid "Conn."
-msgstr "连接"
+msgstr "连接。"
 
 msgid "Connections"
 msgstr "连接"
@@ -713,7 +708,7 @@ msgid ""
 "towards the end of month, e.g. \"-5\" to specify the 27th of July or the "
 "24th of Februrary."
 msgstr ""
-"每个月重启统计周期的日期。使用负数表示从月底开始计算，例如：\"-5\" 可以表示"
+"每个月重启统计周期的日期。使用负数表示从月底开始计算，例如：\"-5\" 可以表示 "
 "7 月份的 27 号或者 2 月份的 24 号。"
 
 msgid "Display"
@@ -747,7 +742,7 @@ msgid "Fixed interval"
 msgstr "固定周期"
 
 msgid "Force reload…"
-msgstr "强制重新加载..."
+msgstr "强制重新加载..…"
 
 msgid "General Settings"
 msgstr "基本设置"
@@ -863,8 +858,8 @@ msgid ""
 "The Netlink Bandwidth Monitor (nlbwmon) is a lightweight, efficient traffic "
 "accounting program keeping track of bandwidth usage per host and protocol."
 msgstr ""
-"网络带宽监视器（nlbwmon）是一个轻量、高效的流量统计程序，可以统计每个主机和"
-"协议的带宽使用情况。"
+"网络带宽监视器（nlbwmon）是一个轻量、高效的流量统计程序，可以统计每个主机和协"
+"议的带宽使用情况。"
 
 msgid "The following database files have been restored: %s"
 msgstr "以下数据库文件已恢复：%s"
@@ -917,14 +912,14 @@ msgstr "无流量数据"
 msgid "other"
 msgstr "其他"
 
-msgid "Enable <abbr title=\"Internet Group Management Protocol\">IGMP</abbr> snooping"
-msgstr "开启 <abbr title=\"Internet Group Management Protocol\">IGMP</abbr> snooping"
+msgid ""
+"Enable <abbr title=\"Internet Group Management Protocol\">IGMP</abbr> "
+"snooping"
+msgstr ""
+"开启 <abbr title=\"Internet Group Management Protocol\">IGMP</abbr> snooping"
 
 msgid "Enables IGMP snooping on this bridge"
 msgstr "在此桥接上启用 IGMP snooping 组播（多播）"
-
-msgid ""
-msgstr "Content-Type: text/plain; charset=UTF-8"
 
 msgid "Action"
 msgstr "动作"
@@ -966,7 +961,7 @@ msgid "Reboot Device to an Alternative Partition"
 msgstr "重启设备到备选分区"
 
 msgid "Reboot to alternative partition..."
-msgstr "重启到备选分区"
+msgstr "重启到备选分区。"
 
 msgid "Reboot to current partition"
 msgstr "重启到当前分区"
@@ -986,8 +981,8 @@ msgid ""
 "address of your computer to reach the device again, depending on your "
 "settings."
 msgstr ""
-"系统正在重启。<br /> 请勿关闭设备电源！<br /> 根据您的设置，可能需要更新计算"
-"机的地址才能再次访问该设备。"
+"系统正在重启。<br /> 请勿关闭设备电源！<br /> 请等待几分钟，然后再尝试重新连"
+"接。根据您的设置，可能需要更新计算机的地址才能再次访问该设备。"
 
 msgid ""
 "The system is rebooting to an alternative partition now.<br /> DO NOT POWER "
@@ -1039,6 +1034,24 @@ msgstr "警告：当前系统没有包括两个分区!"
 msgid "Warning: This system does not support powering off!"
 msgstr "警告：本系统不支持软关机!"
 
+msgid "MiniUPnP extra settings"
+msgstr "MiniUPnP 补充设置"
+
+msgid "Settings for router behined DMZ"
+msgstr "二级路由设置"
+
+msgid "External Network Interface"
+msgstr "外部网络接口"
+
+msgid "Internal Network Interface"
+msgstr "内部网络接口"
+
+msgid "usually is wan"
+msgstr "通常为 wan"
+
+msgid "usually is lan"
+msgstr "通常为 lan"
+
 msgid "Filter IPv6 Records"
 msgstr "过滤 IPv6 记录"
 
@@ -1051,16 +1064,8 @@ msgstr "SFE 流量分载"
 msgid "SFE based offloading for Routing/NAT. Restart recommended."
 msgstr "基于 SFE 的 Routing/NAT 分载（开/关后建议重启设备）"
 
-msgid "DNS Settings"
-msgstr "DNS 设置"
-
-msgid "Packet Steering"
-msgstr "数据包引导"
-
-msgid ""
-"Enable packet steering across all CPUs. May help or hinder network speed."
-msgstr "启用所有CPU的数据包控制。 可能有助于或阻碍网络速度。"
-
 msgid "Enable FullCone-NAT"
 msgstr "启用 FullCone-NAT"
 
+msgid "Base Setting"
+msgstr "基本设置"

@@ -4,6 +4,9 @@ msgstr "处理器"
 msgid "Architecture"
 msgstr "架构"
 
+msgid "Target Platform"
+msgstr "目标平台"
+
 msgid "CPU Temperature"
 msgstr "CPU 温度"
 
@@ -66,12 +69,6 @@ msgstr "弱信号剔除"
 msgid "Allow AP mode to disconnect STAs based on low ACK condition"
 msgstr "允许 AP 模式基于低 ACK 条件判断剔除弱信号的客户端"
 
-msgid "Base Setting"
-msgstr "基本设置"
-
-msgid "Log"
-msgstr "日志"
-
 msgid "Ethernet Information"
 msgstr "网口信息"
 
@@ -98,134 +95,3 @@ msgstr "全双工"
 
 msgid "Half Duplex"
 msgstr "半双工"
-
-msgid "10 seconds"
-msgstr "10 秒"
-
-msgid "2 seconds"
-msgstr "2 秒"
-
-msgid "30 seconds"
-msgstr "30 秒"
-
-msgid "5 seconds"
-msgstr "5 秒"
-
-msgid "Auto update every:"
-msgstr "自动刷新："
-
-msgid "Clients"
-msgstr "客户端"
-
-msgid "Collecting data..."
-msgstr "收集数据中..."
-
-msgid "Configuration"
-msgstr "配置"
-
-msgid "Database Path"
-msgstr "数据路径"
-
-msgid "Details"
-msgstr "流量信息"
-
-msgid "Disabled"
-msgstr "禁用"
-
-msgid "Download"
-msgstr "下载"
-
-msgid "Each line must have the following format:"
-msgstr "每行需要满足以下格式："
-
-msgid "Enabled"
-msgstr "启用"
-
-msgid "Error! Bandwidth reset!!!"
-msgstr "错误！重置带宽！！！"
-
-msgid "First Seen"
-msgstr "初次记录"
-
-msgid "General settings"
-msgstr "通用设置"
-
-msgid "Last Seen"
-msgstr "最后记录"
-
-msgid "Last updated at %s."
-msgstr "最后更新于 %s。"
-
-msgid "Reset Database"
-msgstr "重置"
-
-msgid "Save"
-msgstr "保存"
-
-msgid "Show More:"
-msgstr "显示更多："
-
-msgid "Show Zeros:"
-msgstr "显示 0 流量："
-
-msgid "TOTAL"
-msgstr "总共"
-
-msgid ""
-"This box is used to select the Database path, which is /tmp/usage.db by "
-"default."
-msgstr "该选项用于选择数据存储路径，默认路径为 /tmp/usage.db。"
-
-msgid "This will delete the database file. Are you sure?"
-msgstr "该操作将删除数据统计文件，确定执行该操作？"
-
-msgid "This will revert the changes. Are you sure?"
-msgstr "更改将会重置，确定吗？"
-
-msgid "Total"
-msgstr "总计"
-
-msgid "Total Down"
-msgstr "总下载"
-
-msgid "Total Up"
-msgstr "总上传"
-
-msgid "Traffic Status"
-msgstr "流量监控"
-
-msgid "Unable to load the customized hostname file:"
-msgstr "不能载入自定义用户名文件："
-
-msgid "Updating again in %s seconds."
-msgstr "下次更新将于 %s 秒之后。"
-
-msgid "Upload"
-msgstr "上传"
-
-msgid "Usage - Configuration"
-msgstr "文件设置"
-
-msgid "Usage - Custom User File"
-msgstr "用户文件配置"
-
-msgid "Usage - Details"
-msgstr "流量详情"
-
-msgid "User file"
-msgstr "用户文件"
-
-msgid "bandwidth:"
-msgstr "带宽："
-
-msgid "downflow:"
-msgstr "下行："
-
-msgid "protocol:"
-msgstr "协议："
-
-msgid "seconds."
-msgstr "秒。"
-
-msgid "upflow:"
-msgstr "上传："

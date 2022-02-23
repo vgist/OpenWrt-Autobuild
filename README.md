@@ -29,9 +29,7 @@
 | cpufreq     |       |        &check;         |          |           |
 | DDNS        |&check;|        &check;         | &check;  |           |
 |FullCone NAT |&check;|        &check;         | &check;  |  &check;  |
-| frpc & frps |&check;|        &check;         | &check;  |           |
 | IPSEC       |&check;|        &check;         | &check;  |           |
-| MiniUPnP    |&check;|        &check;         | &check;  |  &check;  |
 | OpenClash   |&check;|        &check;         | &check;  |           |
 | Server 酱   |&check;|        &check;         | &check;  |           |
 | SQM QoS     |&check;|        &check;         | &check;  |           |

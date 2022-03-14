@@ -24,7 +24,7 @@
 
 | 应用        |x86-64 |NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicomm K2P|
 |-------------|:-----:|:----------------------:|:--------:|:---------:|
-|AdGuard Home |&check;|        &check;         | &check;  |           |
+|ADBYBY Plus +|&check;|        &check;         | &check;  |           |
 | AutoCore    |&check;|        &check;         | &check;  |           |
 | cpufreq     |       |        &check;         |          |           |
 | DDNS        |&check;|        &check;         | &check;  |           |

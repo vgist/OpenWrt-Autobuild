@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Kernel patches from armbian
-cp ../patches/320-sun8i-h3-add-more-cpu-operating-points-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
-#cp ../patches/321-sunxi-h3-add-thermal-sensor-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
+cp -v ../patches/320-sun8i-h3-add-more-cpu-operating-points-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
+#cp -v ../patches/321-sunxi-h3-add-thermal-sensor-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
 
 # mbedtls
-cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
+cp -v ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
 
 # crypto
 echo '

@@ -14,10 +14,10 @@ svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applicatio
 ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/luci-app-arpbind
 
 # AutoCore
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/autocore package/new/autocore
+cp -rv ../immortalwrt/package/emortal/autocore package/new/autocore
 
 # automount
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/emortal/automount package/new/automount
+cp -rv ../immortalwrt/package/emortal/automount package/new/automount
 
 # cpufreq
 svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-cpufreq feeds/luci/applications/luci-app-cpufreq
@@ -34,11 +34,10 @@ svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/libs/luci-
 ln -sf ../../../feeds/luci/libs/luci-lib-fs ./package/feeds/luci/luci-lib-fs
 
 # FullCone
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/fullconenat package/network/fullconenat
-wget -P target/linux/generic/hack-5.4/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch
+cp -rv ../immortalwrt/package/kernel/fullconenat package/network/fullconenat
+cp -v ../immortalwrt/target/linux/generic/hack-5.4/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.4/
 patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
-mkdir -p package/network/config/firewall/patches
-wget -P package/network/config/firewall/patches/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/package/network/config/firewall/patches/fullconenat.patch
+cp -rv ../immortalwrt/package/network/config/firewall/patches package/network/config/firewall/
 
 # IPSEC
 svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ipsec-vpnd feeds/luci/applications/luci-app-ipsec-vpnd
@@ -54,13 +53,13 @@ git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAp
 git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 
 # Realtek RTL8811CU/RTL8821CU
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8821cu package/new/rtl8821cu
+cp -rv ../immortalwrt/package/kernel/rtl8821cu package/new/rtl8821cu
 
 # Realtek RTL8812AU/21AU
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl8812au-ac package/new/rtl8812au-ac
+cp -rv ../immortalwrt/package/kernel/rtl8812au-ac package/new/rtl8812au-ac
 
 # Realtek 8812BU/8822BU
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/kernel/rtl88x2bu package/new/rtl88x2bu
+cp -rv ../immortalwrt/package/kernel/rtl88x2bu package/new/rtl88x2bu
 
 # Release Ram
 svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applications/luci-app-ramfree feeds/luci/applications/luci-app-ramfree
@@ -124,7 +123,7 @@ svn export https://github.com/immortalwrt/luci/branches/openwrt-21.02/applicatio
 ln -sf ../../../feeds/luci/applications/luci-app-zerotier ./package/feeds/luci/luci-app-zerotier
 
 # default settings and translation
-cp -rf ../default-settings package/new/learn-translate
+cp -rv ../default-settings package/new/learn-translate
 
 # max conntrack
 sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf

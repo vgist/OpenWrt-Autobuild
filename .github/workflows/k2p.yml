@@ -43,6 +43,10 @@ jobs:
         name_tag=${REPO_TAG}
         echo ::set-output name=release_tag::$name_tag
 
+    - name: Clone immortalwrt
+      run: |
+        git clone -b openwrt-21.02 --depth 1 --single-branch https://github.com/immortalwrt/immortalwrt
+
     - name: Feeds update
       working-directory: ./openwrt
       run: |

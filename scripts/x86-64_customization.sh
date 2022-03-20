@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # mbedtls
-cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
+cp -v ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
 
 echo '
 CONFIG_CRYPTO_CHACHA20_X86_64=y

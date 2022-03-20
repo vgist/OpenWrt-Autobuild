@@ -12,6 +12,6 @@ git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/k3screenctrl_build package/k3/k3screenctrl_build
 
 # mbedtls
-cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
+cp -v ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
 
 exit 0

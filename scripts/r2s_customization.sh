@@ -4,14 +4,14 @@
 sed -i 's,-mcpu=generic,-mcpu=cortex-a53+crypto,g' include/target.mk
 
 # Necessary patches from immortalwrt
-rm -rf ./target/linux/rockchip/image
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/target/linux/rockchip/image target/linux/rockchip/image
-rm -rf ./target/linux/rockchip/patches-5.4
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/target/linux/rockchip/patches-5.4 target/linux/rockchip/patches-5.4
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/target/linux/rockchip/files target/linux/rockchip/files
-rm -rf ./package/boot/uboot-rockchip
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/boot/uboot-rockchip package/boot/uboot-rockchip
-svn export https://github.com/immortalwrt/immortalwrt/branches/openwrt-21.02/package/boot/arm-trusted-firmware-rockchip-vendor package/boot/arm-trusted-firmware-rockchip-vendor
+rm -rv ./target/linux/rockchip/image
+cp -rv ../immortalwrt/target/linux/rockchip/image target/linux/rockchip/image
+rm -rv ./target/linux/rockchip/patches-5.4
+cp -rv ../immortalwrt/target/linux/rockchip/patches-5.4 target/linux/rockchip/patches-5.4
+cp -rv ../immortalwrt/target/linux/rockchip/files target/linux/rockchip/files
+rm -rv ./package/boot/uboot-rockchip
+cp -rv ../immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
+cp -rv ../immortalwrt/package/boot/arm-trusted-firmware-rockchip-vendor package/boot/arm-trusted-firmware-rockchip-vendor
 
 # model name patch for aarch64
 wget -P target/linux/generic/hack-5.4/ https://github.com/immortalwrt/immortalwrt/raw/openwrt-21.02/target/linux/generic/hack-5.4/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch

@@ -68,3 +68,30 @@ msgstr "弱信号剔除"
 
 msgid "Allow AP mode to disconnect STAs based on low ACK condition"
 msgstr "允许 AP 模式基于低 ACK 条件判断剔除弱信号的客户端"
+
+msgid "Ethernet Information"
+msgstr "网口信息"
+
+msgid "Ethernet Name"
+msgstr "网口名"
+
+msgid "Link Status"
+msgstr "连接状态"
+
+msgid "Speed"
+msgstr "速率"
+
+msgid "Duplex"
+msgstr "双工模式"
+
+msgid "Link Up"
+msgstr "已连接"
+
+msgid "Link Down"
+msgstr "已断开"
+
+msgid "Full Duplex"
+msgstr "全双工"
+
+msgid "Half Duplex"
+msgstr "半双工"

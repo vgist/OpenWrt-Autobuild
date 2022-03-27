@@ -15,6 +15,8 @@ ln -sf ../../../feeds/luci/applications/luci-app-arpbind ./package/feeds/luci/lu
 
 # AutoCore
 cp -rv ../immortalwrt/package/emortal/autocore package/new/autocore
+# below line will be remove when next release
+sed -i 's|"getTempInfo"|"getTempInfo", "getCPUUsage"|g' package/new/autocore/files/generic/luci-mod-status-autocore.json
 
 # automount
 cp -rv ../immortalwrt/package/emortal/automount package/new/automount

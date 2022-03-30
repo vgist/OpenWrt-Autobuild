@@ -12,7 +12,7 @@ jobs:
     - name: Clone Repository
       uses: actions/checkout@v2
       with:
-        ref: master
+        ref: 22.03
 
     - name: Init build dependencies
       env:
@@ -22,14 +22,15 @@ jobs:
         sudo -E rm -f /swapfile
         sudo -E docker image prune -a -f
         sudo -E snap set system refresh.retain=2
+        sudo -E apt-get update -y
+        sudo -E apt-get install -y build-essential rsync asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python3 python3-pip python3-ply haveged lrzsz device-tree-compiler scons
+        wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | sed 's/python-/python3-/g' | /bin/bash
+        pip3 install pyelftools
         sudo -E apt-get -y purge azure* dotnet* firefox ghc* google* hhvm llvm* mono* mysql* openjdk* php* zulu*
         sudo -E apt-get -y autoremove --purge
         sudo -E rm -rf /usr/share/dotnet /usr/local/lib/android/sdk /etc/mysql /etc/php /usr/local/share/boost
         [ -n "$AGENT_TOOLSDIRECTORY" ] && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-        sudo -E apt-get update -y
-        sudo -E apt-get install -y build-essential rsync asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint ccache curl wget vim nano python3 python3-pip python3-ply haveged lrzsz device-tree-compiler scons
-        wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | sed 's/python-/python3-/g' | /bin/bash
-        sudo -E apt-get clean
+        sudo -E apt-get clean -y
         git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
         df -h
 
@@ -37,15 +38,17 @@ jobs:
       id: co
       run: |
         REPO_URL=https://github.com/openwrt/openwrt
-        REPO_TAG=v21.02.2
-        git clone -b $REPO_TAG $REPO_URL openwrt
+        REPO_TAG=openwrt-22.03
+        git clone -b $REPO_TAG --depth 1 --single-branch $REPO_URL openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        name_tag=${REPO_TAG}
+        name_tag=v${REPO_TAG#openwrt-}-snapshot
         echo ::set-output name=release_tag::$name_tag
 
     - name: Clone immortalwrt
       run: |
-        git clone -b openwrt-21.02 --depth 1 --single-branch https://github.com/immortalwrt/immortalwrt
+        git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/immortalwrt
+        git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/packages immortalwrt-packages
+        git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/luci immortalwrt-luci
 
     - name: Feeds update
       working-directory: ./openwrt
@@ -102,7 +105,7 @@ jobs:
         mv openwrt/bin/targets/ramips/mt7621 ./artifact
         pushd artifact
         cat config.buildinfo
-        rm -rf packages *.buildinfo *.manifest *kernel.bin sha256sums
+        rm -rf packages *.buildinfo *.json *.manifest *kernel.bin sha256sums
         popd
 
     - name: Upload Artifact

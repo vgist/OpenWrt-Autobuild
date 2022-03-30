@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -ex
+
 # k3
 # only build k3
 sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm_k3|TARGET_DEVICES += phicomm_k3|' target/linux/bcm53xx/image/Makefile
@@ -12,6 +14,6 @@ git clone -b master --depth 1 --single-branch https://github.com/lwz322/luci-app
 git clone -b master --depth 1 --single-branch https://github.com/lwz322/k3screenctrl_build package/k3/k3screenctrl_build
 
 # mbedtls
-cp -v ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
+cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
 
 exit 0

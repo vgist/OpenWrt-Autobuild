@@ -1,24 +1,24 @@
 #### 支持机型
 
-[![X86-64](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86_64.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86_64.yml)
-[![NanoPi-R2C](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2c.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2c.yml)
-[![NanoPi-R2S](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2s.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2s.yml)
-[![ZeroPi](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml)
-[![Phicomm-K3](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml)
-[![Phicomm-K2P](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml)
+[![X86-64](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86_64.yml/badge.svg?branch=22.03)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86_64.yml)
+[![NanoPi-R2C](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2c.yml/badge.svg?branch=22.03)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2c.yml)
+[![NanoPi-R2S](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2s.yml/badge.svg?branch=22.03)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2s.yml)
+[![ZeroPi](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml/badge.svg?branch=22.03)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml)
+[![Phicomm-K3](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml/badge.svg?branch=22.03)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml)
+[![Phicomm-K2P](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml/badge.svg?branch=22.03)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml)
 
 #### 特色及功能
 
-- 上游 stable 分支中设备，只跟进 stable
+- 实验性：不要使用此分支
 - 默认密码: 无
 - 依赖内核模块时，再考虑编译进固件
 - 二进制 golang 应用，尽量不编译进小闪存设备
 
 #### 分支
 
-| 版本    |x86-64 |NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicom K2P|
-|:-------:|:-----:|:----------------------:|:--------:|:--------:|
-| 21.02.2 |&check;|        &check;         | &check;  | &check;  |
+| 版本         |x86-64 |NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicom K2P|
+|:------------:|:-----:|:----------------------:|:--------:|:--------:|
+|22.03-snapshot|&check;|        &check;         | &check;  | &check;  |
 
 #### 第三方应用列表
 

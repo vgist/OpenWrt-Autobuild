@@ -6,36 +6,34 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=addition-default-settings
+PKG_NAME:=default-settings
 PKG_VERSION:=1
 PKG_RELEASE:=1
-PKG_LICENSE:=GPLv3
-PKG_LICENSE_FILES:=LICENSE
 
-PKG_BUILD_DIR := $(BUILD_DIR)/$(PKG_NAME)
+PKG_LICENSE:=GPL-3.0
 
 include $(INCLUDE_DIR)/package.mk
 
 # full IPv6 support with a DHCPv6 client: odhcp6c
 # RA & DHCPv6 Server: odhcpd-ipv6only
-# IPv6 firewall: ip6tables
+# IPv6 firewall: ip6tables-nft
 # Web interface to configure IPv6: luci-proto-ipv6
 # FullCone Nat: iptables-mod-fullconenat
 
-define Package/addition-default-settings
+define Package/default-settings
 	SECTION:=luci
 	CATEGORY:=LuCI
 	TITLE:=LuCI support for Default Settings
 	PKGARCH:=all
-	DEPENDS:=+ip6tables \
+	DEPENDS:=+ip6tables-nft \
 		+iptables-mod-fullconenat \
 		+kmod-ipt-conntrack-extra \
 		+kmod-ipt-ipopt \
 		+kmod-ipt-raw \
 		+kmod-macvlan \
 		+libustream-wolfssl \
+		+luci-base \
 		+luci \
-		+luci-compat \
 		+luci-proto-ipv6 \
 		+odhcp6c \
 		+odhcpd-ipv6only \
@@ -43,17 +41,10 @@ define Package/addition-default-settings
 		+@LUCI_LANG_zh_Hans
 endef
 
-define Package/addition-default-settings/description
-	Language Support Packages.
-endef
-
-define Build/Configure
-endef
-
 define Build/Compile
 endef
 
-define Package/addition-default-settings/install
+define Package/default-settings/install
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_BIN) ./files/zzz-default-settings $(1)/etc/uci-defaults/99-default-settings
 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/i18n
@@ -61,4 +52,4 @@ define Package/addition-default-settings/install
 	po2lmo ./i18n/more.zh-cn.po $(1)/usr/lib/lua/luci/i18n/more.zh-cn.lmo
 endef
 
-$(eval $(call BuildPackage,addition-default-settings))
+$(eval $(call BuildPackage,default-settings))

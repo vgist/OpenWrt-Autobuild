@@ -2,19 +2,17 @@ CONFIG_TARGET_ramips=y
 CONFIG_TARGET_ramips_mt7621=y
 CONFIG_TARGET_ramips_mt7621_DEVICE_phicomm_k2p=y
 
-CONFIG_DEVEL=y
-CONFIG_TOOLCHAINOPTS=y
-CONFIG_GCC_USE_VERSION_10=y
 CONFIG_KERNEL_MIPS_FP_SUPPORT=y
 CONFIG_LUCI_SRCDIET=y
 
-CONFIG_PACKAGE_addition-default-settings=y
+CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_dnsmasq is not set
 CONFIG_PACKAGE_dnsmasq-full=y
 CONFIG_PACKAGE_luci-app-accesscontrol=y
 CONFIG_PACKAGE_luci-app-autoreboot=y
 CONFIG_PACKAGE_luci-app-ramfree=y
 CONFIG_PACKAGE_luci-app-ssr-plus=y
+CONFIG_PACKAGE_luci-app-upnp=y
 CONFIG_PACKAGE_luci-app-vlmcsd=y
 CONFIG_PACKAGE_luci-app-wrtbwmon=y
 CONFIG_PACKAGE_luci-app-zerotier=y

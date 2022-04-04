@@ -1,4 +1,4 @@
-name: Phicomm K3
+name: X86-64
 
 on:
   workflow_dispatch:
@@ -80,8 +80,8 @@ jobs:
     - name: Customize Packages
       working-directory: ./openwrt
       run: |
-        cp ../scripts/k3_customization.sh .
-        /bin/bash k3_customization.sh
+        cp ../scripts/x86_customization.sh .
+        /bin/bash x86_customization.sh
         cp ../scripts/01_customize_packages.sh .
         /bin/bash 01_customize_packages.sh
 
@@ -106,7 +106,7 @@ jobs:
     - name: Make Config
       working-directory: ./openwrt
       run: |
-        cp ../config/k3_defconfig .config
+        cp ../config/x86-64_defconfig .config
         make defconfig
 
     - name: Make Download
@@ -122,11 +122,11 @@ jobs:
     - name: Assemble Artifact
       run: |
         rm -rf ./artifact
-        ls openwrt/bin/targets/bcm53xx/generic/
-        mv openwrt/bin/targets/bcm53xx/generic ./artifact
+        ls openwrt/bin/targets/x86/64/
+        mv openwrt/bin/targets/x86/64 ./artifact
         pushd artifact
         cat config.buildinfo
-        rm -rf packages *.buildinfo *.json *.manifest sha256sums
+        rm -rf packages *.bin *.buildinfo *.json *.manifest *rootfs* *-vmlinuz sha256sums
         popd
 
     - name: Upload Artifact

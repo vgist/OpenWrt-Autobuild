@@ -32,8 +32,8 @@ define Package/default-settings
 		+kmod-ipt-raw \
 		+kmod-macvlan \
 		+libustream-wolfssl \
-		+luci-base \
 		+luci \
+		+luci-compat \
 		+luci-proto-ipv6 \
 		+odhcp6c \
 		+odhcpd-ipv6only \

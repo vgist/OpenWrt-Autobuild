@@ -1,9 +1,16 @@
 name: NanoPi R2S
 
 on:
-  repository_dispatch:
-    types: NanoPi-R2S
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'your local repo branch'
+        required: true
+        default: 21.02
+        type: choice
+        options:
+        - 21.02
+        - 22.03
 
 jobs:
   build:
@@ -12,7 +19,7 @@ jobs:
     - name: Clone Repository
       uses: actions/checkout@v2
       with:
-        ref: 22.03
+        ref: ${{ github.event.inputs.branch }}
 
     - name: Init build dependencies
       env:
@@ -37,18 +44,32 @@ jobs:
     - name: Clone OpenWrt
       id: co
       run: |
-        REPO_URL=https://github.com/openwrt/openwrt
-        REPO_TAG=openwrt-22.03
-        git clone -b $REPO_TAG --depth 1 --single-branch $REPO_URL openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        name_tag=v${REPO_TAG#openwrt-}-snapshot
+        _LBRANCH=${{ github.event.inputs.branch }}
+        _REPO_URL=https://github.com/openwrt/openwrt
+        case $_LBRANCH in
+          21.02)
+            _RBRANCH=v${_LBRANCH}.2
+            name_tag=$_RBRANCH
+            prerelease=false
+            ;;
+          22.03)
+            _RBRANCH=openwrt-$_LBRANCH
+            name_tag=v${_LBRANCH}-snapshot
+            prerelease=true
+            ;;
+          *)
+            echo "Can't get local/upstream's branch/tags"
+            break
+            ;;
+        esac
         echo ::set-output name=release_tag::$name_tag
+        echo ::set-output name=release::$prerelease
+        git clone -b $_RBRANCH --depth 1 --single-branch $_REPO_URL openwrt
+        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
-    - name: Clone immortalwrt
+    - name: Prepare Openwrt
       run: |
-        git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/immortalwrt
-        git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/packages immortalwrt-packages
-        git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/luci immortalwrt-luci
+        /bin/bash ./scripts/00_prepare.sh
 
     - name: Feeds update
       working-directory: ./openwrt
@@ -61,20 +82,20 @@ jobs:
       run: |
         cp ../scripts/r2s_customization.sh .
         /bin/bash r2s_customization.sh
-        cp ../scripts/00_customize_packages.sh .
-        /bin/bash 00_customize_packages.sh
+        cp ../scripts/01_customize_packages.sh .
+        /bin/bash 01_customize_packages.sh
 
     - name: Convert Translation
       working-directory: ./openwrt
       run: |
-        cp ../scripts/01_convert_translation.sh .
-        /bin/bash 01_convert_translation.sh
+        cp ../scripts/02_convert_translation.sh .
+        /bin/bash 02_convert_translation.sh
 
     - name: Add ACL
       working-directory: ./openwrt
       run: |
-        cp ../scripts/02_create_acl_for_luci.sh .
-        /bin/bash 02_create_acl_for_luci.sh -a
+        cp ../scripts/03_create_acl_for_luci.sh .
+        /bin/bash 03_create_acl_for_luci.sh -a
 
     - name: Cache toolchain
       uses: klever1988/cachewrtbuild@main
@@ -120,6 +141,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         draft: false
-        prerelease: true
+        prerelease: ${{ steps.co.outputs.release }}
         tag_name: ${{ steps.co.outputs.release_tag }}
         files: artifact/*

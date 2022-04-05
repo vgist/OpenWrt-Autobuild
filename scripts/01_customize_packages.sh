@@ -18,14 +18,16 @@ cp -rf ../immortalwrt-luci/applications/luci-app-arpbind package/new/
 cp -rf ../immortalwrt/package/emortal/autocore package/new/
 
 # automount
-#cp -rf ../immortalwrt/package/emortal/automount package/new/
+svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
+svn export https://github.com/coolsnowwolf/lede/tree/master/package/lean/ntfs3-mount package/new/ntfs3-mount
+svn export https://github.com/coolsnowwolf/lede/tree/master/package/lean/ntfs3-oot package/new/ntfs3-oot
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 
 # DDNS
-#cp -rf ../immortalwrt-packages/net/ddns-scripts_aliyun package/new/
-#cp -rf ../immortalwrt-packages/net/ddns-scripts_dnspod package/new/
+cp -rf ../immortalwrt-packages/net/ddns-scripts_aliyun package/new/
+cp -rf ../immortalwrt-packages/net/ddns-scripts_dnspod package/new/
 
 # Filetransfer
 cp -rf ../immortalwrt-luci/applications/luci-app-filetransfer package/new/
@@ -42,9 +44,6 @@ cp -rf ../immortalwrt-luci/applications/luci-app-ipsec-vpnd package/new/
 
 # OLED
 git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
-
-# OpenAppFilter
-#git clone -b master --depth 1 --single-branch https://github.com/destan19/OpenAppFilter package/new/OpenAppFilter
 
 # OpenClash
 git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
@@ -100,7 +99,7 @@ cp -rf ../immortalwrt-luci/applications/luci-app-vlmcsd package/new/
 cp -rf ../immortalwrt-packages/net/vlmcsd package/new/
 
 # xlnetacc
-#cp -rf ../immortalwrt-luci/applications/luci-app-xlnetacc package/new/
+cp -rf ../immortalwrt-luci/applications/luci-app-xlnetacc package/new/
 
 # Zerotier
 cp -rf ../immortalwrt-luci/applications/luci-app-zerotier package/new/

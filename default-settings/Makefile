@@ -19,6 +19,7 @@ include $(INCLUDE_DIR)/package.mk
 # IPv6 firewall: ip6tables-nft
 # Web interface to configure IPv6: luci-proto-ipv6
 # FullCone Nat: iptables-mod-fullconenat
+# mwan3: kmod-macvlan
 
 define Package/default-settings
 	SECTION:=luci
@@ -27,9 +28,6 @@ define Package/default-settings
 	PKGARCH:=all
 	DEPENDS:=+ip6tables-nft \
 		+iptables-mod-fullconenat \
-		+kmod-ipt-conntrack-extra \
-		+kmod-ipt-ipopt \
-		+kmod-ipt-raw \
 		+kmod-macvlan \
 		+libustream-wolfssl \
 		+luci \

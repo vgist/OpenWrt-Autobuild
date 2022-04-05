@@ -42,6 +42,7 @@
 | 流量监控    |       &check;       |        &check;         | &check;  |  &check;  |
 |上网时间控制 |       &check;       |        &check;         | &check;  |  &check;  |
 | 释放内存    |       &check;       |        &check;         | &check;  |  &check;  |
+| 迅雷快鸟    |       &check;       |        &check;         | &check;  |           |
 | 网络共享    |       &check;       |        &check;         | &check;  |           |
 | 文件传输    |       &check;       |        &check;         | &check;  |           |
 | 应用过滤    |       &check;       |        &check;         | &check;  |           |

@@ -49,13 +49,13 @@ git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-ap
 git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 
 # Realtek RTL8811CU/RTL8821CU
-cp -rf ../immortalwrt/package/kernel/rtl8821cu package/new/rtl8821cu
-
-# Realtek RTL8812AU/21AU
-cp -rf ../immortalwrt/package/kernel/rtl8812au-ac package/new/rtl8812au-ac
+cp -rf ../immortalwrt/package/kernel/rtl8821cu package/new/
 
 # Realtek 8812BU/8822BU
-cp -rf ../immortalwrt/package/kernel/rtl88x2bu package/new/rtl88x2bu
+cp -rf ../immortalwrt/package/kernel/rtl88x2bu package/new/
+
+# Realtek RTL8192EU
+cp -rf ../immortalwrt/package/kernel/rtl8192eu package/new/
 
 # Release Ram
 cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/

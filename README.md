@@ -8,18 +8,19 @@
 [![Phicomm-K3](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml)
 [![Phicomm-K2P](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml)
 
-#### 特色及功能
+#### 提醒
 
-- 实验性：不要使用此分支
-- 默认密码: 无
-- 依赖内核模块时，再考虑编译进固件
-- 二进制 golang 应用，尽量不编译进小闪存设备
+- 默认密码：无
+- 快照分支：不要使用
+- 内核模块：有依赖问题时，再考虑编译进固件
+- 二进制 golang：尽量不编译进小闪存设备
 
 #### 分支
 
 | 版本         |x86-64<br>x86-generic|NanoPi<br>R2C R2S ZeroPi|Phicomm K3|Phicomm K2P|
 |:------------:|:-------------------:|:----------------------:|:--------:|:---------:|
-|22.03-snapshot| &check;             |        &check;         | &check;  | &check;   |
+|22.03-snapshot|       &check;       |        &check;         | &check;  | &check;   |
+| 21.02.2      |       &check;       |        &check;         | &check;  | &check;   |
 
 #### 第三方应用列表
 

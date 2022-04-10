@@ -1,4 +1,4 @@
-name: Phicomm K3
+name: Build OpenWrt
 
 on:
   workflow_dispatch:
@@ -15,6 +15,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        target: [bcm53xx-generic, ramips-mt7621, rockchip-armv8, sunxi-cortexa7, x86-64, x86-generic]
+
     steps:
     - name: Clone Repository
       uses: actions/checkout@v2
@@ -41,35 +45,45 @@ jobs:
         git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
         df -h
 
-    - name: Clone OpenWrt
-      id: co
+    - name: Variable
+      id: var
       run: |
-        _LBRANCH=${{ github.event.inputs.branch }}
-        _REPO_URL=https://github.com/openwrt/openwrt
-        case $_LBRANCH in
+        case ${{ github.event.inputs.branch }} in
           21.02)
-            _RBRANCH=v${_LBRANCH}.2
-            name_tag=$_RBRANCH
-            prerelease=false
+            _branch=v${{ github.event.inputs.branch }}.2
+            _name_tag=$_branch
+            _prerelease=false
             ;;
           22.03)
-            _RBRANCH=openwrt-$_LBRANCH
-            name_tag=v${_LBRANCH}-snapshot
-            prerelease=true
+            _branch=openwrt-${{ github.event.inputs.branch }}
+            _name_tag=v${{ github.event.inputs.branch }}-snapshot
+            _prerelease=true
             ;;
           *)
             echo "Can't get local/upstream's branch/tags"
-            break
             ;;
         esac
-        echo ::set-output name=release_tag::$name_tag
-        echo ::set-output name=release::$prerelease
-        git clone -b $_RBRANCH --depth 1 --single-branch $_REPO_URL openwrt
-        ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
+        case ${{ matrix.target }} in
+          bcm53xx-generic)  _device=k3                ;;
+          ramips-mt7621)    _device=k2p               ;;
+          rockchip-armv8)   _device=r2c-r2s           ;;
+          sunxi-cortexa7)   _device=zeropi            ;;
+          x86-64)           _device=x86-64            ;;
+          x86-generic)      _device=x86-generic       ;;
+          *)                echo "wrong devices"      ;;
+        esac
+        echo ::set-output name=remote-branch::$_branch
+        echo ::set-output name=release_tag::$_name_tag
+        echo ::set-output name=release::$_prerelease
+        echo ::set-output name=device::$_device
 
     - name: Prepare Openwrt
       run: |
         /bin/bash ./scripts/00_prepare.sh
+
+    - name: Clone OpenWrt
+      run: |
+        git clone -b ${{ steps.var.outputs.remote-branch }} --depth 1 --single-branch https://github.com/openwrt/openwrt
 
     - name: Feeds update
       working-directory: ./openwrt
@@ -80,8 +94,8 @@ jobs:
     - name: Customize Packages
       working-directory: ./openwrt
       run: |
-        cp ../scripts/k3_customization.sh .
-        /bin/bash k3_customization.sh
+        cp -L ../scripts/${{ steps.var.outputs.device }}_customization.sh .
+        /bin/bash ${{ steps.var.outputs.device }}_customization.sh
         cp ../scripts/01_customize_packages.sh .
         /bin/bash 01_customize_packages.sh
 
@@ -97,16 +111,17 @@ jobs:
         cp ../scripts/03_create_acl_for_luci.sh .
         /bin/bash 03_create_acl_for_luci.sh -a
 
-    - name: Cache toolchain
-      uses: klever1988/cachewrtbuild@main
+    - name: Get cache toolchain
+      uses: klever1988/cachewrtbuild@test
       with:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
+        mixkey: ${{ matrix.target }}-
 
     - name: Make Config
       working-directory: ./openwrt
       run: |
-        cp ../config/k3_defconfig .config
+        cp ../config/${{ steps.var.outputs.device }}_defconfig .config
         make defconfig
 
     - name: Make Download
@@ -121,18 +136,19 @@ jobs:
 
     - name: Assemble Artifact
       run: |
+        _artifact_path=${{ matrix.target }}
         rm -rf ./artifact
-        ls openwrt/bin/targets/bcm53xx/generic/
-        mv openwrt/bin/targets/bcm53xx/generic ./artifact
+        ls openwrt/bin/targets/${_artifact_path/-//}/
+        mv openwrt/bin/targets/${_artifact_path/-//}/ ./artifact
         pushd artifact
         cat config.buildinfo
-        rm -rf packages *.buildinfo *.json *.manifest sha256sums
+        rm -rf packages *.buildinfo *.json *.manifest *kernel.bin *-rootfs.* sha256sums
         popd
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
-        name: ${{ steps.co.outputs.release_tag }}
+        name: ${{ steps.var.outputs.release_tag }}
         path: artifact/*
 
     - name: Upload Release
@@ -141,6 +157,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         draft: false
-        prerelease: ${{ steps.co.outputs.release }}
-        tag_name: ${{ steps.co.outputs.release_tag }}
+        prerelease: ${{ steps.var.outputs.release }}
+        tag_name: ${{ steps.var.outputs.release_tag }}
         files: artifact/*

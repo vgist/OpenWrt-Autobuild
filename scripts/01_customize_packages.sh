@@ -19,8 +19,8 @@ cp -rf ../immortalwrt/package/emortal/autocore package/new/
 
 # automount
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
-svn export https://github.com/coolsnowwolf/lede/tree/master/package/lean/ntfs3-mount package/new/ntfs3-mount
-svn export https://github.com/coolsnowwolf/lede/tree/master/package/lean/ntfs3-oot package/new/ntfs3-oot
+svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/ntfs3-mount package/new/ntfs3-mount
+svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/ntfs3-oot package/new/ntfs3-oot
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
@@ -34,13 +34,13 @@ cp -rf ../immortalwrt-luci/applications/luci-app-filetransfer package/new/
 cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/
 
 # FullCone
-cp -rf ../immortalwrt/package/kernel/fullconenat package/kernel/
+cp -rf ../immortalwrt/package/network/utils/fullconenat package/network/utils
 cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
 patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 cp -rf ../immortalwrt/package/network/config/firewall/patches package/network/config/firewall/
 
 # IPSEC
-cp -rf ../immortalwrt-luci/applications/luci-app-ipsec-vpnd package/new/
+svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-ipsec-server package/new/luci-app-ipsec-server
 
 # OLED
 git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
@@ -84,12 +84,6 @@ patch -d package/helloworld -p1 -i ../../../patches/building-ssr-libev-with-libm
 # Traffic Usage Monitor
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
-
-# upx & ucl
-svn export https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
-svn export https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
-sed -i '/builddir dependencies/i\tools-y += ucl upx' tools/Makefile
-sed -i '/builddir dependencies/a\$(curdir)/upx/compile := $(curdir)/ucl/compile' tools/Makefile
 
 # USB Printer
 svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-usb-printer package/new/luci-app-usb-printer

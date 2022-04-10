@@ -15,6 +15,12 @@ rm -rf ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt/package/boot/uboot-rockchip package/boot/uboot-rockchip
 cp -rf ../immortalwrt/package/boot/arm-trusted-firmware-rockchip-vendor package/boot/arm-trusted-firmware-rockchip-vendor
 
+# fix net
+sed -i '/friendlyarm,nanopi-r2s/i\friendlyarm,nanopi-r2c|\\' target/linux/rockchip/armv8/base-files/etc/board.d/01_leds
+sed -i '/friendlyarm,nanopi-r2s/i\\tfriendlyarm,nanopi-r2c|\\' target/linux/rockchip/armv8/base-files/etc/board.d/02_network
+sed -i '/friendlyarm,nanopi-r2s/i\friendlyarm,nanopi-r2c|\\' target/linux/rockchip/armv8/base-files/etc/hotplug.d/net/40-net-smp-affinity
+
+
 # model name patch for aarch64
 cp -f ../immortalwrt/target/linux/generic/hack-5.10/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch target/linux/generic/hack-5.10/
 

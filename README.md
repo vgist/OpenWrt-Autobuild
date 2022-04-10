@@ -1,13 +1,3 @@
-#### 支持机型
-
-[![X86-Generic](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86-generic.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86-generic.yml)
-[![X86-64](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86-64.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/x86-64.yml)
-[![NanoPi-R2C](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2c.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2c.yml)
-[![NanoPi-R2S](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2s.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/r2s.yml)
-[![ZeroPi](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/zeropi.yml)
-[![Phicomm-K3](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k3.yml)
-[![Phicomm-K2P](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml/badge.svg)](https://github.com/vgist/OpenWrt-Autobuild/actions/workflows/k2p.yml)
-
 #### 提醒
 
 - 默认密码：无

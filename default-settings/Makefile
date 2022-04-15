@@ -33,7 +33,6 @@ define Package/default-settings
 		+kmod-macvlan \
 		+libustream-wolfssl \
 		+luci \
-		+luci-compat \
 		+luci-proto-ipv6 \
 		+odhcp6c \
 		+odhcpd-ipv6only \

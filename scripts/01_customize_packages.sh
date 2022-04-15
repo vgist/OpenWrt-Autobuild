@@ -8,7 +8,7 @@ mkdir -p package/new
 cp -rf ../immortalwrt-luci/applications/luci-app-accesscontrol package/new/
 
 # ADBYBY Plus +
-svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
+svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 cp -rf ../immortalwrt-packages/net/adbyby package/new/
 
 # arpbind
@@ -16,11 +16,13 @@ cp -rf ../immortalwrt-luci/applications/luci-app-arpbind package/new/
 
 # AutoCore
 cp -rf ../immortalwrt/package/emortal/autocore package/new/
+# grant getCPUUsage access
+sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/generic/luci-mod-status-autocore.json
 
 # automount
-svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
-svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/ntfs3-mount package/new/ntfs3-mount
-svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/ntfs3-oot package/new/ntfs3-oot
+svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
+svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/ntfs3-mount package/new/ntfs3-mount
+svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/ntfs3-oot package/new/ntfs3-oot
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
@@ -40,7 +42,7 @@ patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 cp -rf ../immortalwrt/package/network/config/firewall/patches package/network/config/firewall/
 
 # IPSEC
-svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-ipsec-server package/new/luci-app-ipsec-server
+svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-ipsec-server package/new/luci-app-ipsec-server
 
 # OLED
 git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
@@ -86,7 +88,7 @@ git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtb
 git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 
 # USB Printer
-svn export https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-usb-printer package/new/luci-app-usb-printer
+svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-usb-printer package/new/luci-app-usb-printer
 
 # vlmcsd
 cp -rf ../immortalwrt-luci/applications/luci-app-vlmcsd package/new/

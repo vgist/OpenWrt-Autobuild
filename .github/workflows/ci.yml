@@ -50,7 +50,7 @@ jobs:
       run: |
         case ${{ github.event.inputs.branch }} in
           21.02)
-            _branch=v${{ github.event.inputs.branch }}.2
+            _branch=v${{ github.event.inputs.branch }}.3
             _name_tag=$_branch
             _prerelease=false
             ;;

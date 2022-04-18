@@ -16,6 +16,8 @@ cp -rf ../immortalwrt-luci/applications/luci-app-arpbind package/new/
 
 # AutoCore
 cp -rf ../immortalwrt/package/emortal/autocore package/new/
+# grant getCPUUsage access
+sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/generic/luci-mod-status-autocore.json
 
 # automount
 svn export https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount

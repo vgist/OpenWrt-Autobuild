@@ -2,8 +2,9 @@
 
 set -ex
 
-# Kernel patches from armbian
-cp -f ../patches/320-sun8i-h3-add-more-cpu-operating-points-for-zeropi.patch ./target/linux/sunxi/patches-5.4/
+# Thermal sensor and cpu operating points
+cp -f ../patches/011-ARM-dts-sun8i-h3-add-thermal-sensor-and-zones.patch ./target/linux/sunxi/patches-5.4/
+cp -f ../patches/320-sun8i-h3-add-more-cpu-operating-points.patch ./target/linux/sunxi/patches-5.4/
 
 # mbedtls
 cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
@@ -12,6 +13,7 @@ cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
 echo '
 CONFIG_ARM_MODULE_PLTS=y
 CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
+CONFIG_SUN8I_THERMAL=y
 ' >> ./target/linux/sunxi/config-5.4
 
 # Set dhcp proto on lan

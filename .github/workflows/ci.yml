@@ -9,8 +9,9 @@ on:
         default: 21.02
         type: choice
         options:
-        - 21.02
+        - master
         - 22.03
+        - 21.02
 
 jobs:
   build:
@@ -49,15 +50,20 @@ jobs:
       id: var
       run: |
         case ${{ github.event.inputs.branch }} in
+          master)
+            _branch=${{ github.event.inputs.branch }}
+            _name_tag=snapshot-r$(date +%g.%j)
+            _prerelease=true
+            ;;
+          22.03)
+            _branch=v${{ github.event.inputs.branch }}.0-rc1
+            _name_tag=$_branch
+            _prerelease=true
+            ;;
           21.02)
             _branch=v${{ github.event.inputs.branch }}.3
             _name_tag=$_branch
             _prerelease=false
-            ;;
-          22.03)
-            _branch=openwrt-${{ github.event.inputs.branch }}
-            _name_tag=v${{ github.event.inputs.branch }}-snapshot
-            _prerelease=true
             ;;
           *)
             echo "Can't get local/upstream's branch/tags"

@@ -2,8 +2,8 @@
 
 set -ex
 
-# Kernel patches from armbian
-cp -f ../patches/320-sun8i-h3-add-more-cpu-operating-points-for-zeropi.patch ./target/linux/sunxi/patches-5.10/
+# cpu operating points
+cp -f ../patches/320-sun8i-h3-add-more-cpu-operating-points.patch ./target/linux/sunxi/patches-5.10/
 
 # mbedtls
 cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/

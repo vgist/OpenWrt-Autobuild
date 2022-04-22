@@ -18,9 +18,8 @@ include $(INCLUDE_DIR)/package.mk
 
 # full IPv6 support with a DHCPv6 client: odhcp6c
 # RA & DHCPv6 Server: odhcpd-ipv6only
-# IPv6 firewall: ip6tables-nft
 # Web interface to configure IPv6: luci-proto-ipv6
-# FullCone Nat: iptables-mod-fullconenat
+# FullCone Nat: kmod-nft-fullcone
 # mwan3: kmod-macvlan
 
 define Package/default-settings
@@ -28,9 +27,9 @@ define Package/default-settings
 	CATEGORY:=LuCI
 	TITLE:=LuCI support for Default Settings
 	PKGARCH:=all
-	DEPENDS:=+ip6tables-nft \
-		+iptables-mod-fullconenat \
+	DEPENDS:= \
 		+kmod-macvlan \
+		+kmod-nft-fullcone \
 		+libustream-wolfssl \
 		+luci \
 		+luci-compat \

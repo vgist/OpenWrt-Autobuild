@@ -29,6 +29,11 @@ cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 cp -rf ../immortalwrt-packages/net/ddns-scripts_aliyun package/new/
 cp -rf ../immortalwrt-packages/net/ddns-scripts_dnspod package/new/
 
+# dnsmasq: add filter aaa option
+cp -rf ../patches/910-add-filter-aaaa-option-support.patch package/network/services/dnsmasq/patches/
+patch -p1 -i ../patches/dnsmasq-add-filter-aaaa-option.patch
+patch -d feeds/luci -p1 -i ../../../patches/filter-aaaa-luci.patch
+
 # Filetransfer
 cp -rf ../immortalwrt-luci/applications/luci-app-filetransfer package/new/
 cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/

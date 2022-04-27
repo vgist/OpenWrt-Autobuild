@@ -1,0 +1,29 @@
+--- a/package/kernel/linux/modules/fs.mk
++++ b/package/kernel/linux/modules/fs.mk
+@@ -523,6 +523,26 @@ endef
+ $(eval $(call KernelPackage,fs-ntfs))
+ 
+ 
++define KernelPackage/fs-ntfs3
++  SUBMENU:=$(FS_MENU)
++  TITLE:=Ntfs3 support
++  DEPENDS:=@LINUX_5_15 +kmod-nls-base
++  KCONFIG:= \
++	CONFIG_NTFS3_FS \
++	CONFIG_NTFS3_64BIT_CLUSTER=y \
++	CONFIG_NTFS3_LZX_XPRESS=y \
++	CONFIG_NTFS3_FS_POSIX_ACL=y
++  FILES:=$(LINUX_DIR)/fs/ntfs3/ntfs3.ko
++  AUTOLOAD:=$(call AutoLoad,30,ntfs3)
++endef
++
++define KernelPackage/fs-ntfs3/description
++ Kernel module for new NTFS3 filesystem support
++endef
++
++$(eval $(call KernelPackage,fs-ntfs3))
++
++
+ define KernelPackage/pstore
+   SUBMENU:=$(FS_MENU)
+   TITLE:=Pstore file system

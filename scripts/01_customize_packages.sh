@@ -61,6 +61,9 @@ patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 # IPSEC
 svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-ipsec-server package/new/luci-app-ipsec-server
 
+# Kernel: fix IPv6 package drop when using software flow offload
+curl -sSL https://github.com/openwrt/openwrt/pull/4849.patch | patch -p1
+
 # OLED
 git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
 

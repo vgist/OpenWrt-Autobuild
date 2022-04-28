@@ -51,10 +51,10 @@ svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-i
 curl -sSL https://github.com/openwrt/openwrt/pull/9940.patch | patch -p1
 
 # OLED
-git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
+svn export -q https://github.com/NateLol/luci-app-oled/trunk package/new/luci-app-oled
 
 # OpenClash
-git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
+svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 patch -p1 -i ../patches/kmod-inet-diag.patch
 
 # Realtek RTL8811CU/RTL8821CU
@@ -73,10 +73,11 @@ cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/
 cp -rf ../immortalwrt-luci/applications/luci-app-autoreboot package/new/
 
 # SeverChan
-git clone -b master --depth 1 --single-branch https://github.com/tty228/luci-app-serverchan package/new/luci-app-serverchan
+svn export -q https://github.com/tty228/luci-app-serverchan/trunk package/new/luci-app-serverchan
 
 # ShadowsocksR Plus+
-git clone -b master --depth 1 --single-branch https://github.com/fw876/helloworld package/helloworld
+svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
+svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev
 rm -rf ./feeds/packages/net/kcptun
 rm -rf ./feeds/packages/net/xray-core
 rm -rf ./feeds/packages/net/shadowsocks-libev
@@ -86,13 +87,12 @@ cp -rf ../immortalwrt-packages/net/kcptun package/new/
 cp -rf ../immortalwrt-packages/net/microsocks package/new/
 cp -rf ../immortalwrt-packages/net/pdnsd-alt package/new/
 cp -rf ../immortalwrt-packages/net/redsocks2 package/new/
-cp -rf ../immortalwrt-packages/net/shadowsocks-libev package/new/
 # building ssr-libev with libmbedtls
 patch -d package/helloworld -p1 -i ../../../patches/building-ssr-libev-with-libmbedtls.patch
 
 # Traffic Usage Monitor
-git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/wrtbwmon package/new/wrtbwmon
-git clone -b master --depth 1 --single-branch https://github.com/brvphoenix/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
+svn export -q https://github.com/brvphoenix/wrtbwmon/trunk/wrtbwmon package/new/wrtbwmon
+svn export -q https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 
 # USB Printer
 svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-usb-printer package/new/luci-app-usb-printer

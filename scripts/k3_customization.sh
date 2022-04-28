@@ -6,12 +6,11 @@ set -ex
 # only build k3
 sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm_k3|TARGET_DEVICES += phicomm_k3|' target/linux/bcm53xx/image/Makefile
 # k3 device packages
-sed -i 's|$(BRCMFMAC_4366C0)|$(IEEE8021X) kmod-brcmfmac k3wifi k3screenctrl|g' target/linux/bcm53xx/image/Makefile
+sed -i 's|kmod-brcmfmac brcmfmac-firmware-4366c0-pcie|kmod-brcmfmac k3wifi k3screenctrl|g' target/linux/bcm53xx/image/Makefile
 # k3 proprietary wifi driver
 svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/k3-brcmfmac4366c-firmware package/k3/k3wifi
-# k3 screen
-svn export -q https://github.com/lwz322/luci-app-k3screenctrl/trunk package/k3/luci-app-k3screenctrl
-svn export -q https://github.com/lwz322/k3screenctrl_build/trunk package/k3/k3screenctrl_build
+# k3 screen control
+svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/k3screenctrl package/k3/k3screenctrl
 
 # mbedtls
 cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/

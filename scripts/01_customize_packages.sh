@@ -67,6 +67,15 @@ svn export -q https://github.com/NateLol/luci-app-oled/trunk package/new/luci-ap
 # OpenClash
 svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 
+# Realtek R8125
+cp -rf ../immortalwrt/package/kernel/r8125 package/new/
+
+# Realtek RTL8152/RTL8153
+cp -rf ../immortalwrt/package/kernel/r8152 package/new/
+
+# Realtek R8168
+cp -rf ../immortalwrt/package/kernel/r8168 package/new/
+
 # Realtek RTL8811CU/RTL8821CU
 cp -rf ../immortalwrt/package/kernel/rtl8821cu package/new/
 

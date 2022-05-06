@@ -3,13 +3,14 @@
 - 默认密码：无
 - 二进制 golang：尽量不编译进小闪存设备
 - 上游为 openwrt 官方，原汁原味，一些 package 取自第三方
+- 内置一些 usb 无线 ac 网卡与千兆有线网卡，具体查看 config 文件夹
 - 发布：
     - 21.02.x：稳定
     - 22.03.x：iptables -> nftables，fw3 -> fw4，等上游填坑
     - snapshot：不要使用，纯测试
 - 如需添加特色 package，请 fork 后自行在如下文件中添加
     - scripts/01_customize_packages.sh
-    - config/*_defconfig
+    - config/*
 
 #### 分支
 

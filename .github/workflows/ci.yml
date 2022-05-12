@@ -84,9 +84,8 @@ jobs:
       working-directory: ./openwrt
       run: |
         cp -L ../scripts/${{ steps.var.outputs.device }}_customization.sh .
-        /bin/bash ${{ steps.var.outputs.device }}_customization.sh
         cp ../scripts/01_customize_packages.sh .
-        /bin/bash 01_customize_packages.sh
+        /bin/bash ${{ steps.var.outputs.device }}_customization.sh
 
     - name: Convert Translation
       working-directory: ./openwrt

@@ -1,8 +1,7 @@
 #!/bin/bash
 
-set -ex
-
-mkdir -p package/new
+# create directory
+[[ ! -d package/new ]] && mkdir -p package/new
 
 # Access Control
 cp -rf ../immortalwrt-luci/applications/luci-app-accesscontrol package/new/
@@ -20,16 +19,15 @@ cp -rf ../immortalwrt/package/emortal/autocore package/new/
 sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/generic/luci-mod-status-autocore.json
 
 # automount
-svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/automount package/new/automount
-svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/ntfs3-mount package/new/ntfs3-mount
-svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/ntfs3-oot package/new/ntfs3-oot
+for i in "automount" "ntfs3-mount" "ntfs3-oot"; do
+    svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/$i package/new/$i
+done
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 
 # DDNS
-cp -rf ../immortalwrt-packages/net/ddns-scripts_aliyun package/new/
-cp -rf ../immortalwrt-packages/net/ddns-scripts_dnspod package/new/
+cp -rf ../immortalwrt-packages/net/ddns-scripts_{aliyun,dnspod} package/new/
 
 # dnsmasq: add filter aaa option
 cp -rf ../patches/910-add-filter-aaaa-option-support.patch package/network/services/dnsmasq/patches/
@@ -64,29 +62,18 @@ svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-i
 # Kernel: fix IPv6 package drop when using software flow offload
 curl -sSL https://github.com/openwrt/openwrt/pull/4849.patch | patch -p1
 
+# mbedtls
+cp -f ../immortalwrt/package/libs/mbedtls/patches/100-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch package/libs/mbedtls/patches/
+cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
+
 # OLED
 svn export -q https://github.com/NateLol/luci-app-oled/trunk package/new/luci-app-oled
 
 # OpenClash
 svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 
-# Realtek R8125
-cp -rf ../immortalwrt/package/kernel/r8125 package/new/
-
-# Realtek RTL8152/RTL8153
-cp -rf ../immortalwrt/package/kernel/r8152 package/new/
-
-# Realtek R8168
-cp -rf ../immortalwrt/package/kernel/r8168 package/new/
-
-# Realtek RTL8811CU/RTL8821CU
-cp -rf ../immortalwrt/package/kernel/rtl8821cu package/new/
-
-# Realtek 8812BU/8822BU
-cp -rf ../immortalwrt/package/kernel/rtl88x2bu package/new/
-
-# Realtek RTL8192EU
-cp -rf ../immortalwrt/package/kernel/rtl8192eu package/new/
+# Realtek R8125, R8168, RTL8152/8153, RTL8811CU/8821CU, RTL8812BU/8822BU, RTL8192EU
+cp -rf ../immortalwrt/package/kernel/{r8125,r8152,r8168,rtl8821cu,rtl88x2bu,rtl8192eu} package/new/
 
 # Release Ram
 cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/
@@ -100,15 +87,8 @@ svn export -q https://github.com/tty228/luci-app-serverchan/trunk package/new/lu
 # ShadowsocksR Plus+
 svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev
-rm -rf ./feeds/packages/net/kcptun
-rm -rf ./feeds/packages/net/xray-core
-rm -rf ./feeds/packages/net/shadowsocks-libev
-cp -rf ../immortalwrt-packages/net/dns2socks package/new/
-cp -rf ../immortalwrt-packages/net/ipt2socks package/new/
-cp -rf ../immortalwrt-packages/net/kcptun package/new/
-cp -rf ../immortalwrt-packages/net/microsocks package/new/
-cp -rf ../immortalwrt-packages/net/pdnsd-alt package/new/
-cp -rf ../immortalwrt-packages/net/redsocks2 package/new/
+rm -rf ./feeds/packages/net/{xray-core,shadowsocks-libev}
+cp -rf ../immortalwrt-packages/net/{dns2socks,ipt2socks,microsocks,pdnsd-alt,redsocks2} package/new/
 # building ssr-libev with libmbedtls
 patch -d package/helloworld -p1 -i ../../../patches/building-ssr-libev-with-libmbedtls.patch
 
@@ -117,7 +97,7 @@ svn export -q https://github.com/brvphoenix/wrtbwmon/trunk/wrtbwmon package/new/
 svn export -q https://github.com/brvphoenix/luci-app-wrtbwmon/trunk/luci-app-wrtbwmon package/new/luci-app-wrtbwmon
 
 # USB Printer
-svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-usb-printer package/new/luci-app-usb-printer
+cp -rf ../immortalwrt-luci/applications/luci-app-usb-printer package/new/
 
 # vlmcsd
 cp -rf ../immortalwrt-luci/applications/luci-app-vlmcsd package/new/
@@ -137,5 +117,3 @@ sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
 # fix include luci.mk
 find package/new/ -type f -name Makefile -exec sed -i 's,../../luci.mk,$(TOPDIR)/feeds/luci/luci.mk,g' {} +
-
-exit 0

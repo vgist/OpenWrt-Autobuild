@@ -12,7 +12,6 @@ svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/k3-brcmfma
 # k3 screen control
 svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/k3screenctrl package/k3/k3screenctrl
 
-# mbedtls
-cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
+source ./01_customize_packages.sh
 
 exit 0

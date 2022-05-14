@@ -22,8 +22,6 @@ sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/n
 for i in "automount" "ntfs3-mount" "ntfs3-oot"; do
     svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/$i package/new/$i
 done
-# kmod-fs-ntfs3 patch
-patch -p1 -i ../patches/kmod-fs-ntfs3.patch
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/

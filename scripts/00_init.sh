@@ -3,6 +3,10 @@
 set -ex
 
 
+__get_openwrt() {
+    git clone https://github.com/openwrt/openwrt
+}
+
 __get_immortalwrt() {
     git clone -b openwrt-21.02 --depth 1 --single-branch https://github.com/immortalwrt/immortalwrt immortalwrt
     git clone -b openwrt-21.02 --depth 1 --single-branch https://github.com/immortalwrt/packages immortalwrt-packages
@@ -34,6 +38,7 @@ __init_feeds() {
 
 case $1 in
     build_env)      __init_build_env    ;;
+    openwrt)        __get_openwrt       ;;
     immortalwrt)    __get_immortalwrt   ;;
     feeds)          __init_feeds        ;;
     *)              echo "input error"  ;;

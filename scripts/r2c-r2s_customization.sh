@@ -6,6 +6,9 @@ set -ex
 sed -i 's,-mcpu=generic,-mcpu=cortex-a53+crypto,g' include/target.mk
 
 # Necessary patches from immortalwrt
+pushd ../immortalwrt
+git revert ca9bda5da7 --no-edit
+popd
 rm -rf ./target/linux/rockchip/{image,patches-5.10}
 cp -rf ../immortalwrt/target/linux/rockchip/{files,image,patches-5.10} target/linux/rockchip/
 rm -rf ./package/boot/uboot-rockchip

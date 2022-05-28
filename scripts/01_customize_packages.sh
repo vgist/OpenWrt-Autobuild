@@ -34,6 +34,9 @@ cp -rf ../patches/910-add-filter-aaaa-option-support.patch package/network/servi
 patch -p1 -i ../patches/dnsmasq-add-filter-aaaa-option.patch
 patch -d feeds/luci -p1 -i ../../../patches/filter-aaaa-luci.patch
 
+# dnsmasq: use nft ruleset for dns_redirect
+patch -p1 -i ../patches/dnsmasq-use-nft-ruleset-for-dns_redirect.patch
+
 # Filetransfer
 cp -rf ../immortalwrt-luci/applications/luci-app-filetransfer package/new/
 cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/

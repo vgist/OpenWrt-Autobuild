@@ -53,8 +53,6 @@ sed -i '/PKG_INSTALL:=1/i\PKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 cp -f ../immortalwrt/package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch package/network/utils/nftables/patches/
 # patch firewall4
 cp -rf ../immortalwrt/package/network/config/firewall4/patches package/network/config/firewall4/
-# refresh patch
-cp -f ../patches/001-firewall4-add-support-for-fullcone-nat.patch package/network/config/firewall4/patches
 sed -i 's|+kmod-nft-nat +kmod-nft-nat6|+kmod-nft-nat +kmod-nft-nat6 +kmod-nft-fullcone|g' package/network/config/firewall4/Makefile
 # patch luci
 patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch

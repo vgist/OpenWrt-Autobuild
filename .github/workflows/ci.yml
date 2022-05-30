@@ -68,9 +68,12 @@ jobs:
           x86-generic)      _device=x86-generic       ;;
           *)                echo "wrong devices"      ;;
         esac
+        _artifact=${{ matrix.target }}
+        _artifact_path=openwrt/bin/targets/${_artifact/-//}
         echo ::set-output name=release_tag::$_release_tag
         echo ::set-output name=prerelease::$_prerelease
         echo ::set-output name=device::$_device
+        echo ::set-output name=artifact::$_artifact_path
 
     - name: Clone immortalwrt
       run: |
@@ -124,20 +127,15 @@ jobs:
 
     - name: Assemble Artifact
       run: |
-        _artifact_path=${{ matrix.target }}
-        rm -rf ./artifact
-        ls openwrt/bin/targets/${_artifact_path/-//}/
-        mv openwrt/bin/targets/${_artifact_path/-//}/ ./artifact
-        pushd artifact
-        cat config.buildinfo
-        rm -rf packages *.buildinfo *.json *.manifest *kernel.bin *-rootfs.* sha256sums
-        popd
+        ls ${{ steps.var.outputs.artifact }}
+        cat ${{ steps.var.outputs.artifact }}/config.buildinfo
+        rm -rf ${{ steps.var.outputs.artifact }}/{packages,*.buildinfo,*.json,*.manifest,*kernel.bin,*-rootfs.*,sha256sums}
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: ${{ steps.var.outputs.release_tag }}
-        path: artifact/*
+        path: ${{ steps.var.outputs.artifact }}/*
 
     - name: Upload Release
       uses: softprops/action-gh-release@v1
@@ -145,6 +143,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         draft: false
+        target_commitish: ${{ github.event.inputs.branch }}
         prerelease: ${{ steps.var.outputs.prerelease }}
         tag_name: ${{ steps.var.outputs.release_tag }}
-        files: artifact/*
+        files: ${{ steps.var.outputs.artifact }}/*

@@ -60,9 +60,6 @@ patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 # IPSEC
 svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-ipsec-server package/new/luci-app-ipsec-server
 
-# Kernel: fix IPv6 package drop when using software flow offload
-curl -sSL https://github.com/openwrt/openwrt/pull/4849.patch | patch -p1
-
 # mbedtls
 cp -f ../immortalwrt/package/libs/mbedtls/patches/100-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch package/libs/mbedtls/patches/
 cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/

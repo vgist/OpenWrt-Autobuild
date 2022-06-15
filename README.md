@@ -7,7 +7,6 @@
 - 发布：
     - 21.02.x：稳定
     - 22.03.x：iptables -> nftables，fw3 -> fw4，等上游填坑
-    - snapshot：不要使用，纯测试
 - 如需添加特色 package，请 fork 后自行在如下文件中添加
     - scripts/01_customize_packages.sh
     - config/*
@@ -15,9 +14,8 @@
 #### 分支
 
 | 版本      |x86<br>x86/generic|NanoPi<br>R2C R2S ZeroPi|Phicomm<br>K3|Phicomm<br>K2P|
-|:---------:|:-------------------:|:----------------------:|:------------:|:------------:|
-| snapshot  |       &check;       |        &check;         |    &check;   |   &check;    |
-|22.03.0-rc1|       &check;       |        &check;         |    &check;   |   &check;    |
+|-----------|:-------------------:|:----------------------:|:------------:|:------------:|
+|22.03.0-rc4|       &check;       |        &check;         |    &check;   |   &check;    |
 | 21.02.3   |       &check;       |        &check;         |    &check;   |   &check;    |
 
 #### 第三方应用列表
@@ -28,18 +26,17 @@
 | AutoCore    |      &check;     |        &check;         |   &check;   |              |
 | cpufreq     |                  |        &check;         |             |              |
 | DDNS        |      &check;     |        &check;         |   &check;   |              |
-|FullCone NAT |      &check;     |        &check;         |   &check;   |   &check;    |
-| IPSEC       |      &check;     |        &check;         |   &check;   |              |
+| FullCone NAT|      &check;     |        &check;         |   &check;   |   &check;    |
+| IPSec Server|      &check;     |        &check;         |   &check;   |              |
 | OpenClash   |      &check;     |        &check;         |   &check;   |              |
 | Server 酱   |      &check;     |        &check;         |   &check;   |              |
-| SQM QoS     |      &check;     |        &check;         |   &check;   |              |
 | SSRP+       |      &check;     |        &check;         |   &check;   |   &check;    |
 | usb 打印    |      &check;     |        &check;         |   &check;   |              |
 | vlmcsd 服务 |      &check;     |        &check;         |   &check;   |   &check;    |
 | Zerotier    |      &check;     |        &check;         |   &check;   |   &check;    |
 | 定时重启    |      &check;     |        &check;         |   &check;   |   &check;    |
 | 流量监控    |      &check;     |        &check;         |   &check;   |   &check;    |
-|上网时间控制 |      &check;     |        &check;         |   &check;   |   &check;    |
+| 上网时间控制|      &check;     |        &check;         |   &check;   |   &check;    |
 | 释放内存    |      &check;     |        &check;         |   &check;   |   &check;    |
 | 迅雷快鸟    |      &check;     |        &check;         |   &check;   |              |
 | 网络共享    |      &check;     |        &check;         |   &check;   |              |

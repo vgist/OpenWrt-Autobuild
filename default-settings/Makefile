@@ -23,6 +23,7 @@ include $(INCLUDE_DIR)/package.mk
 # FullCone Nat: iptables-mod-fullconenat
 # mwan3: kmod-macvlan
 # wireguard: kmod-wireguard
+# ipsec: kmod-{ipsec,ipsec4,ipsec6,ipt-ipsec,pppol2tp}
 
 define Package/default-settings
 	SECTION:=luci
@@ -31,7 +32,12 @@ define Package/default-settings
 	PKGARCH:=all
 	DEPENDS:=+ip6tables \
 		+iptables-mod-fullconenat \
+		+kmod-ipsec \
+		+kmod-ipsec4 \
+		+kmod-ipsec6 \
+		+kmod-ipt-ipsec \
 		+kmod-macvlan \
+		+kmod-pppol2tp \
 		+kmod-wireguard \
 		+libustream-wolfssl \
 		+luci \

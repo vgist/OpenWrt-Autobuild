@@ -22,6 +22,7 @@ include $(INCLUDE_DIR)/package.mk
 # Web interface to configure IPv6: luci-proto-ipv6
 # FullCone Nat: iptables-mod-fullconenat
 # mwan3: kmod-macvlan
+# wireguard: kmod-wireguard
 
 define Package/default-settings
 	SECTION:=luci
@@ -31,6 +32,7 @@ define Package/default-settings
 	DEPENDS:=+ip6tables \
 		+iptables-mod-fullconenat \
 		+kmod-macvlan \
+		+kmod-wireguard \
 		+libustream-wolfssl \
 		+luci \
 		+luci-compat \

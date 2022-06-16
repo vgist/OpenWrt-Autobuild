@@ -27,7 +27,6 @@
 | cpufreq     |                  |        &check;         |             |              |
 | DDNS        |      &check;     |        &check;         |   &check;   |              |
 | FullCone NAT|      &check;     |        &check;         |   &check;   |   &check;    |
-| IPSec Server|      &check;     |        &check;         |   &check;   |              |
 | OpenClash   |      &check;     |        &check;         |   &check;   |              |
 | Server 酱   |      &check;     |        &check;         |   &check;   |              |
 | SSRP+       |      &check;     |        &check;         |   &check;   |   &check;    |
@@ -41,7 +40,6 @@
 | 迅雷快鸟    |      &check;     |        &check;         |   &check;   |              |
 | 网络共享    |      &check;     |        &check;         |   &check;   |              |
 | 文件传输    |      &check;     |        &check;         |   &check;   |              |
-| 应用过滤    |      &check;     |        &check;         |   &check;   |              |
 | 自动挂载    |      &check;     |        &check;         |   &check;   |              |
 
 #### TODO

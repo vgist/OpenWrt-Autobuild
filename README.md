@@ -34,7 +34,6 @@
 | vlmcsd 服务 |      &check;     |        &check;         |   &check;   |   &check;    |
 | Zerotier    |      &check;     |        &check;         |   &check;   |   &check;    |
 | 定时重启    |      &check;     |        &check;         |   &check;   |   &check;    |
-| 流量监控    |      &check;     |        &check;         |   &check;   |   &check;    |
 | 上网时间控制|      &check;     |        &check;         |   &check;   |   &check;    |
 | 释放内存    |      &check;     |        &check;         |   &check;   |   &check;    |
 | 迅雷快鸟    |      &check;     |        &check;         |   &check;   |              |

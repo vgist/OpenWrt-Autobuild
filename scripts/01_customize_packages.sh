@@ -47,10 +47,14 @@ cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-sup
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
 # patch libnftnl
-cp -rf ../immortalwrt/package/libs/libnftnl/patches package/libs/libnftnl/
-sed -i '/PKG_INSTALL:=1/i\PKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
+#cp -rf ../immortalwrt/package/libs/libnftnl/patches package/libs/libnftnl/
+#sed -i '/PKG_INSTALL:=1/i\PKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
+rm -rf package/libs/libnftnl
+cp -rf ../immortalwrt/package/libs/libnftnl package/libs/
 # patch nftables
-cp -f ../immortalwrt/package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch package/network/utils/nftables/patches/
+#cp -f ../immortalwrt/package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch package/network/utils/nftables/patches/
+rm -rf package/network/utils/nftables/
+cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
 # patch firewall4
 cp -rf ../immortalwrt/package/network/config/firewall4/patches package/network/config/firewall4/
 sed -i 's|+kmod-nft-nat +kmod-nft-nat6|+kmod-nft-nat +kmod-nft-nat6 +kmod-nft-fullcone|g' package/network/config/firewall4/Makefile

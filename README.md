@@ -15,7 +15,7 @@
 
 | 版本      |x86<br>x86/generic|NanoPi<br>R2C R2S ZeroPi|Phicomm<br>K3|Phicomm<br>K2P|
 |-----------|:-------------------:|:----------------------:|:------------:|:------------:|
-|22.03.0-rc4|       &check;       |        &check;         |    &check;   |   &check;    |
+|22.03.0-rc6|       &check;       |        &check;         |    &check;   |   &check;    |
 | 21.02.3   |       &check;       |        &check;         |    &check;   |   &check;    |
 
 #### 第三方应用列表

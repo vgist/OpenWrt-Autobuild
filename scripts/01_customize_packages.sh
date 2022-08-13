@@ -10,6 +10,9 @@ cp -rf ../immortalwrt-luci/applications/luci-app-accesscontrol package/new/
 svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 cp -rf ../immortalwrt-packages/net/adbyby package/new/
 
+# luci-app-paswall
+svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/luci/luci-app-passwall package/new/luci-app-passwall
+
 # arpbind
 cp -rf ../immortalwrt-luci/applications/luci-app-arpbind package/new/
 
@@ -54,6 +57,7 @@ svn export -q https://github.com/NateLol/luci-app-oled/trunk package/new/luci-ap
 
 # OpenClash
 svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+
 # add kmod-inet-diag package
 curl -sSL https://github.com/openwrt/openwrt/commit/efc8aff.patch | patch -p1
 
@@ -68,6 +72,9 @@ cp -rf ../immortalwrt-luci/applications/luci-app-autoreboot package/new/
 
 # SeverChan
 svn export -q https://github.com/tty228/luci-app-serverchan/trunk package/new/luci-app-serverchan
+
+# xmm-modem
+svn export -q https://github.com/koshev-msk/xmm-modem/trunk package/xmm-modem
 
 # ShadowsocksR Plus+
 svn export -q https://github.com/fw876/helloworld/trunk package/helloworld

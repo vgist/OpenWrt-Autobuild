@@ -1,20 +1,20 @@
 #!/bin/sh
 
 # lang
-uci set luci.main.lang=zh_cn
+uci set luci.main.lang=en
 uci commit luci
 
 # timezone
-uci set system.@system[0].timezone=CST-8
-uci set system.@system[0].zonename=Asia/Shanghai
+uci set system.@system[0].timezone=CST+7
+uci set system.@system[0].zonename=Asia/Jakarta
 # zram-swap
 uci set system.@system[0].zram_priority=100
 # ntp server
 uci -q delete system.ntp.server
-uci add_list system.ntp.server="ntp.aliyun.com"
-uci add_list system.ntp.server="time1.cloud.tencent.com"
-uci add_list system.ntp.server="time.ustc.edu.cn"
-uci add_list system.ntp.server="cn.pool.ntp.org"
+uci add_list system.ntp.server="id.pool.ntp.org"
+uci add_list system.ntp.server="id.pool.ntp.org"
+uci add_list system.ntp.server="id.pool.ntp.org"
+uci add_list system.ntp.server="id.pool.ntp.org"
 uci commit system && service sysntpd reload
 
 # uhttpd

@@ -83,6 +83,9 @@ cp -rf ../immortalwrt-luci/applications/luci-app-autoreboot package/new/
 # SeverChan
 svn export -q https://github.com/tty228/luci-app-serverchan/trunk package/new/luci-app-serverchan
 
+# xmm-modem
+svn export -q https://github.com/koshev-msk/xmm-modem/trunk package/xmm-modem
+
 # ShadowsocksR Plus+
 svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev

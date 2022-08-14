@@ -15,8 +15,6 @@ CONFIG_MMC_SDHCI_ACPI=y
 CONFIG_MMC_TIFM_SD=y
 CONFIG_TIFM_CORE=y
 CONFIG_TIFM_7XX1=y
-CONFIG_MMC_MTK=y
-CONFIG_MMC_VIA_SDMMC=y
 ' >> ./target/linux/x86/generic/config-5.10
 
 source ./01_customize_packages.sh

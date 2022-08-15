@@ -6,6 +6,9 @@
 # diskman
 svn export -q https://github.com/lisaac/luci-app-diskman/trunk/applications/luci-app-diskman package/new/luci-app-diskman
 
+#passwall2
+svn export -q https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/new/luci-app-passwall2
+
 # AutoCore
 cp -rf ../immortalwrt/package/emortal/autocore package/new/
 # grant getCPUUsage access

@@ -16,6 +16,9 @@ CONFIG_MMC_TIFM_SD=y
 CONFIG_TIFM_CORE=y
 CONFIG_TIFM_7XX1=y
 ' >> ./target/linux/x86/generic/config-5.10
+#passwall
+echo 'src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall;packages' >> feeds.conf.default
+echo 'src-git passwall_luci https://github.com/xiaorouji/openwrt-passwall;luci' >> feeds.conf.default
 
 source ./01_customize_packages.sh
 

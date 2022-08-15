@@ -6,6 +6,12 @@
 # Access Control
 cp -rf ../immortalwrt-luci/applications/luci-app-accesscontrol package/new/
 
+# Passwall
+cp -rf ../immortalwrt-luci/applications/luci-app-passwall package/new/
+
+# diskman
+svn export -q https://github.com/lisaac/luci-app-diskman/trunk/applications/luci-app-diskman package/new/luci-app-diskman
+
 # ADBYBY Plus +
 svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
 cp -rf ../immortalwrt-packages/net/adbyby package/new/

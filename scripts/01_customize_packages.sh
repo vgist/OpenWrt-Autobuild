@@ -4,7 +4,8 @@
 [[ ! -d package/new ]] && mkdir -p package/new
 
 # Passwall
-cp -rf ../immortalwrt-luci/applications/luci-app-passwall package/new/
+svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/luci-app-passwall package/new/luci-app-passwall
+svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/packages/chinadns-ng package/chinadns-ng
 
 # diskman
 svn export -q https://github.com/lisaac/luci-app-diskman/trunk/applications/luci-app-diskman package/new/luci-app-diskman

@@ -29,6 +29,9 @@ __init_build_env() {
 }
 
 __init_feeds() {
+sed -i '$a src-git kenzo https://github.com/kenzok8/openwrt-packages' feeds.conf.default
+sed -i '$a src-git small https://github.com/kenzok8/small' feeds.conf.default
+git pull
     ./openwrt/scripts/feeds update -a && ./openwrt/scripts/feeds install -a
 }
 

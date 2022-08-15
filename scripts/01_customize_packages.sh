@@ -9,7 +9,6 @@ svn export -q https://github.com/lisaac/luci-app-diskman/trunk/applications/luci
 #passwall
 svn export -q https://github.com/xiaorouji/openwrt-passwall/ package/new/openwrt-passwall
 cp -rf ../immortalwrt-luci/applications/luci-app-passwall package/new/
-svn export -q https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/new/luci-app-passwall2
 
 # AutoCore
 cp -rf ../immortalwrt/package/emortal/autocore package/new/

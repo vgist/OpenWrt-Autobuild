@@ -3,6 +3,8 @@
 # create directory
 [[ ! -d package/new ]] && mkdir -p package/new
 
+echo "src-git kenzo https://github.com/kenzok8/openwrt-packages" >> /feeds.conf.default
+
 # diskman
 svn export -q https://github.com/lisaac/luci-app-diskman/trunk/applications/luci-app-diskman package/new/luci-app-diskman
 

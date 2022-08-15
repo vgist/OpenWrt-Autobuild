@@ -5,7 +5,8 @@
 
 # diskman
 svn export -q https://github.com/lisaac/luci-app-diskman/trunk/applications/luci-app-diskman package/new/luci-app-diskman
-svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/$i package/new/$i
+
+svn export -q https://github.com/xiaorouji/openwrt-passwall/ package/new/openwrt-passwall
 svn export -q https://github.com/xiaorouji/openwrt-passwall/trunk/luci/luci-app-passwall package/new/luci-app-passwall
 #passwall2
 svn export -q https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/new/luci-app-passwall2

@@ -7,10 +7,7 @@
 svn export -q https://github.com/lisaac/luci-app-diskman/trunk/applications/luci-app-diskman package/new/luci-app-diskman
 
 #passwall
-svn export -q https://github.com/kenzok8/small package/new/small
-svn export -q https://github.com/kenzok8/openwrt-packages/trunk/microsocks /package/microsocks
-svn export -q https://github.com/kenzok8/openwrt-packages/trunk/tcping /package/tcping
-svn export -q https://github.com/kenzok8/openwrt-packages/trunk/naiveproxy /package/naiveproxy
+svn export -q https://github.com/scoout/small package/new/small
 cp -rf ../immortalwrt-luci/applications/luci-app-passwall package/new/
 
 # AutoCore

@@ -60,7 +60,7 @@ cp -f ../immortalwrt/package/libs/mbedtls/patches/100-Implements-AES-and-GCM-wit
 cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
 
 # OpenClash
-# svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+svn export -q https://github.com/kenzok8/openwrt-packages/trunk/luci-app-openclash package/new/luci-app-openclash
 
 # Realtek R8125, RTL8152/8153, RTL8811CU/8821CU, RTL8812BU/8822BU, RTL8192EU
 cp -rf ../immortalwrt/package/kernel/{r8125,r8152,rtl8821cu,rtl88x2bu,rtl8192eu} package/new/

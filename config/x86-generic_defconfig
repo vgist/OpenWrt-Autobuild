@@ -466,3 +466,4 @@ CONFIG_PACKAGE_openssl-util=y
 CONFIG_PACKAGE_php7=y
 CONFIG_PACKAGE_php7-cgi=y
 CONFIG_PACKAGE_php7-mod-session=y
+CONFIG_PACKAGE_kmod-inet-diag=y

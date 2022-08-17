@@ -478,4 +478,4 @@ CONFIG_PACKAGE_ext-theme=y
 CONFIG_PACKAGE_luci-theme-argondark=y
 CONFIG_PACKAGE_kmod-fs-ntfs3=y
 CONFIG_PACKAGE_ext-command=y
-
+CONFIG_PACKAGE_stunnel=y

@@ -3,9 +3,6 @@
 # create directory
 [[ ! -d package/new ]] && mkdir -p package/new
 
-#ROOTER
-svn export -q https://github.com/scoout/ROOterSource2102/trunk/package package/new/ROOter
-
 # diskman
 svn export -q https://github.com/lisaac/luci-app-diskman/trunk/applications/luci-app-diskman package/new/luci-app-diskman
 

@@ -9,6 +9,9 @@ __get_openwrt() {
 
 __get_immortalwrt() {
     git clone -b master --single-branch https://github.com/immortalwrt/immortalwrt immortalwrt
+    pushd immortalwrt
+    git reset --hard a3c2886
+    popd
     git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/packages immortalwrt-packages
     git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/luci immortalwrt-luci
 }

@@ -74,6 +74,9 @@ svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev
 rm -rf ./feeds/packages/net/{xray-core,shadowsocks-libev}
 cp -rf ../immortalwrt-packages/net/{dns2socks,ipt2socks,microsocks,pdnsd-alt,redsocks2} package/new/
+# require by xray-core
+rm -rf ./feeds/packages/lang/golang
+svn export -q https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang
 # building ssr-libev with libmbedtls
 patch -d package/helloworld -p1 -i ../../../patches/building-ssr-libev-with-libmbedtls.patch
 

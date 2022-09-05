@@ -38,7 +38,7 @@
  
 --- a/src/rfc1035.c
 +++ b/src/rfc1035.c
-@@ -1987,6 +1987,16 @@ size_t answer_request(struct dns_header *header, char *limit, size_t qlen,
+@@ -2056,6 +2056,16 @@ size_t answer_request(struct dns_header *header, char *limit, size_t qlen,
  	    }
  	}
  

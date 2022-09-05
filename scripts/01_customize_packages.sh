@@ -43,7 +43,8 @@ cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/
 
 # FullCone nat for nftables
 # patch kernel
-cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
+#cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
+curl -sSL https://github.com/immortalwrt/immortalwrt/raw/master/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
 # patch libnftnl

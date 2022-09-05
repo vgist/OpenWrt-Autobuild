@@ -6,7 +6,7 @@ on:
       branch:
         description: 'your local repo branch'
         required: true
-        default: 21.02
+        default: 22.03
         type: choice
         options:
         - master
@@ -46,12 +46,12 @@ jobs:
             _prerelease=true
             ;;
           22.03)
-            _release_tag=$(git tag --sort=committerdate --list 'v22.*' | tail -1)
+            _release_tag=$(git tag --sort=taggerdate --list 'v22.*' | tail -1)
             git checkout $_release_tag
-            _prerelease=true
+            _prerelease=false
             ;;
           21.02)
-            _release_tag=$(git tag --sort=committerdate --list 'v21.*' | tail -1)
+            _release_tag=$(git tag --sort=taggerdate --list 'v21.*' | tail -1)
             git checkout $_release_tag
             _prerelease=false
             ;;

@@ -1,6 +1,6 @@
 --- a/package/network/services/dnsmasq/files/dnsmasq.init
 +++ b/package/network/services/dnsmasq/files/dnsmasq.init
-@@ -1173,6 +1173,20 @@ dnsmasq_start()
+@@ -1181,6 +1181,20 @@ dnsmasq_start()
  	esac
  
  	procd_close_instance
@@ -21,7 +21,7 @@
  }
  
  dnsmasq_stop()
-@@ -1190,6 +1204,16 @@ dnsmasq_stop()
+@@ -1198,6 +1212,16 @@ dnsmasq_stop()
  	rm -f ${BASEDHCPSTAMPFILE}.${cfg}.*.dhcp
  }
  
@@ -38,7 +38,7 @@
  add_interface_trigger()
  {
  	local interface ignore
-@@ -1260,6 +1284,7 @@ start_service() {
+@@ -1268,6 +1292,7 @@ start_service() {
  }
  
  reload_service() {
@@ -46,7 +46,7 @@
  	rc_procd start_service "$@"
  	procd_send_signal dnsmasq "$@"
  }
-@@ -1286,4 +1311,5 @@ stop_service() {
+@@ -1294,4 +1319,5 @@ stop_service() {
  	else
  		config_foreach dnsmasq_stop dnsmasq
  	fi

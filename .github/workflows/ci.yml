@@ -75,9 +75,9 @@ jobs:
         echo ::set-output name=device::$_device
         echo ::set-output name=artifact::$_artifact_path
 
-    - name: Clone immortalwrt
+    - name: Fetch Other repos
       run: |
-        ./scripts/00_init.sh immortalwrt
+        ./scripts/00_init.sh other-repos
 
     - name: Feeds update & install
       run: |

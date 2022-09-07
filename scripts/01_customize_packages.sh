@@ -21,7 +21,7 @@ sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/n
 
 # automount
 for i in "automount" "ntfs3-mount" "ntfs3-oot"; do
-    svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/$i package/new/$i
+    cp -rf ../lede/package/lean/$i package/new/$i
 done
 
 # cpufreq
@@ -51,7 +51,9 @@ cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/util
 cp -rf ../immortalwrt/package/libs/libnftnl/patches package/libs/libnftnl/
 sed -i '/PKG_INSTALL:=1/i\PKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 # patch nftables
-cp -f ../immortalwrt/package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch package/network/utils/nftables/patches/
+#cp -f ../immortalwrt/package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch package/network/utils/nftables/patches/
+rm -rf package/network/utils/nftables/
+cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
 # patch firewall4
 cp -rf ../immortalwrt/package/network/config/firewall4/patches package/network/config/firewall4/
 sed -i 's|+kmod-nft-nat +kmod-nft-nat6|+kmod-nft-nat +kmod-nft-nat6 +kmod-nft-fullcone|g' package/network/config/firewall4/Makefile

@@ -7,7 +7,8 @@ __get_openwrt() {
     git clone https://github.com/openwrt/openwrt
 }
 
-__get_immortalwrt() {
+__get_other-repos() {
+    git clone -b master --depth 1 --single-branch https://github.com/coolsnowwolf/lede lede
     git clone -b master --single-branch https://github.com/immortalwrt/immortalwrt immortalwrt
     git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/packages immortalwrt-packages
     git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/luci immortalwrt-luci
@@ -36,7 +37,7 @@ __init_feeds() {
 case $1 in
     build_env)      __init_build_env    ;;
     openwrt)        __get_openwrt       ;;
-    immortalwrt)    __get_immortalwrt   ;;
+    other-repos)    __get_other-repos   ;;
     feeds)          __init_feeds        ;;
     *)              echo "input error"  ;;
 esac

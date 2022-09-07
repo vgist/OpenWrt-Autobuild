@@ -5,14 +5,17 @@ set -ex
 # crypto optimization
 sed -i 's,-mcpu=generic,-mcpu=cortex-a53+crypto,g' include/target.mk
 
-# Necessary patches from immortalwrt
+# Necessary patches
 pushd ../immortalwrt
-git revert ca9bda5da7 --no-edit
+git reset --hard 4687da5
 popd
 rm -rf ./target/linux/rockchip/{image,patches-5.10}
 cp -rf ../immortalwrt/target/linux/rockchip/{files,image,patches-5.10} target/linux/rockchip/
 rm -rf ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt/package/boot/{uboot-rockchip,arm-trusted-firmware-rockchip-vendor} package/boot/
+pushd ../immortalwrt
+git reset --hard origin/master
+popd
 
 # fix net
 sed -i '/friendlyarm,nanopi-r2s/i\friendlyarm,nanopi-r2c|\\' target/linux/rockchip/armv8/base-files/etc/board.d/01_leds

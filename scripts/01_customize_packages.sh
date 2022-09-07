@@ -20,7 +20,7 @@ sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/n
 
 # automount
 for i in "automount" "ntfs3-mount" "ntfs3-oot"; do
-    svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/$i package/new/$i
+    cp -rf ../lede/package/lean/$i package/new/
 done
 
 # cpufreq
@@ -43,8 +43,7 @@ cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/
 
 # FullCone nat for nftables
 # patch kernel
-#cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
-curl -sSL https://github.com/immortalwrt/immortalwrt/raw/master/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch
+cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
 # patch libnftnl

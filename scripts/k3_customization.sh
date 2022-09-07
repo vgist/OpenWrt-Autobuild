@@ -8,9 +8,9 @@ sed -i 's|^TARGET_|# TARGET_|g; s|# TARGET_DEVICES += phicomm_k3|TARGET_DEVICES 
 # k3 device packages
 sed -i 's|kmod-brcmfmac brcmfmac-firmware-4366c0-pcie|kmod-brcmfmac k3wifi k3screenctrl|g' target/linux/bcm53xx/image/Makefile
 # k3 proprietary wifi driver
-svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/k3-brcmfmac4366c-firmware package/k3/k3wifi
+cp -rf ../lede/package/lean/k3-brcmfmac4366c-firmware package/firmware/
 # k3 screen control
-svn export -q https://github.com/coolsnowwolf/lede/trunk/package/lean/k3screenctrl package/k3/k3screenctrl
+cp -rf ../lede/package/lean/k3screenctrl package/firmware/
 
 source ./01_customize_packages.sh
 

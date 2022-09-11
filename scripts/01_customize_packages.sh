@@ -20,6 +20,8 @@ sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/n
 
 # automount
 cp -rf ../immortalwrt/package/emortal/automount package/new/
+# backport ntfs3 patches
+curl -sSL https://github.com/immortalwrt/immortalwrt/commit/2d32c19.patch | patch -p1
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/

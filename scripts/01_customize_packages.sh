@@ -20,9 +20,11 @@ cp -rf ../immortalwrt-luci/modules/luci-base/root/usr/libexec/rpcd/luci feeds/lu
 sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/generic/luci-mod-status-autocore.json
 
 # automount
-for i in "automount" "ntfs3-mount" "ntfs3-oot"; do
-    cp -rf ../lede/package/lean/$i package/new/
-done
+cp -rf ../lede/package/lean/automount package/new/
+cp -rf ../lede/package/lean/ntfs3-mount package/new/
+# backport ntfs3 patches
+patch -p1 -i ../patches/kernel-add-kmod-fs-ntfs3.patch
+cp -rf ../lede/target/linux/generic/files-5.10 target/linux/generic/
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/

@@ -113,9 +113,5 @@ cp -rf ../default-settings package/new/
 # max conntrack
 sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
 
-# need ImmortalWrt mirrors
-cp -f ../immortalwrt/scripts/download.pl scripts/
-cp -f ../immortalwrt/include/download.mk include/
-
 # fix include luci.mk
 find package/new/ -type f -name Makefile -exec sed -i 's,../../luci.mk,$(TOPDIR)/feeds/luci/luci.mk,g' {} +

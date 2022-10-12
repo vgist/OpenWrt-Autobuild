@@ -44,9 +44,6 @@ cp -f ../immortalwrt/target/linux/generic/hack-5.4/952-net-conntrack-events-supp
 patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 cp -rf ../immortalwrt/package/network/config/firewall/patches package/network/config/firewall/
 
-# Kernel: fix IPv6 package drop when using software flow offload
-curl -sSL https://github.com/openwrt/openwrt/pull/9940.patch | patch -p1
-
 # mbedtls
 cp -f ../immortalwrt/package/libs/mbedtls/patches/100-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch package/libs/mbedtls/patches/
 cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/

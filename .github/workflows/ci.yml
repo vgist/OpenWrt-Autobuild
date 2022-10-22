@@ -103,11 +103,10 @@ jobs:
         /bin/bash 03_create_acl_for_luci.sh -a
 
     - name: Get cache toolchain
-      uses: klever1988/cachewrtbuild@test
+      uses: HiGarfield/cachewrtbuild@main
       with:
-        ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
-        mixkey: ${{ matrix.target }}-
+        mixkey: ${{ matrix.target }}
 
     - name: Make Config
       working-directory: ./openwrt

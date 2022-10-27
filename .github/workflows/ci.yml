@@ -70,10 +70,10 @@ jobs:
         esac
         _artifact=${{ matrix.target }}
         _artifact_path=openwrt/bin/targets/${_artifact/-//}
-        echo ::set-output name=release_tag::$_release_tag
-        echo ::set-output name=prerelease::$_prerelease
-        echo ::set-output name=device::$_device
-        echo ::set-output name=artifact::$_artifact_path
+        echo "release_tag=$_release_tag" >> $GITHUB_OUTPUT
+        echo "prerelease=$_prerelease" >> $GITHUB_OUTPUT
+        echo "device=$_device" >> $GITHUB_OUTPUT
+        echo "artifact=$_artifact_path" >> $GITHUB_OUTPUT
 
     - name: Fetch Other repos
       run: |

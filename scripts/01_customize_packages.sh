@@ -71,14 +71,6 @@ cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/
 # Scheduled Reboot
 cp -rf ../immortalwrt-luci/applications/luci-app-autoreboot package/new/
 
-#modeminfo
-svn export -q https://github.com/koshev-msk/luci-app-modeminfo/trunk/luci-app-modeminfo package/new/luci-app-modeminfo
-svn export -q https://github.com/koshev-msk/luci-app-modeminfo/trunk/modeminfo package/modeminfo
-
-#atinout
-svn export -q https://github.com/4IceG/luci-app-atinout-mod/trunk/luci-app-atinout-mod package/new/luci-app-atinout-mod
-svn export -q https://github.com/4IceG/luci-app-atinout-mod/trunk/atinout package/atinout
-
 # xmm-modem
 svn export -q https://github.com/koshev-msk/xmm-modem/trunk package/xmm-modem
 

@@ -71,9 +71,6 @@ cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/
 # Scheduled Reboot
 cp -rf ../immortalwrt-luci/applications/luci-app-autoreboot package/new/
 
-# xmm-modem
-svn export -q https://github.com/koshev-msk/xmm-modem/trunk package/xmm-modem
-
 # default settings and translation
 #cp -rf ../default-settings package/new/
 

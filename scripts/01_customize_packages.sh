@@ -3,16 +3,6 @@
 # create directory
 [[ ! -d package/new ]] && mkdir -p package/new
 
-# AutoCore
-cp -rf ../immortalwrt/package/emortal/autocore package/new/
-cp -rf ../immortalwrt/package/utils/mhz package/utils/
-cp -rf ../immortalwrt-luci/modules/luci-base/root/usr/libexec/rpcd/luci feeds/luci/modules/luci-base/root/usr/libexec/rpcd/
-# grant getCPUUsage access
-sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/generic/luci-mod-status-autocore.json
-
-# cpufreq
-cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
-
 # dnsmasq: add filter aaa option
 cp -rf ../patches/910-add-filter-aaaa-option-support.patch package/network/services/dnsmasq/patches/
 patch -p1 -i ../patches/dnsmasq-add-filter-aaaa-option.patch
@@ -51,9 +41,6 @@ cp -rf ../immortalwrt/package/kernel/{r8125,r8152,rtl8192eu} package/new/
 
 # Release Ram
 cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/
-
-# Scheduled Reboot
-cp -rf ../immortalwrt-luci/applications/luci-app-autoreboot package/new/
 
 # max conntrack
 sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf

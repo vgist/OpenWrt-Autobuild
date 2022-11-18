@@ -74,7 +74,6 @@ svn export -q https://github.com/tty228/luci-app-serverchan/trunk package/new/lu
 svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev
 rm -rf ./feeds/packages/net/{xray-core,shadowsocks-libev}
-cp -rf ../immortalwrt-packages/net/pdnsd-alt package/helloworld/
 # require by xray-core
 rm -rf ./feeds/packages/lang/golang
 svn export -q https://github.com/openwrt/packages/branches/openwrt-22.03/lang/golang feeds/packages/lang/golang

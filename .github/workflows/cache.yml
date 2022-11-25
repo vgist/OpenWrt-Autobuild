@@ -1,0 +1,67 @@
+name: Fetch Cache
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "00 00 */6 * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        target: [bcm53xx-generic, ramips-mt7621, rockchip-armv8, sunxi-cortexa7, x86-64, x86-generic]
+        branch: [22.03, 21.02]
+
+    steps:
+    - name: Clone Repository
+      uses: actions/checkout@v3
+      with:
+        ref: ${{ matrix.branch }}
+
+    - name: Clone OpenWrt
+      run: |
+        ./scripts/00_init.sh openwrt
+
+    - name: Get variable
+      working-directory: ./openwrt
+      id: var
+      run: |
+        case ${{ matrix.branch }} in
+          22.03)
+            _release_tag=$(git tag --sort=taggerdate --list 'v22.*' | tail -1)
+            git checkout $_release_tag
+            _prerelease=false
+            ;;
+          21.02)
+            _release_tag=$(git tag --sort=taggerdate --list 'v21.*' | tail -1)
+            git checkout $_release_tag
+            _prerelease=false
+            ;;
+          *)
+            echo "Can't get local/upstream's branch/tags"
+            ;;
+        esac
+        case ${{ matrix.target }} in
+          bcm53xx-generic)  _device=k3                ;;
+          ramips-mt7621)    _device=k2p               ;;
+          rockchip-armv8)   _device=r2c-r2s           ;;
+          sunxi-cortexa7)   _device=zeropi            ;;
+          x86-64)           _device=x86-64            ;;
+          x86-generic)      _device=x86-generic       ;;
+          *)                echo "wrong devices"      ;;
+        esac
+        _artifact=${{ matrix.target }}
+        _artifact_path=openwrt/bin/targets/${_artifact/-//}
+        echo "release_tag=$_release_tag" >> $GITHUB_OUTPUT
+        echo "prerelease=$_prerelease" >> $GITHUB_OUTPUT
+        echo "device=$_device" >> $GITHUB_OUTPUT
+        echo "artifact=$_artifact_path" >> $GITHUB_OUTPUT
+
+    - name: Get cache toolchain
+      uses: HiGarfield/cachewrtbuild@main
+      with:
+        prefix: ${{ github.workspace }}/openwrt
+        mixkey: ${{ matrix.target }}
+        skip_saving: 'true'
+

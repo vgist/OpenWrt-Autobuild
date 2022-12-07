@@ -13,10 +13,9 @@ cp -rf ../immortalwrt-packages/net/adbyby package/new/
 # arpbind
 cp -rf ../immortalwrt-luci/applications/luci-app-arpbind package/new/
 
-# AutoCore
-cp -rf ../immortalwrt/package/emortal/autocore package/new/
-cp -rf ../immortalwrt/package/utils/mhz package/utils/
-cp -rf ../immortalwrt-luci/modules/luci-base/root/usr/libexec/rpcd/luci feeds/luci/modules/luci-base/root/usr/libexec/rpcd/
+# AutoCore, cp from YAOF
+svn export -r 219750 -q https://github.com/immortalwrt/immortalwrt/branches/master/package/emortal/autocore package/new/autocore
+sed -i '/"$threads"/d' package/new/autocore/files/x86/autocore
 # grant getCPUUsage access
 sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/generic/luci-mod-status-autocore.json
 

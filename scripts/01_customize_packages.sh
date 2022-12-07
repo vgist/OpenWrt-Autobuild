@@ -63,8 +63,8 @@ sed -i 's|+kmod-nft-nat +kmod-nft-nat6|+kmod-nft-nat +kmod-nft-nat6 +kmod-nft-fu
 patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 
 # mbedtls
-cp -f ../immortalwrt/package/libs/mbedtls/patches/100-Implements-AES-and-GCM-with-ARMv8-Crypto-Extensions.patch package/libs/mbedtls/patches/
-cp -f ../patches/201-Camellia-block-cipher.patch package/libs/mbedtls/patches/
+rm -rf package/libs/mbedtls
+cp -rf ../immortalwrt/package/libs/mbedtls package/libs/
 
 # OLED
 svn export -q https://github.com/NateLol/luci-app-oled/trunk package/new/luci-app-oled

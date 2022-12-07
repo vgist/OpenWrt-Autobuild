@@ -88,8 +88,6 @@ svn export -q https://github.com/tty228/luci-app-serverchan/trunk package/new/lu
 svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
 svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev
 rm -rf ./feeds/packages/net/{xray-core,shadowsocks-libev}
-# building ssr-libev with libmbedtls
-patch -d package/helloworld -p1 -i ../../../patches/building-ssr-libev-with-libmbedtls.patch
 
 # USB Printer
 cp -rf ../immortalwrt-luci/applications/luci-app-usb-printer package/new/

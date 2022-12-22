@@ -26,13 +26,9 @@ cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 # DDNS
 #cp -rf ../immortalwrt-packages/net/ddns-scripts_{aliyun,dnspod} package/new/
 
-# dnsmasq: add filter aaa option
-cp -f ../patches/910-add-filter-aaaa-option-support.patch package/network/services/dnsmasq/patches/
-patch -p1 -i ../patches/dnsmasq-add-filter-aaaa-option.patch
-patch -d feeds/luci -p1 -i ../../../patches/filter-aaaa-luci.patch
-
-# dnsmasq: use nft ruleset for dns_redirect
-patch -p1 -i ../patches/dnsmasq-use-nft-ruleset-for-dns_redirect.patch
+# dnsmasq
+rm -rf package/network/services/dnsmasq
+cp -rf ../immortalwrt/package/network/services/dnsmasq package/network/services/
 
 # Filetransfer
 cp -rf ../immortalwrt-luci/applications/luci-app-filetransfer package/new/

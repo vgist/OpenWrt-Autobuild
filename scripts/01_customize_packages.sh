@@ -32,13 +32,9 @@ cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 # DDNS
 cp -rf ../immortalwrt-packages/net/ddns-scripts_{aliyun,dnspod} package/new/
 
-# dnsmasq: add filter aaa option
-cp -rf ../patches/910-add-filter-aaaa-option-support.patch package/network/services/dnsmasq/patches/
-patch -p1 -i ../patches/dnsmasq-add-filter-aaaa-option.patch
-patch -d feeds/luci -p1 -i ../../../patches/filter-aaaa-luci.patch
-
-# dnsmasq: use nft ruleset for dns_redirect
-patch -p1 -i ../patches/dnsmasq-use-nft-ruleset-for-dns_redirect.patch
+# dnsmasq
+rm -rf package/network/services/dnsmasq
+cp -rf ../immortalwrt/package/network/services/dnsmasq package/network/services/
 
 # Filetransfer
 cp -rf ../immortalwrt-luci/applications/luci-app-filetransfer package/new/
@@ -50,17 +46,14 @@ cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-sup
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
 # patch libnftnl
-#cp -rf ../immortalwrt/package/libs/libnftnl/patches package/libs/libnftnl/
-#sed -i '/PKG_INSTALL:=1/i\PKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
 rm -rf package/libs/libnftnl
 cp -rf ../immortalwrt/package/libs/libnftnl package/libs/
 # patch nftables
-#cp -f ../immortalwrt/package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch package/network/utils/nftables/patches/
 rm -rf package/network/utils/nftables/
 cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
 # patch firewall4
-cp -rf ../immortalwrt/package/network/config/firewall4/patches package/network/config/firewall4/
-sed -i 's|+kmod-nft-nat +kmod-nft-nat6|+kmod-nft-nat +kmod-nft-nat6 +kmod-nft-fullcone|g' package/network/config/firewall4/Makefile
+rm -rf package/network/config/firewall4
+cp -rf ../immortalwrt/package/network/config/firewall4 package/network/config/
 # patch luci
 patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 

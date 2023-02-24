@@ -100,8 +100,5 @@ cp -rf ../immortalwrt-luci/applications/luci-app-zerotier package/new/
 # default settings and translation
 cp -rf ../default-settings package/new/
 
-# max conntrack
-sed -i 's,16384,65536,g' package/kernel/linux/files/sysctl-nf-conntrack.conf
-
 # fix include luci.mk
 find package/new/ -type f -name Makefile -exec sed -i 's,../../luci.mk,$(TOPDIR)/feeds/luci/luci.mk,g' {} +

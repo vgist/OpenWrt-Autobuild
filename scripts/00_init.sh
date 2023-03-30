@@ -15,6 +15,10 @@ __get_other-repos() {
     pushd immortalwrt-luci
     git reset --hard cecb675
     popd
+    # mbedtls building error
+    pushd immortalwrt
+    git reset --hard 4580230
+    popd
 }
 
 __init_build_env() {

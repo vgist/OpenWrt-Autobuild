@@ -16,16 +16,15 @@
 
 #### 分支
 
-| 版本      |x86<br>x86/generic|NanoPi<br>R2C R2S ZeroPi|Phicomm<br>K3|Phicomm<br>K2P|
+| 版本      |x86<br>64/generic|NanoPi<br>R2C R2S ZeroPi|Phicomm<br>K3|Phicomm<br>K2P|
 |-----------|:-------------------:|:----------------------:|:------------:|:------------:|
 | 22.03.x   |       &check;       |        &check;         |    &check;   |   &check;    |
 | 21.02.x   |       &check;       |        &check;         |    &check;   |   &check;    |
 
 #### 第三方应用列表
 
-| 应用        |x86<br>x86/generic|NanoPi<br>R2C/R2S/ZeroPi|Phicomm<br>K3|Phicomm<br>K2P|
+| 应用        |x86<br>64/generic|NanoPi<br>R2C/R2S/ZeroPi|Phicomm<br>K3|Phicomm<br>K2P|
 |-------------|:----------------:|:----------------------:|:-----------:|:------------:|
-|ADBYBY Plus +|      &check;     |        &check;         |   &check;   |              |
 | AutoCore    |      &check;     |        &check;         |   &check;   |              |
 | cpufreq     |                  |        &check;         |             |              |
 | DDNS        |      &check;     |        &check;         |   &check;   |              |

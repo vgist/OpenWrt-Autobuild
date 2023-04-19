@@ -6,10 +6,6 @@
 # Access Control
 cp -rf ../immortalwrt-luci/applications/luci-app-accesscontrol package/new/
 
-# ADBYBY Plus +
-svn export -q https://github.com/coolsnowwolf/luci/trunk/applications/luci-app-adbyby-plus package/new/luci-app-adbyby-plus
-cp -rf ../immortalwrt-packages/net/adbyby package/new/
-
 # arpbind
 cp -rf ../immortalwrt-luci/applications/luci-app-arpbind package/new/
 

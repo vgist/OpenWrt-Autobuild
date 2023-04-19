@@ -7,13 +7,19 @@
 - 如需添加特色 package，请 fork 后自行在如下文件中添加
     - scripts/01_customize_packages.sh
     - config/*
+- 如果 upnpd 在 nat 网关之后，则需要（自己寻找免费的 stun 服务器）
+
+        uci set upnpd.config.use_stun='1'
+        uci set upnpd.config.stun_host='stun.qq.com'
+        uci set upnpd.config.stun_port='3478'
+        uci commit upnpd
 
 #### 分支
 
 | 版本      |x86<br>x86/generic|NanoPi<br>R2C R2S ZeroPi|Phicomm<br>K3|Phicomm<br>K2P|
 |-----------|:-------------------:|:----------------------:|:------------:|:------------:|
-| 22.03.0   |       &check;       |        &check;         |    &check;   |   &check;    |
-| 21.02.3   |       &check;       |        &check;         |    &check;   |   &check;    |
+| 22.03.x   |       &check;       |        &check;         |    &check;   |   &check;    |
+| 21.02.x   |       &check;       |        &check;         |    &check;   |   &check;    |
 
 #### 第三方应用列表
 

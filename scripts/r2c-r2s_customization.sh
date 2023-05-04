@@ -13,6 +13,9 @@ rm -rf ./target/linux/rockchip/{image,patches-5.4}
 cp -rf ../immortalwrt/target/linux/rockchip/{files,image,patches-5.4} target/linux/rockchip/
 rm -rf ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt/package/boot/{uboot-rockchip,arm-trusted-firmware-rockchip-vendor} package/boot/
+pushd ../immortalwrt
+git reset --hard origin/openwrt-21.02
+popd
 
 # fix net
 sed -i '/friendlyarm,nanopi-r2s/i\friendlyarm,nanopi-r2c|\\' target/linux/rockchip/armv8/base-files/etc/board.d/01_leds

@@ -14,7 +14,7 @@ cp -rf ../immortalwrt/target/linux/rockchip/{files,image,patches-5.10} target/li
 rm -rf ./package/boot/uboot-rockchip
 cp -rf ../immortalwrt/package/boot/{uboot-rockchip,arm-trusted-firmware-rockchip-vendor} package/boot/
 pushd ../immortalwrt
-git reset --hard origin/master
+git reset --hard 4580230
 popd
 
 # fix net

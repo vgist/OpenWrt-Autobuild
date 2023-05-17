@@ -2,8 +2,8 @@
 
 set -ex
 
-# model name patch
-cp -f ../immortalwrt/target/linux/generic/hack-5.4/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch target/linux/generic/hack-5.4/
+# model name patch for aarch64
+cp -f ../patches/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch target/linux/generic/hack-5.4/
 
 # kernel
 echo '

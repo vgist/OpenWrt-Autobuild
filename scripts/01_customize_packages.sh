@@ -19,8 +19,6 @@ sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/n
 # automount
 cp -rf ../lede/package/lean/automount package/new/
 cp -rf ../lede/package/lean/ntfs3-mount package/new/
-# backport ntfs3 patches
-cp -rf ../lede/target/linux/generic/files-5.10 target/linux/generic/
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
@@ -42,7 +40,7 @@ cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/
 
 # FullCone nat for nftables
 # patch kernel
-cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
+cp -f ../immortalwrt/target/linux/generic/hack-5.15/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.15/
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
 # patch libnftnl

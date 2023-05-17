@@ -24,7 +24,7 @@ sed -i '/friendlyarm,nanopi-r2s/i\friendlyarm,nanopi-r2c|\\' target/linux/rockch
 
 
 # model name patch for aarch64
-cp -f ../immortalwrt/target/linux/generic/hack-5.10/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch target/linux/generic/hack-5.10/
+cp -f ../patches/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch target/linux/generic/hack-5.10/
 
 echo '
 CONFIG_MOTORCOMM_PHY=y

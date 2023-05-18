@@ -26,7 +26,7 @@ cp -rf ../lede/target/linux/generic/files-5.10 target/linux/generic/
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 
 # DDNS
-cp -rf ../immortalwrt-packages/net/ddns-scripts_{aliyun,dnspod} package/new/
+#cp -rf ../immortalwrt-packages/net/ddns-scripts_{aliyun,dnspod} package/new/
 
 # dnsmasq
 rm -rf package/network/services/dnsmasq
@@ -76,9 +76,9 @@ cp -rf ../immortalwrt-luci/applications/luci-app-autoreboot package/new/
 svn export -q https://github.com/tty228/luci-app-serverchan/trunk package/new/luci-app-serverchan
 
 # ShadowsocksR Plus+
-svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
-svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev
-rm -rf ./feeds/packages/net/{xray-core,shadowsocks-libev}
+#svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
+#svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev
+#rm -rf ./feeds/packages/net/{xray-core,shadowsocks-libev}
 
 # USB Printer
 cp -rf ../immortalwrt-luci/applications/luci-app-usb-printer package/new/
@@ -88,7 +88,7 @@ cp -rf ../immortalwrt-luci/applications/luci-app-vlmcsd package/new/
 cp -rf ../immortalwrt-packages/net/vlmcsd package/new/
 
 # xlnetacc
-cp -rf ../immortalwrt-luci/applications/luci-app-xlnetacc package/new/
+#cp -rf ../immortalwrt-luci/applications/luci-app-xlnetacc package/new/
 
 # Zerotier
 cp -rf ../immortalwrt-luci/applications/luci-app-zerotier package/new/

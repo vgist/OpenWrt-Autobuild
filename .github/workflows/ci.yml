@@ -9,7 +9,7 @@ on:
         default: 22.03
         type: choice
         options:
-        - master
+        - main
         - 23.05
         - 22.03
         - 21.02
@@ -42,12 +42,13 @@ jobs:
       id: var
       run: |
         case ${{ github.event.inputs.branch }} in
-          master)
+          main)
             _release_tag=snapshot-r$(date +%g.%j)
             _prerelease=true
             ;;
           23.05)
-            _release_tag=$(git tag --sort=taggerdate --list 'v23.*' | tail -1)
+            #_release_tag=$(git tag --sort=taggerdate --list 'v23.*' | tail -1)
+            _release_tag=v23.05-snapshot-r$(date +%g.%j)
             git checkout $_release_tag
             _prerelease=true
             ;;

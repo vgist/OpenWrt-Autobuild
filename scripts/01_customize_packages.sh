@@ -38,23 +38,24 @@ cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/
 
 # FullCone nat for nftables
 # patch kernel
-cp -f ../immortalwrt/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
+cp -f ../lede/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
+cp -r ../lede/target/linux/generic/hack-5.10/982-add-bcm-fullconenat-support.patch target/linux/generic/hack-5.10/
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
-# patch libnftnl
-rm -rf package/libs/libnftnl
+# libnftnl
+rm -rf ./package/libs/libnftnl
 cp -rf ../immortalwrt/package/libs/libnftnl package/libs/
-# patch nftables
-rm -rf package/network/utils/nftables/
+# nftables
+rm -rf ./package/network/utils/nftables/
 cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
-# patch firewall4
-rm -rf package/network/config/firewall4
+# firewall4
+rm -rf ./package/network/config/firewall4
 cp -rf ../immortalwrt/package/network/config/firewall4 package/network/config/
 # patch luci
 patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 
 # mbedtls
-rm -rf package/libs/mbedtls
+rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls package/libs/
 
 # OLED

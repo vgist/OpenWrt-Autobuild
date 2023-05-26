@@ -1,43 +1,18 @@
 #### 提醒
 
 - 默认密码：无
-- 二进制 golang：尽量不编译进小闪存设备
+- 固件的增减基于我目前用到的设备
 - 上游为 openwrt 官方，原汁原味，一些 package 取自第三方
-- 内置一些 usb 无线 ac 网卡与千兆有线网卡，具体查看 config 文件夹
-- 如需添加特色 package，请 fork 后自行在如下文件中添加
-    - scripts/01_customize_packages.sh
-    - config/*
+- 内置一些 usb 无线 ac 网卡与千兆有线网卡，各设备默认的应用，均自行查看 config 文件夹
+- 如需添加其他包或设备，请 fork 后自行在如下文件中添加
+    - scripts/
+    - config/
 - 如果 upnpd 在 nat 网关之后，则需要（自己寻找免费的 stun 服务器）
 
         uci set upnpd.config.use_stun='1'
         uci set upnpd.config.stun_host='stun.qq.com'
         uci set upnpd.config.stun_port='3478'
         uci commit upnpd
-
-#### 分支
-
-| 版本      |x86<br>64|NanoPi<br>Neo2/R2C/R2S|Phicomm<br>K3|
-|-----------|:-------:|:--------------------:|:-----------:|
-| 22.03.x   | &check; |        &check;       |    &check;  |
-| 21.02.x   | &check; |        &check;       |    &check;  |
-
-#### 第三方应用列表
-
-| 应用        |x86<br>64|NanoPi<br>Neo2/R2C/R2S|Phicomm<br>K3|
-|-------------|:-------:|:--------------------:|:-----------:|
-| AutoCore    | &check; |       &check;        |   &check;   |
-| cpufreq     |         |       &check;        |             |
-| FullCone NAT| &check; |       &check;        |   &check;   |
-| OpenClash   | &check; |       &check;        |   &check;   |
-| usb 打印    | &check; |       &check;        |   &check;   |
-| vlmcsd 服务 | &check; |       &check;        |   &check;   |
-| Zerotier    | &check; |       &check;        |   &check;   |
-| 定时重启    | &check; |       &check;        |   &check;   |
-| 上网时间控制| &check; |       &check;        |   &check;   |
-| 释放内存    | &check; |       &check;        |   &check;   |
-| 网络共享    | &check; |       &check;        |   &check;   |
-| 文件传输    | &check; |       &check;        |   &check;   |
-| 自动挂载    | &check; |       &check;        |   &check;   |
 
 #### TODO
 

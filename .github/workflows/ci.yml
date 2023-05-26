@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        target: [bcm53xx-generic, rockchip-armv8, sunxi-cortexa53, x86-64]
+        target: [bcm53xx-generic, sunxi-cortexa53, x86-64]
 
     steps:
     - name: Clone Repository
@@ -61,7 +61,6 @@ jobs:
         esac
         case ${{ matrix.target }} in
           bcm53xx-generic)  _device=k3                ;;
-          rockchip-armv8)   _device=r2c-r2s           ;;
           sunxi-cortexa53)  _device=nanopi-neo2       ;;
           x86-64)           _device=x86-64            ;;
           *)                echo "wrong devices"      ;;

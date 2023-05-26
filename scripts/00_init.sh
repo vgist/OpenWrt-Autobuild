@@ -9,16 +9,9 @@ __get_openwrt() {
 
 __get_other-repos() {
     git clone -b master --depth 1 --single-branch https://github.com/coolsnowwolf/lede lede
-    git clone -b master --single-branch https://github.com/immortalwrt/immortalwrt immortalwrt
+    git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/immortalwrt immortalwrt
     git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/packages immortalwrt-packages
-    git clone -b master --single-branch https://github.com/immortalwrt/luci immortalwrt-luci
-    pushd immortalwrt-luci
-    git reset --hard cecb675
-    popd
-    # mbedtls building error
-    pushd immortalwrt
-    git reset --hard 4580230
-    popd
+    git clone -b master --depth 1 --single-branch https://github.com/immortalwrt/luci immortalwrt-luci
 }
 
 __init_build_env() {

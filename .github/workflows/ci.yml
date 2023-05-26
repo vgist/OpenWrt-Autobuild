@@ -10,6 +10,7 @@ on:
         type: choice
         options:
         - master
+        - 23.05
         - 22.03
         - 21.02
 
@@ -43,6 +44,11 @@ jobs:
         case ${{ github.event.inputs.branch }} in
           master)
             _release_tag=snapshot-r$(date +%g.%j)
+            _prerelease=true
+            ;;
+          23.05)
+            _release_tag=$(git tag --sort=taggerdate --list 'v23.*' | tail -1)
+            git checkout $_release_tag
             _prerelease=true
             ;;
           22.03)

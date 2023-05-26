@@ -27,7 +27,7 @@ cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 #cp -rf ../immortalwrt-packages/net/ddns-scripts_{aliyun,dnspod} package/new/
 
 # dnsmasq: add filter aaa option
-cp -rf ../patches/910-add-filter-aaaa-option-support.patch package/network/services/dnsmasq/patches/
+cp -f ../patches/910-add-filter-aaaa-option-support.patch package/network/services/dnsmasq/patches/
 patch -p1 -i ../patches/dnsmasq-add-filter-aaaa-option.patch
 patch -d feeds/luci -p1 -i ../../../patches/filter-aaaa-luci.patch
 
@@ -40,24 +40,24 @@ cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/
 
 # FullCone nat for nftables
 # patch kernel
-cp -f ../immortalwrt/target/linux/generic/hack-5.15/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.15/
+cp -f ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.15/
+cp -f ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch target/linux/generic/hack-5.15/
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
-# patch libnftnl
-cp -rf ../immortalwrt/package/libs/libnftnl/patches package/libs/libnftnl/
-sed -i '/PKG_INSTALL:=1/i\PKG_FIXUP:=autoreconf' package/libs/libnftnl/Makefile
-# patch nftables
-#cp -f ../immortalwrt/package/network/utils/nftables/patches/002-nftables-add-fullcone-expression-support.patch package/network/utils/nftables/patches/
-rm -rf package/network/utils/nftables/
+# libnftnl
+rm -rf ./package/libs/libnftnl
+cp -rf ../immortalwrt/package/libs/libnftnl package/libs/
+# nftables
+rm -rf ./package/network/utils/nftables/
 cp -rf ../immortalwrt/package/network/utils/nftables package/network/utils/
-# patch firewall4
-cp -rf ../immortalwrt/package/network/config/firewall4/patches package/network/config/firewall4/
-sed -i 's|+kmod-nft-nat +kmod-nft-nat6|+kmod-nft-nat +kmod-nft-nat6 +kmod-nft-fullcone|g' package/network/config/firewall4/Makefile
+# firewall4
+rm -rf ./package/network/config/firewall4
+cp -rf ../immortalwrt/package/network/config/firewall4 package/network/config/
 # patch luci
 patch -d feeds/luci -p1 -i ../../../patches/fullconenat-luci.patch
 
 # mbedtls
-rm -rf package/libs/mbedtls
+rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls package/libs/
 
 # OLED

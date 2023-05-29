@@ -14,7 +14,6 @@ cp -f ../patches/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.p
 
 # kernel
 echo '
-CONFIG_ARM_MODULE_PLTS=y
 CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
 # CONFIG_UCLAMP_TASK is not set
 ' >> ./target/linux/sunxi/config-5.15

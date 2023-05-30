@@ -19,13 +19,17 @@ CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
 ' >> ./target/linux/sunxi/config-5.15
 
 # Set dhcp proto on lan
-echo '
-#!/bin/sh
+echo '#!/bin/sh
 
-uci del network.lan.ipaddr
-uci del network.lan.netmask
-uci set network.lan.proto='dhcp'
-uci commit network
+uci -q batch <<-EOF >/dev/null
+	delete network.lan.ipaddr
+	delete network.lan.netmask
+	set network.lan.proto='dhcp'
+	commit network
+EOF
+
+rm -f /tmp/luci-indexcache
+exit 0
 ' >> ./package/base-files/files/etc/uci-defaults/dhcp-proto-lan
 
 source ./01_customize_packages.sh

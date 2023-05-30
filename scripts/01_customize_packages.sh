@@ -21,6 +21,7 @@ cp -rf ../lede/package/lean/ntfs3-mount package/new/
 # backport ntfs3 patches
 patch -p1 -i ../patches/kernel-add-kmod-fs-ntfs3.patch
 cp -rf ../lede/target/linux/generic/files-5.10 target/linux/generic/
+cp -f ../lede/target/linux/generic/hack-5.10/996-fs-ntfs3-Add-NTFS3-in-fs-Kconfig-and-fs-Makefile.patch target/linux/generic/hack-5.10/
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/

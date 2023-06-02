@@ -71,9 +71,6 @@ cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/
 # Scheduled Reboot
 cp -rf ../immortalwrt-luci/applications/luci-app-autoreboot package/new/
 
-# SeverChan
-svn export -q https://github.com/tty228/luci-app-serverchan/trunk package/new/luci-app-serverchan
-
 # ShadowsocksR Plus+
 #svn export -q https://github.com/fw876/helloworld/trunk package/helloworld
 #svn export -q https://github.com/coolsnowwolf/packages/trunk/net/shadowsocks-libev package/helloworld/shadowsocks-libev
@@ -85,6 +82,9 @@ cp -rf ../immortalwrt-luci/applications/luci-app-usb-printer package/new/
 # vlmcsd
 cp -rf ../immortalwrt-luci/applications/luci-app-vlmcsd package/new/
 cp -rf ../immortalwrt-packages/net/vlmcsd package/new/
+
+# Wechat push
+svn export -q https://github.com/tty228/luci-app-wechatpush/trunk package/new/luci-app-wechatpush
 
 # xlnetacc
 #cp -rf ../immortalwrt-luci/applications/luci-app-xlnetacc package/new/

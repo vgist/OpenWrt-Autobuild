@@ -12,9 +12,12 @@ cp -rf ../immortalwrt-luci/applications/luci-app-arpbind package/new/
 # AutoCore
 cp -rf ../immortalwrt/package/emortal/autocore package/new/
 cp -rf ../immortalwrt/package/utils/mhz package/utils/
-cp -rf ../immortalwrt-luci/modules/luci-base/root/usr/libexec/rpcd/luci feeds/luci/modules/luci-base/root/usr/libexec/rpcd/
+rm -rf feeds/luci/modules/luci-base
+cp -rf ../immortalwrt-luci/modules/luci-base feeds/luci/modules
+rm -rf feeds/luci/modules/luci-mod-status
+cp -rf ../immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/
 # grant getCPUUsage access
-sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/generic/luci-mod-status-autocore.json
+sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/luci-mod-status-autocore.json
 
 # automount
 cp -rf ../lede/package/lean/automount package/new/
@@ -36,7 +39,10 @@ cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/
 
 # FullCone nat for nftables
 # patch kernel
-cp -f ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.15/
+#cp -f ../lede/target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.15/
+# https://github.com/coolsnowwolf/lede/issues/11211
+#sed -i 's|CONFIG_WERROR=y|# CONFIG_WERROR is not set|g' target/linux/generic/config-5.15
+curl -sSL https://github.com/coolsnowwolf/lede/files/11473486/952-add-net-conntrack-events-support-multiple-registrant.patch -o target/linux/generic/hack-5.15/952-add-net-conntrack-events-support-multiple-registrant.patch
 cp -f ../lede/target/linux/generic/hack-5.15/982-add-bcm-fullconenat-support.patch target/linux/generic/hack-5.15/
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
@@ -62,8 +68,11 @@ svn export -q https://github.com/NateLol/luci-app-oled/trunk package/new/luci-ap
 # OpenClash
 svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
 
-# Realtek R8125, RTL8152/8153, RTL8192EU
-cp -rf ../immortalwrt/package/kernel/{r8125,r8152,rtl8192eu} package/new/
+# Realtek RTL8125/8125B/8126A
+svn export -q https://github.com/sbwml/package_kernel_r8125/trunk package/new/r8125
+
+# Realtek RTL8152/8153, RTL8192EU
+cp -rf ../immortalwrt/package/kernel/{r8152,rtl8192eu} package/new/
 
 # Release Ram
 cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/

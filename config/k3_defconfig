@@ -4,7 +4,7 @@ CONFIG_TARGET_bcm53xx_generic_DEVICE_phicomm_k3=y
 
 CONFIG_LUCI_SRCDIET=y
 
-CONFIG_PACKAGE_autocore-arm=y
+CONFIG_PACKAGE_autocore=y
 CONFIG_PACKAGE_automount=y
 CONFIG_PACKAGE_default-settings=y
 # CONFIG_PACKAGE_dnsmasq is not set

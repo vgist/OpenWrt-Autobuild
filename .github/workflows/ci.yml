@@ -6,7 +6,7 @@ on:
       branch:
         description: 'your local repo branch'
         required: true
-        default: 22.03
+        default: 23.05
         type: choice
         options:
         - main
@@ -47,8 +47,7 @@ jobs:
             _prerelease=true
             ;;
           23.05)
-            #_release_tag=$(git tag --sort=taggerdate --list 'v23.*' | tail -1)
-            _release_tag=v23.05-snapshot-r$(date +%g.%j)
+            _release_tag=$(git tag --sort=taggerdate --list 'v23.*' | tail -1)
             git checkout $_release_tag
             _prerelease=true
             ;;

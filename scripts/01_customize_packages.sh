@@ -16,8 +16,6 @@ rm -rf feeds/luci/modules/luci-base
 cp -rf ../immortalwrt-luci/modules/luci-base feeds/luci/modules
 rm -rf feeds/luci/modules/luci-mod-status
 cp -rf ../immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/
-# grant getCPUUsage access
-sed -i 's|"getTempInfo"|"getTempInfo", "getCPUBench", "getCPUUsage"|g' package/new/autocore/files/luci-mod-status-autocore.json
 
 # automount
 cp -rf ../lede/package/lean/automount package/new/

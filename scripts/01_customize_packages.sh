@@ -55,8 +55,11 @@ svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash pa
 # add kmod-inet-diag package
 curl -sSL https://github.com/openwrt/openwrt/commit/efc8aff.patch | patch -p1
 
-# Realtek R8125, RTL8152/8153, RTL8192EU
-cp -rf ../immortalwrt/package/kernel/{r8125,r8152,rtl8192eu} package/new/
+# Realtek RTL8125/8125B/8126A
+svn export -q https://github.com/sbwml/package_kernel_r8125/trunk package/new/r8125
+
+# Realtek RTL8152/8153, RTL8192EU
+cp -rf ../immortalwrt/package/kernel/{r8152,rtl8192eu} package/new/
 
 # Release Ram
 cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/

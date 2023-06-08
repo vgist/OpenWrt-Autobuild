@@ -10,7 +10,12 @@ cp -rf ../immortalwrt-luci/applications/luci-app-accesscontrol package/new/
 cp -rf ../immortalwrt-luci/applications/luci-app-arpbind package/new/
 
 # AutoCore
-cp -rf ../autocore package/new/
+cp -rf ../immortalwrt/package/emortal/autocore package/new/
+cp -rf ../immortalwrt/package/utils/mhz package/utils/
+rm -rf feeds/luci/modules/luci-base
+cp -rf ../immortalwrt-luci/modules/luci-base feeds/luci/modules
+rm -rf feeds/luci/modules/luci-mod-status
+cp -rf ../immortalwrt-luci/modules/luci-mod-status feeds/luci/modules/
 
 # automount
 cp -rf ../immortalwrt/package/emortal/automount package/new/

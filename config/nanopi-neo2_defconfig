@@ -28,4 +28,4 @@ CONFIG_PACKAGE_luci-app-usb-printer=y
 CONFIG_PACKAGE_luci-app-vlmcsd=y
 CONFIG_PACKAGE_luci-app-zerotier=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
-CONFIG_PACKAGE_wpad-basic-wolfssl=y
+CONFIG_PACKAGE_wpad-basic-mbedtls=y

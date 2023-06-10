@@ -38,7 +38,7 @@ define Package/default-settings
 		+kmod-nft-fullcone \
 		+kmod-pppol2tp \
 		+kmod-wireguard \
-		+libustream-wolfssl \
+		+libustream-mbedtls \
 		+luci \
 		+luci-compat \
 		+luci-proto-ipv6 \

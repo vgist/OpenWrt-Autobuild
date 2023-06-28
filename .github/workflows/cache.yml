@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         target: [bcm53xx-generic, sunxi-cortexa53, x86-64]
-        branch: [23.05, 22.03, 21.02]
+        branch: [23.05, 22.03]
 
     steps:
     - name: Clone Repository
@@ -34,10 +34,6 @@ jobs:
             ;;
           22.03)
             _release_tag=$(git tag --sort=taggerdate --list 'v22.*' | tail -1)
-            git checkout $_release_tag
-            ;;
-          21.02)
-            _release_tag=$(git tag --sort=taggerdate --list 'v21.*' | tail -1)
             git checkout $_release_tag
             ;;
           *)

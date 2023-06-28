@@ -12,7 +12,6 @@ on:
         - main
         - 23.05
         - 22.03
-        - 21.02
 
 jobs:
   build:
@@ -53,11 +52,6 @@ jobs:
             ;;
           22.03)
             _release_tag=$(git tag --sort=taggerdate --list 'v22.*' | tail -1)
-            git checkout $_release_tag
-            _prerelease=false
-            ;;
-          21.02)
-            _release_tag=$(git tag --sort=taggerdate --list 'v21.*' | tail -1)
             git checkout $_release_tag
             _prerelease=false
             ;;

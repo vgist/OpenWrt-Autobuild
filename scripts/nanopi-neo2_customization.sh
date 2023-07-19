@@ -2,9 +2,6 @@
 
 set -ex
 
-rm -rf ./package/boot/{uboot-sunxi,arm-trusted-firmware-sunxi}
-cp -rf ../lede/package/boot/{uboot-sunxi,arm-trusted-firmware-sunxi} package/boot/
-
 # cpufreq
 cp -f ../patches/103-sun50i-h5-add-cpu-opp-refs.patch target/linux/sunxi/patches-5.15/
 cp -f ../patches/302-sun50i-h5-add-more-cpu-operating-points.patch target/linux/sunxi/patches-5.15/

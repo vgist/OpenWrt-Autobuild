@@ -127,12 +127,6 @@ jobs:
         cat ${{ steps.var.outputs.artifact }}/config.buildinfo
         rm -rf ${{ steps.var.outputs.artifact }}/{packages,*.buildinfo,*.json,*.manifest,*kernel.bin,*-rootfs.*,sha256sums}
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: ${{ steps.var.outputs.release_tag }}
-        path: ${{ steps.var.outputs.artifact }}/*
-
     - name: Upload Release
       uses: softprops/action-gh-release@v1
       env:

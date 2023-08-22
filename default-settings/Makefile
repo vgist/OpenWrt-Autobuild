@@ -30,13 +30,8 @@ define Package/default-settings
 	TITLE:=LuCI support for Default Settings
 	PKGARCH:=all
 	DEPENDS:= \
-		+kmod-ipsec \
-		+kmod-ipsec4 \
-		+kmod-ipsec6 \
-		+kmod-ipt-ipsec \
 		+kmod-macvlan \
 		+kmod-nft-fullcone \
-		+kmod-pppol2tp \
 		+kmod-wireguard \
 		+libustream-mbedtls \
 		+luci \

@@ -1034,38 +1034,11 @@ msgstr "警告：当前系统没有包括两个分区!"
 msgid "Warning: This system does not support powering off!"
 msgstr "警告：本系统不支持软关机!"
 
-msgid "MiniUPnP extra settings"
-msgstr "MiniUPnP 补充设置"
-
-msgid "Settings for router behined DMZ"
-msgstr "二级路由设置"
-
-msgid "External Network Interface"
-msgstr "外部网络接口"
-
-msgid "Internal Network Interface"
-msgstr "内部网络接口"
-
-msgid "usually is wan"
-msgstr "通常为 wan"
-
-msgid "usually is lan"
-msgstr "通常为 lan"
-
 msgid "Filter IPv6 Records"
 msgstr "过滤 IPv6 记录"
 
 msgid "Filter IPv6(AAAA) Records during DNS resolution"
 msgstr "在域名解析时，过滤 IPv6(AAAA) 记录"
 
-msgid "SFE flow offloading"
-msgstr "SFE 流量分载"
-
-msgid "SFE based offloading for Routing/NAT. Restart recommended."
-msgstr "基于 SFE 的 Routing/NAT 分载（开/关后建议重启设备）"
-
 msgid "Enable FullCone-NAT"
 msgstr "启用 FullCone-NAT"
-
-msgid "Base Setting"
-msgstr "基本设置"

@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        target: [sunxi-cortexa53, x86-64]
+        target: [sunxi-cortexa7, sunxi-cortexa53, x86-64]
         branch: [23.05, 22.03]
 
     steps:

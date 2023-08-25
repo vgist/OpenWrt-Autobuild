@@ -1,6 +1,6 @@
 --- a/arch/arm/boot/dts/sun8i-h3.dtsi
 +++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -60,11 +60,47 @@ opp-816000000 {
+@@ -60,11 +60,53 @@ opp-816000000 {
  			clock-latency-ns = <244144>; /* 8 32k periods */
  		};
  
@@ -42,6 +42,12 @@
 +
 +		opp-1248000000 {
 +			opp-hz = /bits/ 64 <1248000000>;
++			opp-microvolt = <1300000 1300000 1300000>;
++			clock-latency-ns = <244144>; /* 8 32k periods */
++		};
++
++		opp-1296000000 {
++			opp-hz = /bits/ 64 <1296000000>;
 +			opp-microvolt = <1300000 1300000 1300000>;
 +			clock-latency-ns = <244144>; /* 8 32k periods */
 +		};

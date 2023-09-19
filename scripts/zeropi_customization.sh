@@ -3,13 +3,13 @@
 set -ex
 
 # cpu operating points
-cp -f ../patches/320-sun8i-h3-add-more-cpu-operating-points.patch ./target/linux/sunxi/patches-5.15/
+cp -f ../patches/320-sun8i-h3-add-more-cpu-operating-points.patch ./target/linux/sunxi/patches-6.1/
 
 # kernel
 echo '
 CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
 # CONFIG_UCLAMP_TASK is not set
-' >> ./target/linux/sunxi/config-5.15
+' >> ./target/linux/sunxi/config-6.1
 
 # Set dhcp proto on lan
 echo '#!/bin/sh

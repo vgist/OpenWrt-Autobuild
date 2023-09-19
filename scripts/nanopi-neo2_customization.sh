@@ -3,17 +3,17 @@
 set -ex
 
 # cpufreq
-cp -f ../patches/103-sun50i-h5-add-cpu-opp-refs.patch target/linux/sunxi/patches-5.15/
-cp -f ../patches/302-sun50i-h5-add-more-cpu-operating-points.patch target/linux/sunxi/patches-5.15/
+cp -f ../patches/103-sun50i-h5-add-cpu-opp-refs.patch target/linux/sunxi/patches-6.1/
+cp -f ../patches/302-sun50i-h5-add-more-cpu-operating-points.patch target/linux/sunxi/patches-6.1/
 
 # model name patch for aarch64
-cp -f ../patches/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch target/linux/generic/hack-5.15/
+cp -f ../patches/312-arm64-cpuinfo-Add-model-name-in-proc-cpuinfo-for-64bit-ta.patch target/linux/generic/hack-6.1/
 
 # kernel
 echo '
 CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
 # CONFIG_UCLAMP_TASK is not set
-' >> ./target/linux/sunxi/config-5.15
+' >> ./target/linux/sunxi/config-6.1
 
 # Set dhcp proto on lan
 echo '#!/bin/sh

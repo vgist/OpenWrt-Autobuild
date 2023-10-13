@@ -48,7 +48,7 @@ jobs:
           23.05)
             _release_tag=$(git tag --sort=taggerdate --list 'v23.*' | tail -1)
             git checkout $_release_tag
-            _prerelease=true
+            _prerelease=false
             ;;
           22.03)
             _release_tag=$(git tag --sort=taggerdate --list 'v22.*' | tail -1)

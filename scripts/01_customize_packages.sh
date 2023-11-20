@@ -24,9 +24,6 @@ cp -rf ../lede/package/lean/ntfs3-mount package/new/
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 
-# DDNS
-#cp -rf ../immortalwrt-packages/net/ddns-scripts_{aliyun,dnspod} package/new/
-
 # dnsmasq
 rm -rf package/network/services/dnsmasq
 cp -rf ../immortalwrt/package/network/services/dnsmasq package/network/services/
@@ -89,12 +86,6 @@ cp -rf ../immortalwrt-luci/applications/luci-app-usb-printer package/new/
 # vlmcsd
 cp -rf ../immortalwrt-luci/applications/luci-app-vlmcsd package/new/
 cp -rf ../immortalwrt-packages/net/vlmcsd package/new/
-
-# Wechat push
-svn export -q https://github.com/tty228/luci-app-wechatpush/trunk package/new/luci-app-wechatpush
-
-# xlnetacc
-#cp -rf ../immortalwrt-luci/applications/luci-app-xlnetacc package/new/
 
 # Zerotier
 cp -rf ../immortalwrt-luci/applications/luci-app-zerotier package/new/

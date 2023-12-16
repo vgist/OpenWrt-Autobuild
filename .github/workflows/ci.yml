@@ -9,7 +9,7 @@ on:
         default: 23.05
         type: choice
         options:
-        - main
+        - master
         - 23.05
         - 22.03
 
@@ -41,7 +41,7 @@ jobs:
       id: var
       run: |
         case ${{ github.event.inputs.branch }} in
-          main)
+          master)
             _release_tag=snapshot-r$(date +%g.%j)
             _prerelease=true
             ;;

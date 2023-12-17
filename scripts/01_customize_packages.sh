@@ -30,10 +30,6 @@ cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
 rm -rf package/network/services/dnsmasq
 cp -rf ../immortalwrt/package/network/services/dnsmasq package/network/services/
 
-# Filetransfer
-cp -rf ../immortalwrt-luci/applications/luci-app-filetransfer package/new/
-cp -rf ../immortalwrt-luci/libs/luci-lib-fs package/new/
-
 # FullCone nat for nftables
 # patch kernel
 cp -f ../lede/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/

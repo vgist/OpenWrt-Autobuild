@@ -16,11 +16,6 @@ PKG_LICENSE:=GPL-3.0
 
 include $(INCLUDE_DIR)/package.mk
 
-# full IPv6 support with a DHCPv6 client: odhcp6c
-# RA & DHCPv6 Server: odhcpd-ipv6only
-# Web interface to configure IPv6: luci-proto-ipv6
-# FullCone Nat: kmod-nft-fullcone
-# mwan3: kmod-macvlan
 # wireguard: kmod-wireguard
 # ipsec: kmod-{ipsec,ipsec4,ipsec6,ipt-ipsec,pppol2tp}
 
@@ -30,16 +25,10 @@ define Package/default-settings
 	TITLE:=LuCI support for Default Settings
 	PKGARCH:=all
 	DEPENDS:= \
-		+kmod-macvlan \
-		+kmod-nft-fullcone \
 		+kmod-wireguard \
 		+libustream-wolfssl \
 		+luci \
 		+luci-compat \
-		+luci-proto-ipv6 \
-		+odhcp6c \
-		+odhcpd-ipv6only \
-		+zram-swap \
 		+@LUCI_LANG_zh_Hans
 endef
 

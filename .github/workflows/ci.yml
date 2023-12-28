@@ -86,6 +86,13 @@ jobs:
         cp ../scripts/01_customize_packages.sh .
         /bin/bash ${{ steps.var.outputs.device }}_customization.sh
 
+    - if: matrix.target == 'x86-64'
+      name: FullCone Nat
+      working-directory: ./openwrt
+      run: |
+        cp ../scripts/01_fullconenat.sh .
+        /bin/bash 01_fullconenat.sh
+
     - name: Convert Translation
       working-directory: ./openwrt
       run: |

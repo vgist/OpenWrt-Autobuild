@@ -12,13 +12,24 @@ on:
         - master
         - 23.05
         - 22.03
+      targets:
+        description: 'target devices'
+        required: true
+        default: "['sunxi-cortexa7', 'x86-64']"
+        type: choice
+        options:
+        - "['meson-meson8b']"
+        - "['sunxi-cortexa7']"
+        - "['x86-64']"
+        - "['sunxi-cortexa7', 'x86-64']"
+        - "['meson-meson8b', 'sunxi-cortexa7', 'x86-64']"
 
 jobs:
   build:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        target: [sunxi-cortexa7, x86-64]
+        target: ${{ fromJSON(github.event.inputs.targets) }}
 
     steps:
     - name: Clone Repository
@@ -60,6 +71,7 @@ jobs:
             ;;
         esac
         case ${{ matrix.target }} in
+          meson-meson8b)    _device=onecloud          ;;
           sunxi-cortexa7)   _device=zeropi            ;;
           x86-64)           _device=x86-64            ;;
           *)                echo "wrong devices"      ;;
@@ -132,6 +144,12 @@ jobs:
         ls ${{ steps.var.outputs.artifact }}
         cat ${{ steps.var.outputs.artifact }}/config.buildinfo
         rm -rf ${{ steps.var.outputs.artifact }}/{packages,*.buildinfo,*.json,*.manifest,*kernel.bin,*-rootfs.*,sha256sums}
+
+    - if: matrix.target == 'meson-meson8b'
+      name: Assemble burn firmware
+      run: |
+        cp ./scripts/onecloud_burn_customization.sh .
+        /bin/bash onecloud_burn_customization.sh
 
     - name: Upload Release
       uses: softprops/action-gh-release@v1

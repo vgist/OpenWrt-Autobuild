@@ -43,9 +43,6 @@ svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash pa
 # Realtek RTL8125/8125B/8126A
 svn export -q https://github.com/sbwml/package_kernel_r8125/trunk package/new/r8125
 
-# Realtek RTL8192EU
-cp -rf ../immortalwrt/package/kernel/rtl8192eu package/new/
-
 # Release Ram
 cp -rf ../immortalwrt-luci/applications/luci-app-ramfree package/new/
 

@@ -33,13 +33,13 @@ rm -rf ./package/libs/mbedtls
 cp -rf ../immortalwrt/package/libs/mbedtls package/libs/
 
 # OLED
-svn export -q https://github.com/NateLol/luci-app-oled/trunk package/new/luci-app-oled
+git clone -b master --depth 1 --single-branch https://github.com/NateLol/luci-app-oled package/new/luci-app-oled
 
 # OpenClash
-svn export -q https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/new/luci-app-openclash
+git clone -b master --depth 1 --single-branch https://github.com/vernesong/OpenClash package/new/luci-app-openclash
 
 # Realtek RTL8125/8125B/8126A
-svn export -q https://github.com/sbwml/package_kernel_r8125/trunk package/new/r8125
+git clone -b master --depth 1 --single-branch https://github.com/sbwml/package_kernel_r8125 package/new/r8125
 
 # Realtek RTL8152/8153
 cp -rf ../immortalwrt/package/kernel/r8152 package/new/

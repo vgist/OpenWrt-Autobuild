@@ -2,7 +2,7 @@
 
 set -ex
 
-svn export -q https://github.com/coolsnowwolf/lede/trunk/target/linux/meson target/linux/meson
+cp -rf ../lede/target/linux/meson target/linux/
 
 # kernel
 echo '

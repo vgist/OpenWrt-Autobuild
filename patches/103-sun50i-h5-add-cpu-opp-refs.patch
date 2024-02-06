@@ -1,0 +1,10 @@
+--- a/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-nanopi-neo2.dts
+@@ -3,6 +3,7 @@
+ 
+ /dts-v1/;
+ #include "sun50i-h5.dtsi"
++#include "sun50i-h5-cpu-opp.dtsi"
+ 
+ #include <dt-bindings/gpio/gpio.h>
+ 

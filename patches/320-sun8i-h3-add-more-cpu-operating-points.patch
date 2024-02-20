@@ -1,6 +1,6 @@
 --- a/arch/arm/boot/dts/sun8i-h3.dtsi
 +++ b/arch/arm/boot/dts/sun8i-h3.dtsi
-@@ -60,11 +60,53 @@ opp-816000000 {
+@@ -60,11 +60,53 @@
  			clock-latency-ns = <244144>; /* 8 32k periods */
  		};
  

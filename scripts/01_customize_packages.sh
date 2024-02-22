@@ -23,6 +23,7 @@ cp -rf ../lede/package/lean/ntfs3-mount package/new/
 
 # cpufreq
 cp -rf ../immortalwrt-luci/applications/luci-app-cpufreq package/new/
+cp -rf ../immortalwrt/package/emortal/cpufreq package/new/
 
 # dnsmasq
 rm -rf package/network/services/dnsmasq

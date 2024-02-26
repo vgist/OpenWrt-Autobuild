@@ -16,12 +16,12 @@ on:
       targets:
         description: 'target devices'
         required: true
-        default: "['sunxi-cortexa7', 'sunxi-cortexa53', 'x86-64']"
+        default: "['sunxi-cortexa53', 'x86-64']"
         type: choice
         options:
         - "['meson-meson8b']"
-        - "['sunxi-cortexa7', 'sunxi-cortexa53', 'x86-64']"
-        - "['meson-meson8b', 'sunxi-cortexa7', 'sunxi-cortexa53', 'x86-64']"
+        - "['sunxi-cortexa53', 'x86-64']"
+        - "['meson-meson8b', 'sunxi-cortexa53', 'x86-64']"
 
 jobs:
   build:
@@ -71,7 +71,6 @@ jobs:
         esac
         case ${{ matrix.target }} in
           meson-meson8b)    _device=onecloud          ;;
-          sunxi-cortexa7)   _device=zeropi            ;;
           sunxi-cortexa53)  _device=nanopi-neo2       ;;
           x86-64)           _device=x86-64            ;;
           *)                echo "wrong devices"      ;;

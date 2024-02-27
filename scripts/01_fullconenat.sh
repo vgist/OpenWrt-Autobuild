@@ -6,7 +6,6 @@ set -ex
 # FullCone nat for nftables
 # patch kernel
 cp -f ../lede/target/linux/generic/hack-5.10/952-net-conntrack-events-support-multiple-registrant.patch target/linux/generic/hack-5.10/
-cp -r ../lede/target/linux/generic/hack-5.10/982-add-bcm-fullconenat-support.patch target/linux/generic/hack-5.10/
 # fullconenat-nft
 cp -rf ../immortalwrt/package/network/utils/fullconenat-nft package/network/utils/
 # libnftnl

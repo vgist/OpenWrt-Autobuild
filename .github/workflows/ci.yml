@@ -110,12 +110,6 @@ jobs:
         cp ../scripts/02_convert_translation.sh .
         /bin/bash 02_convert_translation.sh
 
-    - name: Add ACL
-      working-directory: ./openwrt
-      run: |
-        cp ../scripts/03_create_acl_for_luci.sh .
-        /bin/bash 03_create_acl_for_luci.sh -a
-
     - name: Get cache toolchain
       uses: HiGarfield/cachewrtbuild@main
       with:

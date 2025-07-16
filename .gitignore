@@ -3,5 +3,6 @@
 .initialized
 .restored
 .Spotlight-v100
-openwrt
 immortalwrt*
+lede
+openwrt

@@ -9,10 +9,6 @@
     - scripts/
     - config/
 - 不同版本，存储在不同的 branch，所以想自行编译的话，请 fork 所有分支
-- OneCloud 有两个版本。
-    - emmc 固件为直刷包，用 USB_Burning_Tool 工具刷入
-    - sdcard 固件可以用 balenaEther 等工具刷入 U 盘/SD 卡，前提需要 eMMC 上已经刷入 hzyit [eMMC 底包](https://github.com/hzyitc/u-boot-onecloud/releases/download/build-20221028-0940/eMMC.burn.img)，或包含该底包的固件。
-    - 启动顺序为 USB -> SD card -> eMMC
 
 #### 感谢
 

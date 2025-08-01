@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        target: ['amlogic-meson8b', 'x86-64']
+        target: ['x86-64']
         branch: ['24.10', '23.05']
 
     steps:

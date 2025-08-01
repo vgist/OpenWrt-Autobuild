@@ -16,11 +16,10 @@ on:
       targets:
         description: 'target devices'
         required: true
-        default: "['amlogic-meson8b', 'x86-64']"
+        default: "['x86-64']"
         type: choice
         options:
-        - "['amlogic-meson8b']"
-        - "['amlogic-meson8b', 'x86-64']"
+        - "['x86-64']"
 
 jobs:
   build:
@@ -89,7 +88,6 @@ jobs:
             ;;
         esac
         case ${{ matrix.target }} in
-          amlogic-meson8b)  _device=onecloud          ;;
           x86-64)           _device=x86-64            ;;
           *)                echo "wrong devices"      ;;
         esac
@@ -154,11 +152,6 @@ jobs:
         ls ${{ steps.var.outputs.artifact }}
         cat ${{ steps.var.outputs.artifact }}/config.buildinfo
         rm -rf ${{ steps.var.outputs.artifact }}/{packages,*.buildinfo,*.json,*.manifest,*kernel.bin,*-rootfs.*,sha256sums}
-
-    - if: matrix.target == 'amlogic-meson8b'
-      name: Assemble burn firmware
-      run: |
-        ./scripts/00_init.sh burn-onecloud
 
     - name: Upload Release
       uses: softprops/action-gh-release@v2

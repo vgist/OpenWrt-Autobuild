@@ -12,7 +12,6 @@ on:
         options:
         - 'master'
         - '24.10'
-        - '23.05'
       targets:
         description: 'target devices'
         required: true
@@ -75,11 +74,6 @@ jobs:
             ;;
           24.10)
             _release_tag=$(git tag --sort=taggerdate --list 'v24.*' | tail -1)
-            git checkout $_release_tag
-            _prerelease=false
-            ;;
-          23.05)
-            _release_tag=$(git tag --sort=taggerdate --list 'v23.*' | tail -1)
             git checkout $_release_tag
             _prerelease=false
             ;;

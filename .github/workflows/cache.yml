@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         target: ['x86-64']
-        branch: ['24.10', '23.05']
+        branch: ['24.10']
 
     steps:
     - name: Clone Repository
@@ -30,10 +30,6 @@ jobs:
         case ${{ matrix.branch }} in
           24.10)
             _release_tag=$(git tag --sort=taggerdate --list 'v24.*' | tail -1)
-            git checkout $_release_tag
-            ;;
-          23.05)
-            _release_tag=$(git tag --sort=taggerdate --list 'v23.*' | tail -1)
             git checkout $_release_tag
             ;;
           *)
